@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import {defineComponent} from "vue";
 
 export default defineComponent({
@@ -12,7 +12,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <h1>Home page</h1>
+    <h1 class="text-3xl font-bold ">Home page</h1>
 </template>
 
 <style scoped>
