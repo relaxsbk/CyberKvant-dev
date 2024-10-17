@@ -14,7 +14,7 @@ export default defineComponent({
 <template>
     <AppHead title="CyberKvant"/>
 
-    <h1 class="text-3xl font-bold ">Home page</h1>
+    <h1 class="text-3xl font-bold mt-20">Home page</h1>
 </template>
 
 <style scoped>
