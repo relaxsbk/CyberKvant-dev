@@ -20,7 +20,7 @@
             Next
         </button>
         <div class="flex justify-center">
-            <div class="indicators absolute bottom-4 flex justify-center items-center w-auto bg-[#1E1E1E] rounded-[10px] py-1 px-3 mb-5">
+            <div class="indicators absolute bottom-4 flex justify-center items-center w-auto bg-[#1E1E1E] rounded-[10px] py-1 px-3 mb-10">
       <span
           v-for="(slide, index) in slides"
           :key="index"
