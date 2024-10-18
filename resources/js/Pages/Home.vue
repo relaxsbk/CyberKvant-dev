@@ -2,9 +2,10 @@
 import {defineComponent} from "vue";
 import MainLayout from "@/Layouts/MainLayout.vue";
 import AppHead from "@/AppHead/AppHead.vue";
+import Slider from "@/components/Slider.vue";
 
 export default defineComponent({
-    components: {AppHead},
+    components: {Slider, AppHead},
     layout: MainLayout,
 
 })
@@ -14,7 +15,24 @@ export default defineComponent({
 <template>
     <AppHead title="CyberKvant"/>
 
-    <h1 class="text-3xl font-bold mt-20">Home page</h1>
+    <section>
+        <Slider />
+    </section>
+
+    <section>
+        хиты продаж
+    </section>
+    <section>
+       два банера
+    </section>
+    <section>
+       Категории
+    </section>
+    <section>
+       Бренд
+    </section>
+
+
 </template>
 
 <style scoped>

@@ -15,7 +15,7 @@ const toggleMenu = () => {
         <div class="container mx-auto flex items-center justify-between p-4">
             <!-- Logo -->
             <div class="flex-shrink-0">
-                <img src="https://via.placeholder.com/294x69" alt="Logo" class="w-72 h-16" />
+                <img src="/resources/js/Pages/logo-name.svg%20fill.svg" alt="Logo" class="w-72 h-16" />
             </div>
 
             <!-- Catalog Button for large screens -->
@@ -74,7 +74,7 @@ const toggleMenu = () => {
         </div>
 
         <!-- Mobile menu -->
-        <div v-if="isMenuOpen" class="lg:hidden bg-[#1E1E1E]">
+        <div v-if="isMenuOpen" class="lg:hidden bg-[#1E1E1E] transition duration-100 ease-in-out">
             <div class="p-4">
                 <ul class="space-y-4 text-white">
                     <li class="flex flex-col items-center bg-[#9701FE] text-white px-4 py-3 rounded-[10px] ">
