@@ -13,10 +13,10 @@
 
             </div>
         </div>
-        <button @click="prevSlide" class="absolute left-0 top-1/2 -translate-y-1/2">
+        <button @click="prevSlide" class="absolute left-4 top-1/2 -translate-y-1/2">
             Prev
         </button>
-        <button @click="nextSlide" class="absolute right-0 top-1/2 -translate-y-1/2">
+        <button @click="nextSlide" class="absolute right-4 top-1/2 -translate-y-1/2">
             Next
         </button>
         <div class="flex justify-center">
