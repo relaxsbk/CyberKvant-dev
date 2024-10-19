@@ -3,7 +3,9 @@
 </script>
 
 <template>
-footer
+    <section class="container mx-auto">
+        footer
+    </section>
 </template>
 
 <style scoped>

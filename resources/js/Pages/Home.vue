@@ -26,8 +26,8 @@ export default defineComponent({
                 </div>
             </div>
 
-            <div class="container mx-auto flex justify-between mb-[30px]">
-                <div class="bg-purple-600 rounded-[10px] w-full h-[227px] mr-[24px]">реклама 1</div>
+            <div class="container mx-auto flex justify-between mb-[30px] space-x-6">
+                <div class="bg-purple-600 rounded-[10px] w-full h-[227px] ">реклама 1</div>
                 <div class="bg-purple-600 rounded-[10px] w-full h-[227px]">реклама 2</div>
             </div>
             <div class="container mx-auto ">
