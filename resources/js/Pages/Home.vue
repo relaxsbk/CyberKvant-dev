@@ -26,11 +26,11 @@ export default defineComponent({
                 </div>
             </div>
 
-            <div class="container mx-auto flex justify-between mb-[30px] space-x-6">
+            <div class="container mx-auto flex  sm:flex-wrap sm:space-y-6 lg:flex-nowrap lg:justify-between mb-[30px] lg:space-y-0 lg:space-x-6">
                 <div class="bg-purple-600 rounded-[10px] w-full h-[227px] ">реклама 1</div>
                 <div class="bg-purple-600 rounded-[10px] w-full h-[227px]">реклама 2</div>
             </div>
-            <div class="container mx-auto ">
+            <div class="container mx-auto mb-[30px]">
                 <h2 class="text-2xl mb-[30px]">Популярные категории</h2>
                 <div class="bg-purple-600 h-[516px]">
                     Список категорий

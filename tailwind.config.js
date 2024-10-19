@@ -10,7 +10,12 @@ export default {
         './resources/**/*.vue',
     ],
     theme: {
+
         extend: {
+            screens: {
+                'sm': '320px'
+                //
+            },
             colors: {
                 'primary-purple': '#9701FE',
                 'secondary-purple': '#CA7FFE',
