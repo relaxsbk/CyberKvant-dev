@@ -18,7 +18,7 @@ export default defineComponent({
     <section>
         <Slider />
 
-        <section class=" bg-[#1E1E1E] rounded-t-[40px] py-[60px] px-12 mt-[-36px] w-full relative z-10">
+        <section class=" bg-[#1E1E1E] rounded-t-[40px] py-[30px] px-12 mt-[-40px] w-full relative z-10">
             <div class="container mx-auto mb-[30px]">
                 <h2 class="text-2xl mb-[30px]">Хиты продаж</h2>
                 <div class="bg-purple-600 h-[620px]">
@@ -26,7 +26,7 @@ export default defineComponent({
                 </div>
             </div>
 
-            <div class="container mx-auto flex  sm:flex-wrap sm:space-y-6 lg:flex-nowrap lg:justify-between mb-[30px] lg:space-y-0 lg:space-x-6">
+            <div class="container mx-auto flex  xs:flex-wrap xs:space-y-6 lg:flex-nowrap lg:justify-between mb-[30px] lg:space-y-0 lg:space-x-6">
                 <div class="bg-purple-600 rounded-[10px] w-full h-[227px] ">реклама 1</div>
                 <div class="bg-purple-600 rounded-[10px] w-full h-[227px]">реклама 2</div>
             </div>

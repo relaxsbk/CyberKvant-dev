@@ -13,8 +13,8 @@ export default {
 
         extend: {
             screens: {
-                'sm': '320px'
-                //
+                'xs': '430px',
+                ...defaultTheme.screens,
             },
             colors: {
                 'primary-purple': '#9701FE',

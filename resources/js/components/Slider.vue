@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-full relative w-full overflow-hidden">
+    <div class="xs:mb-[55px] xs:rounded-[10px] xs:mt-7 xs:mx-2 md:mx-auto md:mt-0 md:mb-0 lg:min-h-full relative lg:w-full overflow-hidden">
         <div
             class="slider-track flex transition-transform duration-500"
             :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
@@ -7,9 +7,9 @@
             <div
                 v-for="(slide, index) in slides"
                 :key="index"
-                class="slider-item flex-shrink-0 w-full"
+                class="slider-item flex-shrink-0 w-full "
             >
-                <img :src="slide.image" alt="" class="w-full h-auto" />
+                <img :src="slide.image" alt="" class="w-full h-auto aspect-auto" />
 
             </div>
         </div>
@@ -19,8 +19,8 @@
         <button @click="nextSlide" class="absolute right-4 top-1/2 -translate-y-1/2">
             Next
         </button>
-        <div class="flex justify-center">
-            <div class="indicators absolute bottom-4 flex justify-center items-center w-auto bg-[#1E1E1E] rounded-[10px] py-1 px-3 mb-10">
+        <div class="flex justify-center ">
+            <div class="indicators absolute bottom-4 flex justify-center items-center w-auto bg-[#1E1E1E] rounded-[10px] py-1 px-3 xs:mb-0 md:mb-10 ">
       <span
           v-for="(slide, index) in slides"
           :key="index"
