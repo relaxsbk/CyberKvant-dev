@@ -27,8 +27,12 @@ export default defineComponent({
             </div>
 
             <div class="container mx-auto flex  xs:flex-wrap xs:space-y-6 lg:flex-nowrap lg:justify-between mb-[30px] lg:space-y-0 lg:space-x-6">
-                <div class="bg-purple-600 rounded-[10px] w-full h-[227px] ">реклама 1</div>
-                <div class="bg-purple-600 rounded-[10px] w-full h-[227px]">реклама 2</div>
+                <div class=" rounded-[10px] w-full h-auto ">
+                    <img class="w-full " src="/resources/images/static/advertisement/Реклама%201png.png" alt="advertisement">
+                </div>
+                <div class=" rounded-[10px] w-full h-auto ">
+                    <img class="w-full " src="/resources/images/static/advertisement/реклама2.png" alt="advertisement">
+                </div>
             </div>
             <div class="container mx-auto mb-[30px]">
                 <h2 class="text-2xl mb-[30px]">Популярные категории</h2>
