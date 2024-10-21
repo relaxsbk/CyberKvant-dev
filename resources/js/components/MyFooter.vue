@@ -5,8 +5,8 @@ import { Link } from '@inertiajs/vue3'
 </script>
 
 <template>
-    <section class="container mx-auto py-5 flex text-primary-purple xs:justify-center xs:space-y-6  xs:flex-wrap lg:flex-nowrap lg:justify-between  lg:space-y-0 ">
-        <div class=" xs:w-screen lg:w-auto">
+    <section class="container mx-auto py-5 flex text-primary-purple xs:justify-center xs:space-y-6  xs:flex-wrap lg:flex-nowrap lg:justify-between  lg:space-y-0 border-b border-gray-600">
+        <div class=" xs:w-screen lg:w-auto ">
             <h5 class="text-center">Контактные данные</h5>
             <p class="text-[24px] text-white text-center">8 (888) 888-88-88</p>
             <p class="text-[24px] text-white text-center">+7 (777) 777-77-77</p>
@@ -35,7 +35,11 @@ import { Link } from '@inertiajs/vue3'
 
 
         </div>
+
     </section>
+    <div class="container mx-auto xs:w-screen lg:w-auto py-4 xs:px-4 sm:px-0">
+        <span class="text-gray-600">© ГиперКвант, 2025 г.</span>
+    </div>
 </template>
 
 <style scoped>
