@@ -14,7 +14,7 @@ import MyFooter from "@/components/MyFooter.vue";
             <slot />
         </main>
 
-        <footer class="mt-auto z-10">
+        <footer class="mt-auto z-10 bg-black">
             <MyFooter />
         </footer>
     </section>

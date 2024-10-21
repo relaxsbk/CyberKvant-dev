@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .hoverText {
+        @apply duration-200 ease-linear transition-colors hover:text-secondary-purple;
+    }
+}
