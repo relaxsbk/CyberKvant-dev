@@ -3,9 +3,10 @@ import {defineComponent} from "vue";
 import MainLayout from "@/Layouts/MainLayout.vue";
 import AppHead from "@/AppHead/AppHead.vue";
 import Slider from "@/components/Slider.vue";
+import Category from "@/components/Category.vue";
 
 export default defineComponent({
-    components: {Slider, AppHead},
+    components: {Category, Slider, AppHead},
     layout: MainLayout,
 
 })
@@ -36,9 +37,21 @@ export default defineComponent({
             </div>
             <div class="container mx-auto mb-[30px]">
                 <h2 class="text-2xl mb-[30px]">Популярные категории</h2>
-                <div class="bg-purple-600 h-[516px]">
-                    Список категорий
+                <div class="h-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 py-1">
+                    <Category />
+                    <Category />
+                    <Category />
+                    <Category />
+                    <Category />
+                    <Category />
+                    <Category />
+                    <Category />
+                    <Category />
+                    <Category />
+                    <Category />
+                    <Category />
                 </div>
+
             </div>
             <div class="container mx-auto">
                 <h2 class="text-2xl mb-[30px]">Популярные бренды</h2>

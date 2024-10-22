@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/vue3'
 </script>
 
 <template>
-    <section class="container mx-auto py-5 flex text-primary-purple xs:justify-center xs:space-y-6  xs:flex-wrap lg:flex-nowrap lg:justify-between  lg:space-y-0 border-b border-gray-600">
+    <section class="container mx-auto py-6 flex text-primary-purple xs:justify-center xs:space-y-6  xs:flex-wrap lg:flex-nowrap lg:justify-between  lg:space-y-0 border-b border-gray-600">
         <div class=" xs:w-screen lg:w-auto ">
             <h5 class="text-center">Контактные данные</h5>
             <p class="text-[24px] text-white text-center">8 (888) 888-88-88</p>
