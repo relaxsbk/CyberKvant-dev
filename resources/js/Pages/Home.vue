@@ -4,9 +4,10 @@ import MainLayout from "@/Layouts/MainLayout.vue";
 import AppHead from "@/AppHead/AppHead.vue";
 import Slider from "@/components/Slider.vue";
 import Category from "@/components/Category.vue";
+import Brand from "@/Brand/Brand.vue";
 
 export default defineComponent({
-    components: {Category, Slider, AppHead},
+    components: {Brand, Category, Slider, AppHead},
     layout: MainLayout,
 
 })
@@ -54,9 +55,14 @@ export default defineComponent({
 
             </div>
             <div class="container mx-auto">
-                <h2 class="text-2xl mb-[30px]">Популярные бренды</h2>
-                <div class="bg-purple-600 h-[70px]">
-                    Список брендов
+                <h2 class="text-2xl mb-[14px]">Популярные бренды</h2>
+                <div class="h-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 py-4">
+                    <Brand />
+                    <Brand />
+                    <Brand />
+                    <Brand />
+                    <Brand />
+                    <Brand />
                 </div>
             </div>
         </section>
