@@ -22,7 +22,10 @@ export default defineComponent({
 
         <section class=" bg-[#1E1E1E] rounded-t-[40px] py-[30px] px-12 mt-[-40px] w-full relative z-10">
             <div class="container mx-auto mb-[30px]">
-                <h2 class="text-2xl mb-[30px]">Хиты продаж</h2>
+                <div class="flex justify-between items-center mb-[30px]">
+                    <h2 class="xs:text-xl sm:text-2xl">Хиты продаж</h2>
+                    <a href="*" class="text-[16px] text-white-purple duration-200 ease-linear hover:text-secondary-purple ">Показать все</a>
+                </div>
                 <div class="bg-purple-600 h-[620px]">
                     Товары список
                 </div>
@@ -37,7 +40,11 @@ export default defineComponent({
                 </div>
             </div>
             <div class="container mx-auto mb-[30px]">
-                <h2 class="text-2xl mb-[30px]">Популярные категории</h2>
+                <div class="flex justify-between items-center mb-[30px]">
+                    <h2 class="xs:text-xl sm:text-2xl">Популярные категории</h2>
+                    <a href="*" class="text-[16px] text-white-purple duration-200 ease-linear hover:text-secondary-purple ">Показать все</a>
+                </div>
+
                 <div class="h-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 py-1">
                     <Category />
                     <Category />
@@ -55,7 +62,10 @@ export default defineComponent({
 
             </div>
             <div class="container mx-auto">
-                <h2 class="text-2xl mb-[14px]">Популярные бренды</h2>
+                <div class="flex justify-between items-center mb-[14px]">
+                    <h2 class="xs:text-xl sm:text-2xl">Популярные бренды</h2>
+                    <a href="*" class="text-[16px] text-white-purple duration-200 ease-linear hover:text-secondary-purple ">Показать все</a>
+                </div>
                 <div class="h-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 py-4">
                     <Brand />
                     <Brand />
