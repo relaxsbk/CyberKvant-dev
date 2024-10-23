@@ -5,9 +5,15 @@ import AppHead from "@/AppHead/AppHead.vue";
 import Slider from "@/components/Slider.vue";
 import Category from "@/components/Category.vue";
 import Brand from "@/Brand/Brand.vue";
+import Card from "@/components/Card.vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/swiper-bundle.css";
+import CartSlider from "@/components/CartSlider.vue";
+
+
 
 export default defineComponent({
-    components: {Brand, Category, Slider, AppHead},
+    components: {CartSlider, Card, Brand, Category, Slider, AppHead, Swiper, SwiperSlide},
     layout: MainLayout,
 
 })
@@ -26,9 +32,7 @@ export default defineComponent({
                     <h2 class="xs:text-xl sm:text-2xl">Хиты продаж</h2>
                     <a href="*" class="text-[16px] text-white-purple duration-200 ease-linear hover:text-secondary-purple ">Показать все</a>
                 </div>
-                <div class="bg-purple-600 h-[620px]">
-                    Товары список
-                </div>
+                <CartSlider/>
             </div>
 
             <div class="container mx-auto flex  xs:flex-wrap xs:space-y-6 lg:flex-nowrap lg:justify-between mb-[30px] lg:space-y-0 lg:space-x-6">

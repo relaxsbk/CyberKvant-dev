@@ -7,3 +7,15 @@
         @apply duration-200 ease-linear transition-colors hover:text-secondary-purple;
     }
 }
+@layer utilities {
+    .grid-areas-template {
+        @apply grid-cols-1 grid-rows-[min-content_min-content_minmax(0,_40px)_min-content_auto];
+        grid-template-areas:
+      "labels"
+      "image"
+      "category"
+      "name"
+      "status"
+      "prices-buttons";
+    }
+}
