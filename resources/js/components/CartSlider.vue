@@ -22,7 +22,7 @@ const products = [
         <swiper
             :modules="[Navigation]"
             :slides-per-view="5"
-            :space-between="20"
+            :space-between="12"
             navigation
             :breakpoints="{
                 430: { slidesPerView: 1, spaceBetween: 6 },
@@ -37,12 +37,12 @@ const products = [
             <swiper-slide v-for="(product, index) in products" :key="index">
                 <Card :product="product" />
             </swiper-slide>
-
         </swiper>
     </div>
 </template>
 
 <style scoped>
+
 .mySwiper {
     width: 100%;
     padding: 10px;
