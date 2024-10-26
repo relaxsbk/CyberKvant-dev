@@ -1,7 +1,6 @@
 <script setup>
 
-import { Link } from '@inertiajs/vue3'
-
+import {Link} from '@inertiajs/vue3'
 </script>
 
 <template>
@@ -12,7 +11,7 @@ import { Link } from '@inertiajs/vue3'
             <p class="text-[24px] text-white text-center">+7 (777) 777-77-77</p>
         </div>
         <div class="flex flex-col space-y-3 xs:w-screen xs:text-center lg:text-start lg:w-auto">
-            <Link class="hoverText" >О нас</Link>
+            <Link :href="$route('about')" class="hoverText" >О нас</Link>
             <Link class="hoverText">Каталог товаров</Link>
             <Link class="hoverText">Гарантия и возврат</Link>
         </div>
