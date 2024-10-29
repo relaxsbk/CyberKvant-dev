@@ -14,7 +14,7 @@ const toggleMenu = () => {
 
 <template>
     <nav class="bg-[#1E1E1E] fixed w-full z-50">
-        <div class="container mx-auto flex items-center justify-between p-4">
+        <div class="container mx-auto flex items-center justify-between py-4">
             <!-- Logo -->
             <Link href="/" class="flex-shrink-0 hidden xl:block">
                 <img src="/resources/js/Pages/logo-name.svg%20fill.svg" alt="LogoMain" class="w-72 h-16" />

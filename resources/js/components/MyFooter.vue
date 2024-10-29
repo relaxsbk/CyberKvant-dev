@@ -13,7 +13,7 @@ import {Link} from '@inertiajs/vue3'
         <div class="flex flex-col space-y-3 xs:w-screen xs:text-center lg:text-start lg:w-auto">
 <!--            Пример как делать активные ссылки по точному совпадению ЮРЛ-->
             <Link :href="$route('about')" class="hoverText" :class="{'text-secondary-purple': $page.url === '/about'}" >О нас</Link>
-            <Link class="hoverText">Каталог товаров</Link>
+            <Link :href="$route('catalog')" class="hoverText" :class="{'text-secondary-purple': $page.url === '/catalog'}">Каталог товаров</Link>
             <Link class="hoverText">Гарантия и возврат</Link>
         </div>
         <div class="flex flex-col space-y-3 xs:w-screen xs:text-center lg:text-start lg:w-auto">
