@@ -15,6 +15,11 @@ import CartSlider from "@/components/CartSlider.vue";
 export default defineComponent({
     components: {CartSlider, Card, Brand, Category, Slider, AppHead, Swiper, SwiperSlide},
     layout: MainLayout,
+    props: {
+        'categories': Array,
+        'products': Array,
+        'brands': Array,
+    }
 
 })
 
@@ -32,7 +37,10 @@ export default defineComponent({
                     <h2 class="xs:text-xl sm:text-2xl">Хиты продаж</h2>
                     <a href="*" class="text-[16px] text-white-purple duration-200 ease-linear hover:text-secondary-purple ">Показать все</a>
                 </div>
-                <CartSlider/>
+
+                <CartSlider
+                    :products="products"
+                />
             </div>
 
             <div class="container mx-auto flex  xs:flex-wrap xs:space-y-6 lg:flex-nowrap lg:justify-between mb-[30px] lg:space-y-0 lg:space-x-6">
@@ -50,18 +58,23 @@ export default defineComponent({
                 </div>
 
                 <div class="h-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 py-1">
-                    <Category />
-                    <Category />
-                    <Category />
-                    <Category />
-                    <Category />
-                    <Category />
-                    <Category />
-                    <Category />
-                    <Category />
-                    <Category />
-                    <Category />
-                    <Category />
+                    <Category
+                        v-for="category in categories"
+                        :key="category.id"
+                        :title="category.title"
+                        :image="category.image"
+                    />
+<!--                    <Category />-->
+<!--                    <Category />-->
+<!--                    <Category />-->
+<!--                    <Category />-->
+<!--                    <Category />-->
+<!--                    <Category />-->
+<!--                    <Category />-->
+<!--                    <Category />-->
+<!--                    <Category />-->
+<!--                    <Category />-->
+<!--                    <Category />-->
 
                 </div>
 
@@ -72,12 +85,17 @@ export default defineComponent({
                     <a href="*" class="text-[16px] text-white-purple duration-200 ease-linear hover:text-secondary-purple ">Показать все</a>
                 </div>
                 <div class="h-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 py-4">
-                    <Brand />
-                    <Brand />
-                    <Brand />
-                    <Brand />
-                    <Brand />
-                    <Brand />
+                    <Brand
+                        v-for="brand in brands"
+                        :key="brand.id"
+                        :title="brand.title"
+                        :image="brand.image"
+                    />
+<!--                    <Brand />-->
+<!--                    <Brand />-->
+<!--                    <Brand />-->
+<!--                    <Brand />-->
+<!--                    <Brand />-->
                 </div>
             </div>
         </section>

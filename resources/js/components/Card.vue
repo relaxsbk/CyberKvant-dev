@@ -26,7 +26,7 @@ const props = defineProps({
             </div>
         </div>
         <div class="category text-gray-400">{{product.category}}</div>
-        <div class="name">{{product.name}}</div>
+        <div class="name">{{product.title}}</div>
         <div class="status flex justify-center gap-4">
             <div class="flex justify-center items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="orange" class="bi bi-star-fill me-1" viewBox="0 0 16 16">
