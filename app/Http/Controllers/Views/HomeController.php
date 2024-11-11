@@ -14,14 +14,26 @@ class HomeController extends Controller
 
     public function __invoke()
     {
-        $categories = Category::query()->select('id', 'title')->take(12)->get();
-        $brands = Brand::query()->select('id', 'title')->take(6)->get();
+        $categories = Category::query()
+            ->select('id', 'title', 'published')
+            ->where('published', true)
+            ->inRandomOrder()
+            ->take(12)
+            ->get();
+
+        $brands = Brand::query()
+            ->select('id', 'title', 'image', 'published')
+            ->where('published', true)
+            ->take(6)
+            ->get();
 
 //        $products = Product::query()->select('id', 'title')->take(7)->get();
 
         $products = ProductResource::collection(
             Product::with(['category:id,title', 'reviews:id,product_id'])
-                ->select('id', 'title', 'category_id', 'price', 'rating')
+                ->select('id', 'title', 'category_id', 'price', 'rating', 'published')
+                ->where('published', true)
+                ->where('rating', 5)
                 ->take(7)
                 ->get()
         );

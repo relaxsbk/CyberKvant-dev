@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Brand>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Catalog>
  */
-class BrandFactory extends Factory
+class CatalogFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +18,9 @@ class BrandFactory extends Factory
     {
         return [
             'slug' => fake()->unique(true)->slug(),
-            'title' => fake()->unique(true)->jobTitle(),
+            'title' => fake()->unique(true)->title(),
             'description' => fake()->text(500),
-            'image' => '/storage/static/brands/logo_samsung.png',
+            'image' => '/storage/static/catalog/.png',
             'published' => fake()->boolean(true),
         ];
     }
