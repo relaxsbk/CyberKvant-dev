@@ -1,6 +1,6 @@
 <script setup>
 
-const props = defineProps({
+ defineProps({
     product: {
         type: Object,
         required: true
@@ -21,8 +21,9 @@ const props = defineProps({
             </div>
         </div>
         <div class="image w-[180px] h-[180px] justify-self-center ">
-            <div class="image bg-gray-200 w-[180px] h-full">
-                <img :src="product.imageUrl || 'https://via.placeholder.com/180'" alt="image">
+            <div class="image w-[180px] h-full">
+<!--                <img :src="product.imageUrl || 'https://via.placeholder.com/180'" alt="image">-->
+                <img src="/resources/images/static/Category/1_758129.png" alt="image">
             </div>
         </div>
         <div class="category text-gray-400">{{product.category}}</div>

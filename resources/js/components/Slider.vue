@@ -9,7 +9,7 @@
                 :key="index"
                 class="slider-item flex-shrink-0 w-full "
             >
-                <img :src="slide.image" alt="" class="w-full h-auto aspect-auto" />
+                <img :src="slide.image" :alt=slide.title class="w-full h-auto aspect-auto" />
 
             </div>
         </div>
@@ -45,30 +45,31 @@ const slides = [
     {
         image: 'https://via.placeholder.com/1920x620',
         title: 'Realme 10 Pro+ 5G',
+        position: 3,
 
     },
     {
         image: 'https://via.placeholder.com/1920x620',
         title: 'Another Product',
-
+        position: 1,
     },
     {
         image: 'https://via.placeholder.com/1920x620',
         title: 'Another Product',
-
+        position: 2,
     },
     {
         image: 'https://via.placeholder.com/1920x620',
         title: 'Another Product',
-
+        position: 4,
     },
     {
         image: 'https://via.placeholder.com/1920x620',
         title: 'Another Product',
-
+        position: 0,
     },
-    // Add more slides as needed
-]
+
+].sort((a, b) => a.position - b.position)
 
 const nextSlide = () => {
     currentSlide.value = (currentSlide.value + 1) % slides.length

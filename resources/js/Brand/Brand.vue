@@ -1,7 +1,7 @@
 <script setup>
     import {useHost} from "vue";
 
-    const props = defineProps({
+     defineProps({
         title: String,
         image: String
     })
