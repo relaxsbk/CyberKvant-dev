@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Views;
 
 use App\Http\Controllers\Controller;
+use App\Models\Catalog;
 use Inertia\Inertia;
 
 
@@ -10,10 +11,26 @@ class CatalogController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Catalog');
+        $catalog = Catalog::query()
+            ->select('id','slug', 'title', 'published')
+            ->where('published', true)
+            ->get();
+
+        return Inertia::render('Catalog', ['catalogs' => $catalog]);
     }
-    public function show()
+    public function show($catalog)
     {
-        return Inertia::render('Categories');
+        $catalog = Catalog::query()
+            ->select('id','slug', 'title', 'description', 'published')
+            ->where('id', $catalog)// TODO: вот тут скорее всего изменится на slug
+            ->where('published', true)
+            ->firstOrFail();
+
+        $category = $catalog->category()
+            ->select('id','slug', 'title', 'description', 'image', 'published')
+            ->where('published', true)
+            ->get();
+
+        return Inertia::render('Categories', ['catalog' => $catalog, 'categories' => $category]);
     }
 }

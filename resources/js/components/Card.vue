@@ -1,5 +1,5 @@
 <script setup>
-
+import {Link} from "@inertiajs/vue3";
  defineProps({
     product: {
         type: Object,
@@ -44,7 +44,7 @@
         </div>
         <div class="prices-buttons flex justify-between items-center">
             <div class="text-lg">
-                {{product.price}} P
+                {{product.price}} ₽
             </div>
             <div class="flex items-center gap-3">
                 <div>

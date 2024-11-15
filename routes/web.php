@@ -10,7 +10,7 @@ Route::inertia('/about', 'About')->name('about');
 
 Route::controller(CatalogController::class)->group(function () {
     Route::get('/catalog', 'index')->name('catalog');
-    Route::get('/catalog/slug', 'show')->name('catalog.show');// Всё что связано с бд будет позже
+    Route::get('/catalog/{catalog}', 'show')->name('catalog.show');// Всё что связано с бд будет позже
 });
 
 

@@ -69,7 +69,7 @@ const slides = [
         position: 0,
     },
 
-].sort((a, b) => a.position - b.position)
+].sort((a, b) => a.position - b.position) //Сортировка по позиции, нужна будет везде
 
 const nextSlide = () => {
     currentSlide.value = (currentSlide.value + 1) % slides.length
