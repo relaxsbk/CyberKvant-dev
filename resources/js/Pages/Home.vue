@@ -3,17 +3,18 @@ import {defineComponent} from "vue";
 import MainLayout from "@/Layouts/MainLayout.vue";
 import AppHead from "@/AppHead/AppHead.vue";
 import Slider from "@/components/Slider.vue";
-import Category from "@/components/Category.vue";
+// import Category from "@/components/Category.vue";
 import Brand from "@/Brand/Brand.vue";
 import Card from "@/components/Card.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/swiper-bundle.css";
 import CartSlider from "@/components/CartSlider.vue";
+import CategoryCard from "@/components/CategoryCard.vue";
 
 
 
 export default defineComponent({
-    components: {CartSlider, Card, Brand, Category, Slider, AppHead, Swiper, SwiperSlide},
+    components: {CategoryCard, CartSlider, Card, Brand, Slider, AppHead, Swiper, SwiperSlide},
     layout: MainLayout,
     props: {
         'categories': Array,
@@ -58,9 +59,10 @@ export default defineComponent({
                 </div>
 
                 <div class="h-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 py-1">
-                    <Category
+                    <CategoryCard
                         v-for="category in categories"
                         :key="category.id"
+                        :id="category.id"
                         :title="category.title"
                         :image="category.image"
                     />

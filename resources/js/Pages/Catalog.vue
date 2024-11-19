@@ -1,5 +1,5 @@
 <script setup>
-import Category from "@/components/Category.vue";
+import CatalogCard from "@/components/CatalogCard.vue";
 
 defineProps({
     'catalogs': Array
@@ -11,9 +11,10 @@ defineProps({
     <section class="container mx-auto mt-12 mb-[60px]">
         <h1 class="text-3xl mb-[30px]">Каталог товаров</h1>
         <div class="h-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 py-1 items-center">
-            <Category
+            <CatalogCard
                 v-for="catalog in catalogs"
                 :key="catalog.id"
+                :id="catalog.id"
                 :title="catalog.title"
 
             />
