@@ -10,11 +10,11 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/swiper-bundle.css";
 import CartSlider from "@/components/CartSlider.vue";
 import CategoryCard from "@/components/CategoryCard.vue";
-
+import {Link} from "@inertiajs/vue3";
 
 
 export default defineComponent({
-    components: {CategoryCard, CartSlider, Card, Brand, Slider, AppHead, Swiper, SwiperSlide},
+    components: {CategoryCard, CartSlider, Card, Brand, Slider, AppHead, Swiper, SwiperSlide, Link},
     layout: MainLayout,
     props: {
         'categories': Array,
@@ -36,7 +36,6 @@ export default defineComponent({
             <div class="container mx-auto mb-[30px]">
                 <div class="flex justify-between items-center mb-[30px]">
                     <h2 class="xs:text-xl sm:text-2xl">Хиты продаж</h2>
-                    <a href="*" class="text-[16px] text-white-purple duration-200 ease-linear hover:text-secondary-purple ">Показать все</a>
                 </div>
 
                 <CartSlider
@@ -55,7 +54,6 @@ export default defineComponent({
             <div class="container mx-auto mb-[30px]">
                 <div class="flex justify-between items-center mb-[30px]">
                     <h2 class="xs:text-xl sm:text-2xl">Популярные категории</h2>
-                    <a href="*" class="text-[16px] text-white-purple duration-200 ease-linear hover:text-secondary-purple ">Показать все</a>
                 </div>
 
                 <div class="h-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 py-1">
@@ -84,7 +82,7 @@ export default defineComponent({
             <div class="container mx-auto">
                 <div class="flex justify-between items-center mb-[14px]">
                     <h2 class="xs:text-xl sm:text-2xl">Популярные бренды</h2>
-                    <a href="*" class="text-[16px] text-white-purple duration-200 ease-linear hover:text-secondary-purple ">Показать все</a>
+                    <Link :href="$route('brands')" class="text-[16px] text-white-purple duration-200 ease-linear hover:text-secondary-purple ">Показать все</Link>
                 </div>
                 <div class="h-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 py-4">
                     <Brand
@@ -93,11 +91,7 @@ export default defineComponent({
                         :title="brand.title"
                         :image="brand.image"
                     />
-<!--                    <Brand />-->
-<!--                    <Brand />-->
-<!--                    <Brand />-->
-<!--                    <Brand />-->
-<!--                    <Brand />-->
+
                 </div>
             </div>
         </section>

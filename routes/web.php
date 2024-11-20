@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Views\BrandController;
 use App\Http\Controllers\Views\CatalogController;
 use App\Http\Controllers\Views\CategoryController;
 use App\Http\Controllers\Views\HomeController;
@@ -16,5 +17,10 @@ Route::controller(CatalogController::class)->group(function () {
 
 Route::controller(CategoryController::class)->group(function () {
     Route::get('/category/{category}', 'show')->name('category.show');
+});
+
+Route::controller(BrandController::class)->group(function () {
+    Route::get('/brands', 'index')->name('brands');
+    Route::get('/brands/brand', 'show')->name('brand.show');
 });
 
