@@ -17,6 +17,7 @@ defineProps({
             <CategoryCard
                 v-for="category in categories"
                 :key="category.id"
+                :id="category.id"
                 :title="category.title"
                 :image=null
             />
