@@ -21,6 +21,6 @@ Route::controller(CategoryController::class)->group(function () {
 
 Route::controller(BrandController::class)->group(function () {
     Route::get('/brands', 'index')->name('brands');
-    Route::get('/brands/brand', 'show')->name('brand.show');
+    Route::get('/brands/{brand}', 'show')->name('brand.show');
 });
 

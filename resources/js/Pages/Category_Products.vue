@@ -5,7 +5,7 @@ import ProductGrid from "@/components/ProductGrid.vue";
 </script>
 
 <template>
-    <section class="container mx-auto mt-20">
+    <section class="container mx-auto mt-[30px]">
         <Breadcrumb />
 
         <h1 class="text-3xl text-center mt-[30px]">Название категории</h1>
