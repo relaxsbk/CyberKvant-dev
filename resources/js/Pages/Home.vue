@@ -88,6 +88,7 @@ export default defineComponent({
                     <Brand
                         v-for="brand in brands"
                         :key="brand.id"
+                        :id="brand.id"
                         :title="brand.title"
                         :image="brand.image"
                     />

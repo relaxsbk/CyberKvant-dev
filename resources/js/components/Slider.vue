@@ -12,6 +12,7 @@
                 <img :src="slide.image" :alt=slide.title class="w-full h-auto aspect-auto" />
 
             </div>
+
         </div>
         <button @click="prevSlide" class="absolute left-4 top-1/2 -translate-y-1/2">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-caret-left-fill duration-200 ease-in transition-colors hover:fill-primary-purple" viewBox="0 0 16 16">
@@ -43,20 +44,20 @@ import { ref } from 'vue'
 const currentSlide = ref(0)
 const slides = [
     {
-        image: 'https://via.placeholder.com/1920x620',
+        image: 'http://127.0.0.1:5173/resources/images/static/slider/slides/FirstSlide.png',
         title: 'Realme 10 Pro+ 5G',
-        position: 3,
+        position: 2,
 
     },
     {
-        image: 'https://via.placeholder.com/1920x620',
-        title: 'Another Product',
-        position: 1,
+        image: 'http://127.0.0.1:5173/resources/images/static/slider/slides/SecondSlide.png',
+        title: 'Бытовая техника',
+        position: 0,
     },
     {
-        image: 'https://via.placeholder.com/1920x620',
-        title: 'Another Product',
-        position: 2,
+        image: 'http://127.0.0.1:5173/resources/images/static/slider/slides/3slid3e.png',
+        title: 'Гейм',
+        position: 1,
     },
     {
         image: 'https://via.placeholder.com/1920x620',
@@ -66,7 +67,7 @@ const slides = [
     {
         image: 'https://via.placeholder.com/1920x620',
         title: 'Another Product',
-        position: 0,
+        position: 3,
     },
 
 ].sort((a, b) => a.position - b.position) //Сортировка по позиции, нужна будет везде
