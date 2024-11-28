@@ -32,7 +32,7 @@ defineProps({
             :space-between="12"
             navigation
             :breakpoints="{
-                430: { slidesPerView: 1, spaceBetween: 6 },
+                320: { slidesPerView: 1, spaceBetween: 6 },
                 640: { slidesPerView: 2, spaceBetween: 6 },
                 768: { slidesPerView: 2, spaceBetween: 6 },
                 1024: { slidesPerView: 3, spaceBetween: 12 },

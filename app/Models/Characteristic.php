@@ -13,7 +13,7 @@ class Characteristic extends Model
 
     protected $fillable = [
         'product_id',
-        'characteristics'
+        'characteristic'
     ];
 
     protected $casts = [

@@ -59,16 +59,7 @@ const slides = [
         title: 'Гейм',
         position: 1,
     },
-    {
-        image: 'https://via.placeholder.com/1920x620',
-        title: 'Another Product',
-        position: 4,
-    },
-    {
-        image: 'https://via.placeholder.com/1920x620',
-        title: 'Another Product',
-        position: 3,
-    },
+
 
 ].sort((a, b) => a.position - b.position) //Сортировка по позиции, нужна будет везде
 

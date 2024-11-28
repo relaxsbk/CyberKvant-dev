@@ -2,7 +2,7 @@
 import Breadcrumb from "@/components/Breadcrumb.vue";
 import CartSlider from "@/components/CartSlider.vue";
 import BrandCartSlider from "@/components/BrandCartSlider.vue";
-import AccordionFilters from "@/components/AccordionFilters.vue";
+import Accordion from "@/components/Accordion.vue";
 import ProductGrid from "@/components/ProductGrid.vue";
 import Card from "@/components/Card.vue";
 import {Link} from "@inertiajs/vue3";
@@ -27,7 +27,7 @@ defineProps({
 <!--                <h2 class="text-white text-lg py-4 ">Каталог</h2>-->
 <!--                <p>В аккордеоне будут категории</p>-->
 
-                <AccordionFilters />
+                <Accordion />
             </div>
             <div class=" flex-1 py-4">
                 <div v-for="category in 4">

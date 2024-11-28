@@ -1,6 +1,6 @@
 <script setup>
 import Breadcrumb from "@/components/Breadcrumb.vue";
-import AccordionFilters from "@/components/AccordionFilters.vue";
+import Accordion from "@/components/Accordion.vue";
 import ProductGrid from "@/components/ProductGrid.vue";
 </script>
 
@@ -12,7 +12,7 @@ import ProductGrid from "@/components/ProductGrid.vue";
         <section class=" w-full h-auto flex gap-4 py-3">
 
             <div class="w-80 py-4">
-                <AccordionFilters />
+                <Accordion />
             </div>
             <div class=" flex-1 py-4">
                 <ProductGrid />

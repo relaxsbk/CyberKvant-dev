@@ -9,7 +9,7 @@ import {Link} from "@inertiajs/vue3";
 </script>
 
 <template>
-    <article class="product-card-clean grid items-center bg-white rounded-lg text-[#13181e] grid-areas-template w-full h-[400px] p-4 relative text-center overflow-hidden">
+    <Link :href="$route('product', product.id)" class="product-card-clean grid items-center bg-white rounded-lg text-[#13181e] grid-areas-template w-full h-[400px] p-4 relative text-center overflow-hidden hoverText">
         <div class="labels mb-3 flex justify-start gap-1">
             <div
                 v-for="(label, index) in product.labels"
@@ -20,16 +20,16 @@ import {Link} from "@inertiajs/vue3";
             {{ label }}
             </div>
         </div>
-        <div class="image w-[180px] h-[180px] justify-self-center ">
-            <div class="image w-[180px] h-full">
+        <div class=" image w-[180px] h-[180px] justify-self-center ">
+            <a href="/product/productName" class="image w-[180px] h-full">
 <!--                <img :src="product.imageUrl || 'https://via.placeholder.com/180'" alt="image">-->
-                <img src="/resources/images/static/Category/1_758129.png" alt="image">
-            </div>
+                <img src="/resources/images/static/Category/1_758129.png" :alt="product.title">
+            </a>
         </div>
         <div class="category text-gray-400">{{product.category}}</div>
-        <div class="name">{{product.title}}</div>
-        <div class="status flex justify-center gap-4">
-            <div class="flex justify-center items-center">
+        <a href="/product/productName" class="name ">{{product.title}}</a>
+        <div class="status flex justify-center gap-4 text-black">
+            <div class="flex justify-center items-center ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="orange" class="bi bi-star-fill me-1" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>
@@ -42,7 +42,7 @@ import {Link} from "@inertiajs/vue3";
                 {{product.reviews}}
             </div>
         </div>
-        <div class="prices-buttons flex justify-between items-center">
+        <div class="prices-buttons flex justify-between items-center text-black">
             <div class="text-lg">
                 {{product.price}} ₽
             </div>
@@ -74,7 +74,7 @@ import {Link} from "@inertiajs/vue3";
             </div>
 
         </div>
-    </article>
+    </Link>
 </template>
 
 <style scoped>

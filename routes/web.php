@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\View\ProductController;
 use App\Http\Controllers\Views\BrandController;
 use App\Http\Controllers\Views\CatalogController;
 use App\Http\Controllers\Views\CategoryController;
@@ -24,3 +25,6 @@ Route::controller(BrandController::class)->group(function () {
     Route::get('/brands/{brand}', 'show')->name('brand.show');
 });
 
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/product/{product}', 'show')->name('product');
+});

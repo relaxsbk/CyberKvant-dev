@@ -45,10 +45,10 @@ export default defineComponent({
 
             <div class="container mx-auto flex  xs:flex-wrap xs:space-y-6 lg:flex-nowrap lg:justify-between mb-[30px] lg:space-y-0 lg:space-x-6">
                 <div class=" rounded-[10px] w-full h-auto ">
-                    <img class="w-full " src="/resources/images/static/advertisement/Реклама%201png.png" alt="advertisement">
+                    <img class="w-full flex-shrink-0" src="/resources/images/static/advertisement/Реклама%201png.png" alt="advertisement">
                 </div>
                 <div class=" rounded-[10px] w-full h-auto ">
-                    <img class="w-full " src="/resources/images/static/advertisement/реклама2.png" alt="advertisement">
+                    <img class="w-full flex-shrink-0" src="/resources/images/static/advertisement/реклама2.png" alt="advertisement">
                 </div>
             </div>
             <div class="container mx-auto mb-[30px]">

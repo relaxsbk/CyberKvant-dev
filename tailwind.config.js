@@ -13,7 +13,7 @@ export default {
 
         extend: {
             screens: {
-                'xs': '430px',
+                'xs': '320px',
                 ...defaultTheme.screens,
             },
             colors: {
