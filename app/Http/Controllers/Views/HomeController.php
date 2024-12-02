@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Views;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Product\ProductResource;
+use App\Http\Resources\Product\MiniProductResource;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -29,9 +29,9 @@ class HomeController extends Controller
 
 //        $products = Product::query()->select('id', 'title')->take(7)->get();
 
-        $products = ProductResource::collection(
+        $products = MiniProductResource::collection(
             Product::with(['category:id,title', 'reviews:id,product_id'])
-                ->select('id', 'title', 'category_id', 'price', 'rating', 'published')
+                ->select('id', 'slug', 'title', 'category_id', 'price', 'rating', 'published')
                 ->where('published', true)
                 ->where('rating', 5)
                 ->take(7)

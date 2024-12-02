@@ -4,6 +4,7 @@ namespace App\Http\Resources\Product;
 
 use App\Http\Resources\Characteristics\CharacteristicResource;
 use App\Http\Resources\Review\ReviewResource;
+use App\Models\Characteristic;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -24,15 +25,23 @@ class ProductResource extends JsonResource
             'price' => $this->money(),
             'reviewsCount' => $this->reviews->count(),
             'reviews' => ReviewResource::collection($this->reviews),
-            'characteristic' => $this->formatCharacteristics($this->characteristic->characteristic),
+//            dd($this->characteristic)
+            'characteristic' => $this->formatCharacteristics($this->characteristic),
+//            'characteristic' => $this->when($this->characteristicsIsNull, $this->formatCharacteristics($this->characteristic->characteristic)),
+
         ];
     }
 
-    protected function formatCharacteristics(array $characteristics): array
+    protected function formatCharacteristics(Characteristic|null $characteristics): array|null
     {
+
         $formatted = [];
 
-        foreach ($characteristics as $group => $attributes) {
+        if ($characteristics === null) {
+            return null;
+        }
+
+        foreach ($characteristics->characteristic as $group => $attributes) {
             $formatted[] = [
                 'group' => $group, // Например: "Дисплей", "Операционная система"
                 'attributes' => collect($attributes)->map(function ($value, $key) {

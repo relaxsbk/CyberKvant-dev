@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Resources\Characteristics\CharacteristicResource;
+use App\Http\Resources\Product\MiniProductResource;
 use App\Http\Resources\Product\ProductResource;
 use App\Http\Resources\Review\ReviewResource;
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         ProductResource::withoutWrapping();
+        MiniProductResource::withoutWrapping();
         ReviewResource::withoutWrapping();
         CharacteristicResource::withoutWrapping();
     }

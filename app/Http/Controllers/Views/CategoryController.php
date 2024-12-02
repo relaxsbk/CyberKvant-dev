@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Views;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Category\CategoryResource;
+use App\Http\Resources\Product\MiniProductResource;
+use App\Http\Resources\Product\ProductResource;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -11,22 +15,138 @@ class CategoryController extends Controller
     {
 
     }
-
-    public function show($category)
+    public function show(Category $category)
     {
-//        $category = Category::where('slug', $category)->first();
         $category = Category::query()
             ->select('id', 'slug', 'title', 'description')
-            ->where('id', $category)
+            ->where('id', $category->id)
             ->where('published', true)
-            ->FirstOrFail();
+            ->firstOrFail();
 
-        $products = $category->products()
-            ->select('id', 'slug', 'title', 'description', 'price', 'rating')
+        $allBrands = $category->products()
+            ->with('brand:id,title')
             ->where('published', true)
-            ->get();
+            ->get()
+            ->pluck('brand.title')
+            ->unique()
+            ->filter();
 
-        return inertia('Category_Products', []);
+        $productsQuery = $category->products()
+            ->with(['category:id,title,slug', 'reviews', 'brand:id,title'])
+            ->where('published', true);
 
+        // Применяем фильтры
+        if ($brands = request('brands')) {
+            $productsQuery->whereHas('brand', function ($query) use ($brands) {
+                $query->whereIn('title', $brands);
+            });
+        }
+
+        if ($priceMin = request('price_min')) {
+            $productsQuery->where('price', '>=', $priceMin);
+        }
+
+        if ($priceMax = request('price_max')) {
+            $productsQuery->where('price', '<=', $priceMax);
+        }
+
+        $priceRange = [
+            'min' => $category->products()->where('published', true)->min('price'),
+            'max' => $category->products()->where('published', true)->max('price'),
+        ];
+
+        $products = $productsQuery->paginate(8);
+
+        return inertia('Category_Products', [
+            'category' => $category,
+            'products' => $products->through(function ($product) {
+                return [
+                    'id' => $product->id,
+                    'category' => $product->category->title,
+                    'slug' => $product->slug,
+                    'title' => $product->title,
+                    'description' => $product->description,
+                    'price' => $product->money(),
+                    'rating' => $product->rating,
+                    'reviewsCount' => $product->reviews->count(),
+                    'brand' => $product->brand ? $product->brand->title : null,
+                ];
+            }),
+            'filters' => [
+                'brands' => $allBrands->values(), // Полный список брендов
+                'priceRange' => $priceRange,
+                'appliedFilters' => request()->only(['brands', 'price_min', 'price_max']),
+            ],
+        ]);
     }
+
+
+//    public function show(Request $request, Category $category)
+//    {
+//
+//        // Получение категории
+//        $category = Category::query()
+//            ->select('id', 'slug', 'title', 'description')
+//            ->where('id', $category->id)
+//            ->where('published', true)
+//            ->firstOrFail();
+//
+//        // Базовый запрос продуктов
+//        $productsQuery = $category->products()
+//            ->with(['category:id,title,slug', 'reviews', 'brand:id,title'])
+//            ->where('published', true);
+//
+//        // Применение фильтров
+//        if ($request->filled('price_min')) {
+//            $productsQuery->where('price', '>=', $request->input('price_min'));
+//        }
+//
+//        if ($request->filled('price_max')) {
+//            $productsQuery->where('price', '<=', $request->input('price_max'));
+//        }
+//
+//        if ($request->filled('brands')) {
+//            $productsQuery->whereHas('brand', function ($query) use ($request) {
+//                $query->whereIn('title', $request->input('brands'));
+//            });
+//        }
+//
+//        // Получение доступных брендов
+//        $brands = $productsQuery->get()->pluck('brand.title')->unique()->filter();
+//
+//        // Определение диапазона цен
+//        $priceRange = [
+//            'min' => $productsQuery->min('price'),
+//            'max' => $productsQuery->max('price'),
+//        ];
+//
+//        // Пагинация продуктов
+//        $products = $productsQuery->paginate(8);
+//
+//
+//        // Возврат данных во фронтенд
+//        return inertia('Category_Products', [
+//            'category' => $category,
+//            'products' => $products->through(function ($product) {
+//                return [
+//                    'id' => $product->id,
+//                    'category' => $product->category->title,
+//                    'slug' => $product->slug,
+//                    'title' => $product->title,
+//                    'description' => $product->description,
+//                    'price' => $product->money(),
+//                    'rating' => $product->rating,
+//                    'reviewsCount' => $product->reviews->count(),
+//                    'brand' => $product->brand ? $product->brand->title : null,
+//                ];
+//            }),
+//            'filters' => [
+//                'brands' => $brands->values(),
+//                'priceRange' => $priceRange,
+//                'appliedFilters' => request()->only(['brands', 'price_min', 'price_max']),
+//            ],
+//        ]);
+//    }
+
+
 }

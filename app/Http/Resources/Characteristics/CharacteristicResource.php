@@ -12,7 +12,26 @@ class CharacteristicResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'characteristics' => $this->characteristic
+            'characteristics' => $this->formatCharacteristics($this->characteristic)
         ];
+    }
+
+    protected function formatCharacteristics(array $characteristics): array|null
+    {
+        $formatted = [];
+
+        foreach ($characteristics as $group => $attributes) {
+            $formatted[] = [
+                'group' => $group, // Например: "Дисплей", "Операционная система"
+                'attributes' => collect($attributes)->map(function ($value, $key) {
+                    return [
+                        'name' => $key,    // Например: "Экран", "Разрешение экрана"
+                        'value' => $value, // Например: "6.8"", "3120х1440"
+                    ];
+                })->values()->all(),
+            ];
+        }
+
+        return $formatted;
     }
 }

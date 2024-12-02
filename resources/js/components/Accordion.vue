@@ -44,7 +44,7 @@ const toggleSection = (index) => {
                     }
                 ]"
             >
-                <span class="text-xl">{{ section.title }}</span>
+                <span class="text-lg">{{ section.title }}</span>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     :class="{ 'rotate-180': activeSections.includes(index) }"
@@ -72,7 +72,7 @@ const toggleSection = (index) => {
             >
                 <!-- Если контент — массив характеристик -->
                 <div v-if="section.title === 'Характеристики' && Array.isArray(section.content)">
-                    <div v-for="(group) in section.content" :key="group.group">
+                    <div v-if="section.content" v-for="(group) in section.content" :key="group.group">
                         <h3 class="font-semibold text-white-purple text-xl mb-2">{{ group.group }}</h3>
                         <ul class="sm:px-6 flex flex-col">
                             <li
@@ -84,7 +84,10 @@ const toggleSection = (index) => {
                                 <span>{{ attribute.value }}</span>
                             </li>
                         </ul>
+
                     </div>
+
+
                 </div>
 
                 <!-- Если контент — массив строк (например, отзывы) -->
@@ -98,7 +101,7 @@ const toggleSection = (index) => {
                 </p>
 
                 <!-- Если контент — объект -->
-                <ul v-else>
+                <ul v-else-if="typeof section.content === 'string'">
                     <li
                         v-for="(value, key) in section.content"
                         :key="key"
@@ -108,6 +111,9 @@ const toggleSection = (index) => {
                         <span>{{ value }}</span>
                     </li>
                 </ul>
+                <div v-else>
+                    dada
+                </div>
             </div>
         </div>
     </div>
