@@ -2,6 +2,7 @@
 
 import Breadcrumb from "@/components/Breadcrumb.vue";
 import Brand from "@/Brand/Brand.vue";
+import AppHead from "@/AppHead/AppHead.vue";
 
 defineProps({
     "brands": Array
@@ -9,6 +10,7 @@ defineProps({
 </script>
 
 <template>
+    <AppHead title="Бренды | Интернет-магазин бытовой и цифровой техники ГиперКвант"/>
     <section class="container mx-auto mt-10">
         <Breadcrumb />
         <br>

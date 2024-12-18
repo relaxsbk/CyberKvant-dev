@@ -27,7 +27,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <AppHead title="CyberKvant"/>
+    <AppHead title="Интернет-магазин бытовой и цифровой техники ГиперКвант"/>
 
     <section>
         <Slider />

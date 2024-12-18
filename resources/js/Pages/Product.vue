@@ -4,6 +4,7 @@ import Breadcrumb from "@/components/Breadcrumb.vue";
 import MainLeftBlockProduct from "@/components/Products/MainLeftBlockProduct.vue";
 import MainRightBlockProduct from "@/components/Products/MainRightBlockProduct.vue";
 import MainBottomBlockProduct from "@/components/Products/MainBottomBlockProduct.vue";
+import AppHead from "@/AppHead/AppHead.vue";
 
 defineProps({
     product: Object
@@ -11,6 +12,7 @@ defineProps({
 </script>
 
 <template>
+    <AppHead :title="'Купить' + ' ' + product.title + ' ' + 'в магазине ГиперКвант '"/>
 
     <section class="container mx-auto mt-[60px] ">
         <Breadcrumb/>

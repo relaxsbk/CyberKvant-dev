@@ -1,5 +1,6 @@
 <script setup>
 import CategoryCard from "@/components/CategoryCard.vue";
+import AppHead from "@/AppHead/AppHead.vue";
 
 defineProps({
     'catalog': {
@@ -11,6 +12,7 @@ defineProps({
 </script>
 
 <template>
+    <AppHead :title="catalog.title + ' ' + 'Купить в интернет-магазине ГиперКвант'"/>
     <section class="container mx-auto mt-12 mb-[30px]">
         <h1 class="text-3xl mb-[30px]">{{catalog.title}}</h1>
         <div class="h-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 py-1">

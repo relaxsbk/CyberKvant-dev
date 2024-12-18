@@ -1,10 +1,9 @@
 <script setup>
 import Breadcrumb from "@/components/Breadcrumb.vue";
-import Accordion from "@/components/Accordion.vue";
 import ProductGrid from "@/components/ProductGrid.vue";
 import Pagination from "@/components/Pagination.vue";
-import {router} from "@inertiajs/vue3";
 import Filters from "@/components/Filters.vue";
+import AppHead from "@/AppHead/AppHead.vue";
 
 const props = defineProps({
     category: Object,
@@ -17,6 +16,7 @@ const props = defineProps({
 </script>
 
 <template>
+    <AppHead :title="props.category.title + ' '+ 'Купить в интернет-магазине ГиперКвант | Страница ' + props.products.current_page + ' '+  'из'+ ' '+ props.products.last_page " />
     <section class="container mx-auto mt-[30px]">
         <Breadcrumb />
 
