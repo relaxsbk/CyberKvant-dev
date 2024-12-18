@@ -4,6 +4,7 @@ import MainLayout from '@/Layouts/MainLayout.vue'
 import { ZiggyVue } from 'ziggy-js';
 import { Ziggy } from './ziggy.js';
 import { createInertiaApp } from '@inertiajs/vue3'
+import 'flowbite';
 
 
 
