@@ -1,36 +1,76 @@
 <script setup>
-
-import {Swiper, SwiperSlide} from "swiper/vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/swiper-bundle.css";
 import Card from "@/components/Card.vue";
-import {Navigation} from "swiper/modules";
+import { Navigation } from "swiper/modules";
+import { ref} from "vue";
+
+const swiperInstance = ref(null);
+const isBeginning = ref(true);
+const isEnd = ref(false);
+const prevButton = ref(null);
+const nextButton = ref(null);
 
 defineProps({
     products: {
         type: Array,
         required: true
     }
-})
+});
 
-// const products = [
-//     { id: 1, name: "Product 1", category: "Category 1", price: "100 000", rating: "4.53",  reviews: "5", labels: ["Новинка"], imageUrl: "" },
-//     { id: 2, name: "Product 2", category: "Category 2", price: "150 000", rating: "4.02", reviews: "5", labels: ["Акция"], imageUrl: "" },
-//     { id: 3, name: "Product 3", category: "Category 3", price: "200 000", rating: "5.0", reviews: "5", labels: ["Новинка", "Акция"], imageUrl: "" },
-//     { id: 4, name: "Product 4", category: "Category 4", price: "250 000", rating: "3.5", reviews: "5", labels: ["Акция"], imageUrl: "" },
-//     { id: 5, name: "Product 5", category: "Category 5", price: "300 000", rating: "4.8", reviews: "5", labels: ["Новинка"], imageUrl: "" },
-//     { id: 6, name: "Product 5", category: "Category 5", price: "300 000", rating: "4.8", reviews: "5", labels: ["Новинка"], imageUrl: "" },
-//     { id: 7, name: "Product 5", category: "Category 5", price: "300 000", rating: "4.8", reviews: "5", labels: ["Новинка"], imageUrl: "" },
-//     // Добавьте больше элементов по мере необходимости
-// ];
+// Функция обновления состояния кнопок
+const updateButtonsState = () => {
+    if (swiperInstance.value) {
+        isBeginning.value = swiperInstance.value.isBeginning;
+        isEnd.value = swiperInstance.value.isEnd;
+    }
+};
+
+// Инициализация Swiper и привязка кнопок
+const onSwiperInit = (swiper) => {
+    swiperInstance.value = swiper;
+    swiper.navigation.init();
+    swiper.navigation.update();
+
+    updateButtonsState();
+    swiper.on('slideChange', updateButtonsState);
+    swiper.on('reachEnd', updateButtonsState);
+    swiper.on('reachBeginning', updateButtonsState);
+};
 </script>
 
 <template>
-    <div class="">
+    <div class="relative">
+        <!-- Кастомные кнопки -->
+        <button ref="prevButton"
+                class="custom-prev absolute left-0 top-1/2 transform -translate-y-1/2"
+                :class="{ 'disabled': isBeginning }"
+                :disabled="isBeginning">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                 class="icon duration-200 ease-in transition-colors hover:fill-primary-purple"
+                 viewBox="0 0 16 16">
+                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+            </svg>
+        </button>
+        <button ref="nextButton"
+                class="custom-next absolute right-0 top-1/2 transform -translate-y-1/2"
+                :class="{ 'disabled': isEnd }"
+                :disabled="isEnd">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                 class="icon duration-200 ease-in transition-colors hover:fill-primary-purple"
+                 viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+        </button>
+
         <swiper
             :modules="[Navigation]"
             :slides-per-view="5"
             :space-between="12"
-            navigation
+            :navigation="{
+                nextEl: nextButton,
+                prevEl: prevButton
+            }"
             :breakpoints="{
                 320: { slidesPerView: 1, spaceBetween: 6 },
                 640: { slidesPerView: 2, spaceBetween: 6 },
@@ -40,17 +80,46 @@ defineProps({
                 1536: { slidesPerView: 5, spaceBetween: 12 },
             }"
             class="mySwiper"
+            @swiper="onSwiperInit"
         >
             <swiper-slide v-for="(product, index) in products" :key="index">
-            <Card :product="product" />
-        </swiper-slide>
+                <Card :product="product" />
+            </swiper-slide>
         </swiper>
     </div>
 </template>
 
 <style scoped>
-
 .mySwiper {
     width: 100%;
+}
+
+
+.custom-prev,
+.custom-next {
+    background: none;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+
+.icon {
+    fill: gray;
+}
+
+
+.custom-prev:hover .icon,
+.custom-next:hover .icon {
+    fill: #9701FE;
+}
+
+
+.custom-prev.disabled .icon,
+.custom-next.disabled .icon {
+    opacity: 0.5;
+    fill: lightgray;
+    cursor: not-allowed;
 }
 </style>
