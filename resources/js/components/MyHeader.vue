@@ -25,12 +25,16 @@ const toggleMenu = () => {
 
             <!-- Catalog Button for large screens -->
             <div class="text-[16px] ml-7 hidden lg:block">
-                <button class="bg-primary-purple text-white px-4 py-3 rounded-[10px] flex items-center">
+                <Link
+                    :href="$route('catalog')"
+                    class="bg-primary-purple text-white px-4 py-3 rounded-[10px] flex items-center duration-200 active:bg-dark-purple hover:bg-secondary-purple/80"
+                    :class="{'bg-dark-purple/90': $page.url === '/catalog'}"
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list mr-1" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
                     </svg>
                     Каталог
-                </button>
+                </Link>
             </div>
 
             <!-- Search bar -->
