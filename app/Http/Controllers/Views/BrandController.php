@@ -17,39 +17,24 @@ class BrandController extends Controller
             ->where('published', true)
             ->get();
 
-
         return inertia("Brands", ["brands" => $brands]);
     }
 
-
-//    public function show($slug)
-//    {
-//        $brand = Brand::where('id', $slug)->firstOrFail();
-//
-//        $categories = Category::whereHas('products', function ($query) use ($brand) {
-//            $query->where('brand_id', $brand->id);
-//        })->with(['products' => function ($query) use ($brand) {
-//            $query->where('brand_id', $brand->id);
-//        }])->get();
-//
-//
-//
-//        return inertia('Brand_Products', [
-//            'brand' => $brand,
-//            'categories' => $categories,
-//        ]);
-//    }
-
     public function show(Brand $brand)
     {
+        $categories = Category::query()
+            ->where('published', true)
+            ->whereHas('products', function ($query) use ($brand) {
+                $query->where('brand_id', $brand->id)
+                      ->where('published', true);
+        })
+            ->distinct()
+            ->get();
 
-        $products = $brand->products()->take(4)->get();
-
-        $products = ProductResource::collection($products);
 
         return inertia("Brand_Products", [
             'brand' => $brand,
-            'products' => $products
+            'categories' => $categories
         ]);
     }
 }
