@@ -99,9 +99,9 @@ watch(
                         type="checkbox"
                         :value="brand"
                         v-model="selectedBrands"
-                        class="cursor-pointer text-primary-purple bg-gray-100 border-gray-300 rounded focus:ring-purple-600  ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        class="mb-2 cursor-pointer text-primary-purple bg-gray-100 border-gray-300 rounded focus:ring-purple-600  ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
-                    <label>{{ brand }}</label>
+                    <label class="mb-2">{{ brand }}</label>
                 </div>
             </div>
         </div>
