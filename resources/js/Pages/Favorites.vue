@@ -1,6 +1,15 @@
 <script setup>
 import Breadcrumb from "../components/Breadcrumb.vue";
 import AppHead from "../AppHead/AppHead.vue";
+import Card from "../components/Card.vue";
+
+const products = [
+    {id:'id', title:'title'},
+    {id:'id', title:'title'},
+    {id:'id', title:'title'},
+    {id:'id', title:'title'},
+    {id:'id', title:'title'},
+];
 
 const click = () => {
     console.log('da')
@@ -9,7 +18,7 @@ const click = () => {
 </script>
 
 <template>
-    <AppHead title="Корзина | Интернет-магазин бытовой и цифровой техники ГиперКвант"/>
+    <AppHead title="Избранное | Интернет-магазин бытовой и цифровой техники ГиперКвант"/>
     <section class="container mx-auto mt-10">
         <Breadcrumb />
         <br>
@@ -19,9 +28,15 @@ const click = () => {
                 очистить
             </span>
         </h2>
-        <div class="h-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 py-4">
-
+        <div class="flex flex-row flex-wrap gap-2">
+            <div v-for="product in products" >
+                <div class="w-[300px]">
+                    <Card :product="product" />
+                </div>
+            </div>
         </div>
+
+
     </section>
 </template>
 <style scoped>

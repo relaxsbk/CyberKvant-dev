@@ -6,7 +6,7 @@ import Pagination from "@/components/Pagination.vue";
 const props = defineProps({
     products: Object
 })
-console.log(props.products.data)
+
 </script>
 
 <template>
@@ -14,7 +14,7 @@ console.log(props.products.data)
         <div
             v-for="product in props.products.data"
         >
-            <Card cl :product=product />
+            <Card :product=product />
         </div>
 
     </div>

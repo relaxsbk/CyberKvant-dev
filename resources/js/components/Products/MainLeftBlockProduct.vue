@@ -47,5 +47,5 @@ const changeMainImage = (image, index) => {
 </template>
 
 <style scoped>
-/* Можно добавить дополнительные стили для активного состояния */
+
 </style>
