@@ -28,3 +28,8 @@ Route::controller(BrandController::class)->group(function () {
 Route::controller(ProductController::class)->group(function () {
     Route::get('/product/{product}', 'show')->name('product');
 });
+
+//admin
+Route::get('/admin', function () {
+    return view('layout.admin');
+});

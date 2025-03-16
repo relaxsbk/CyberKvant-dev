@@ -11,14 +11,6 @@ import {Link} from "@inertiajs/vue3";
 <template>
     <Link :href="$route('product', product.id)" class="product-card-clean grid items-center bg-white rounded-lg text-[#13181e] grid-areas-template w-full h-[400px] p-4 relative text-center overflow-hidden hoverText">
         <div class="labels mb-3 flex justify-start gap-1">
-            <div
-                v-for="(label, index) in product.labels"
-                :key="index"
-                :class="{'bg-secondary-purple': label === 'Новинка', 'bg-dark-purple': label === 'Акция'}"
-                class="text-white font-bold rounded-[10px] px-3 text-sm py-px"
-            >
-            {{ label }}
-            </div>
         </div>
         <div class=" image w-[180px] h-[180px] justify-self-center ">
             <a href="/product/productName" class="image w-[180px] h-full">
