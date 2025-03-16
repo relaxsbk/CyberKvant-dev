@@ -1,5 +1,4 @@
 <script setup>
-    import {useHost} from "vue";
     import {Link} from "@inertiajs/vue3";
 
     defineProps({
