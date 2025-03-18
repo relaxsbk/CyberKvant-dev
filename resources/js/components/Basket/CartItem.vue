@@ -1,5 +1,4 @@
 <script setup>
-import { computed } from "vue";
 
 const props = defineProps(["item"]);
 const emit = defineEmits(["updateQuantity", "removeItem"]);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\Views\BasketController;
 use App\Http\Controllers\Views\BrandController;
 use App\Http\Controllers\Views\CatalogController;
@@ -42,6 +43,10 @@ Route::controller(FavoriteController::class)->group(function () {
 
 Route::controller(CompareController::class)->group(function () {
     Route::get('/compare', 'index')->name('compare');
+});
+
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('/register', 'index')->name('register');
 });
 
 
