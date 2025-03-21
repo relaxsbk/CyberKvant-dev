@@ -3,6 +3,8 @@ import { ref } from 'vue';
 import SearchForm from "@/components/Forms/SearchForm.vue";
 import { Link } from '@inertiajs/vue3'
 
+const emit = defineEmits(['openDrawer']);
+
 // Reactive state to control the mobile menu visibility
 const isMenuOpen = ref(false);
 
@@ -13,7 +15,7 @@ const toggleMenu = () => {
 </script>
 
 <template>
-    <nav class="bg-[#1E1E1E] fixed w-full z-50">
+    <nav class="bg-[#1E1E1E] fixed w-full z-30">
         <div class="container mx-auto flex items-center justify-between py-4">
             <!-- Logo -->
             <Link href="/" class="flex-shrink-0 hidden xl:block">
@@ -69,7 +71,7 @@ const toggleMenu = () => {
                     </Link>
                 </li>
                 <li>
-                    <a href="#" class="flex flex-col items-center hoverText">
+                    <a @click="() => emit('openDrawer')" href="#" class="flex flex-col items-center hoverText">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" fill="#9701FE"/>
                         </svg>
