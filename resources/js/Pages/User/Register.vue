@@ -30,7 +30,7 @@ const isFocused = ref(false);
         <Breadcrumb class="mt-[40px]"/>
 
         <div class="py-8 mx-auto xs:h-screen lg:py-0 mb-[-100px]">
-            <div class="flex w-full items-center sm:justify-between">
+            <div class="flex w-full items-center justify-between">
                 <div class="xs:hidden md:block w-[50rem] ">
                     <img class="h-full scale-x-[-1]" src="https://english-time.org/storage/uploads/a1tp733ANqkuRvAUxhLVsrJlQ71hSdmnsTIAD6Il.png" alt="da">
                 </div>

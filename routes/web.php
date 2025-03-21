@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\Views\BasketController;
 use App\Http\Controllers\Views\BrandController;
@@ -45,10 +46,14 @@ Route::controller(CompareController::class)->group(function () {
     Route::get('/compare', 'index')->name('compare');
 });
 
+//user
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/register', 'index')->name('register');
 });
 
+Route::controller(ProfileController::class)->group(function () {
+    Route::get('/profile', 'index')->name('profile');
+});
 
 //admin
 Route::get('/admin', function () {
