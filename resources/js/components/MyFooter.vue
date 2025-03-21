@@ -21,18 +21,17 @@ import {Link} from '@inertiajs/vue3'
             <Link class="hoverText">Служба поддержки</Link>
             <Link class="hoverText">Доставка и оплата</Link>
         </div>
-        <div class="flex flex-col justify-center">
-<!--            Обернуть в див для расположения картинок-->
-            <div class="flex justify-center space-x-3 mb-3">
+        <div class="flex flex-col justify-center items-center pt-4">
+
+
+            <div class="flex justify-center h-[30px]">
+                <img src="/resources/images/static/footer/mir.svg" alt="mir">
+            </div>
+            <div class="flex justify-center space-x-3 ">
+                <img src="/resources/images/static/footer/VK_Circled.png" alt="VK">
                 <img src="/resources/images/static/footer/tg.svg" alt="Telegram">
                 <img src="/resources/images/static/footer/wp.svg" alt="WhatsApp">
             </div>
-            <div class="flex justify-center space-x-2 h-[30px]">
-                <img src="/resources/images/static/footer/mastercard.svg" alt="mastercard">
-                <img src="/resources/images/static/footer/mir.svg" alt="mir">
-                <img src="/resources/images/static/footer/visa.svg" alt="visa">
-            </div>
-
 
         </div>
 
