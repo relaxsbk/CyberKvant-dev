@@ -5,21 +5,17 @@ import InputLabel from "../Forms/InputLabel.vue";
 import GroupInputLabel from "../Forms/GroupInputLabel.vue";
 import TextInput from "../Forms/TextInput.vue";
 import FormButton from "../Forms/FormButton.vue";
-import {inject, ref, onMounted, provide} from "vue";
+import {inject, ref, onMounted} from "vue";
 
-// Получаем функцию закрытия из провайдера
 const { closeDrawer: externalCloseDrawer } = inject('drawerActions');
 
-// Длительность анимации в мс
 const animationSpeed = 300;
 
-// Два состояния для анимации:
-// isVisible управляет наличием компонента в DOM (v-show)
-// isOpen отвечает за CSS-анимацию (сдвиг и прозрачность)
+
 const isVisible = ref(false);
 const isOpen = ref(false);
 
-// Функция открытия: сначала отображаем компонент, потом запускаем анимацию
+
 const open = () => {
     isVisible.value = true;
     // Небольшая задержка, чтобы Vue успел применить стили
@@ -28,7 +24,7 @@ const open = () => {
     }, 10);
 };
 
-// Функция закрытия: сначала запускаем анимацию закрытия, а затем скрываем компонент
+
 const close = () => {
     isOpen.value = false;
     setTimeout(() => {
@@ -42,7 +38,7 @@ onMounted(() => {
 });
 
 
-// Пример использования useForm, если он вам нужен для формы
+
 const form = useForm({
     email: '',
     password: '',
@@ -51,7 +47,6 @@ const form = useForm({
 </script>
 
 <template>
-    <!-- Overlay с затемнением фона -->
     <div
         @click="close"
         class="fixed w-full h-full top-0 left-0 z-40 bg-black transition-opacity"
@@ -60,7 +55,6 @@ const form = useForm({
         v-show="isVisible"
     ></div>
 
-    <!-- Контент дравера -->
     <div
         class="fixed top-0 right-0 z-50 h-full p-4 overflow-y-auto w-96 bg-[#1E1E1E] transform transition-transform"
         :style="{ transitionDuration: animationSpeed + 'ms' }"
@@ -98,7 +92,7 @@ const form = useForm({
                     <label class="mb-2">Запомнить меня</label>
                 </div>
                 <Link class="text-gray-500 hoverText duration-200 ease-out">
-                    Забыли пароль?
+                    Забыл пароль?
                 </Link>
             </div>
             <FormButton value="Войти" />
@@ -113,5 +107,5 @@ const form = useForm({
 </template>
 
 <style scoped>
-/* При необходимости добавьте дополнительные стили */
+
 </style>
