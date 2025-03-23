@@ -28,9 +28,9 @@ import {Link} from '@inertiajs/vue3'
                 <img src="/resources/images/static/footer/mir.svg" alt="mir">
             </div>
             <div class="flex justify-center space-x-3 ">
-                <img src="/resources/images/static/footer/VK_Circled.png" alt="VK">
-                <img src="/resources/images/static/footer/tg.svg" alt="Telegram">
-                <img src="/resources/images/static/footer/wp.svg" alt="WhatsApp">
+                <img class="w-[40px] h-auto" src="/resources/images/static/footer/VK_Circled.png" alt="VK">
+                <img class="w-[40px] h-auto" src="/resources/images/static/footer/tg.svg" alt="Telegram">
+                <img class="w-[40px] h-auto" src="/resources/images/static/footer/wp.svg" alt="WhatsApp">
             </div>
 
         </div>
