@@ -92,7 +92,7 @@ const form = useForm({
                     <label class="mb-2">Запомнить меня</label>
                 </div>
                 <Link class="text-gray-500 hoverText duration-200 ease-out">
-                    Забыл пароль?
+                    Забыл пароль
                 </Link>
             </div>
             <FormButton value="Войти" />
