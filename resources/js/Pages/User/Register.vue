@@ -18,13 +18,13 @@ const form = useForm({
     dob: null,
     phone: '',
     password: '',
-    password_confirm: '',
+    password_confirmation: '',
 });
 
 
 const submit = () => {
     form.post(route('register.store'), {
-        onFinish: () => form.reset('firstName','lastName', 'email', 'dob', 'phone', 'password', 'password_confirm'),
+        onFinish: () => form.reset('firstName','lastName', 'email', 'dob', 'phone', 'password', 'password_confirmation'),
         // onSuccess: () => form
     })
 }
@@ -93,15 +93,10 @@ const isFocused = ref(false);
                                     value="Адрес электронной почты"
                                 />
                             </GroupInputLabel>
-<!--WARNING-->
                             <GroupInputLabel class="mb-0">
-<!--                                <InputLabel value="Дата рождения"></InputLabel>-->
                                 <DatePicker class="" v-model="form.dob" />
-
                             </GroupInputLabel>
 
-
-                            <!--WARNING-->
                             <GroupInputLabel>
                             <span class="absolute start-0 bottom-2 text-gray-500 dark:text-gray-400">
                                 <span v-if="isFocused">
@@ -142,13 +137,13 @@ const isFocused = ref(false);
 
                             <GroupInputLabel>
                                 <TextInput
-                                    id="password_confirm"
+                                    id="password_confirmation"
                                     type="password"
-                                    v-model="form.password_confirm"
+                                    v-model="form.password_confirmation"
                                     required
                                 />
                                 <InputLabel
-                                    for="password_confirm"
+                                    for="password_confirmation"
                                     value="Подтверждение пароля"
                                 />
                             </GroupInputLabel>

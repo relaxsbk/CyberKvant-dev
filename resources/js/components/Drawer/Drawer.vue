@@ -99,7 +99,7 @@ const form = useForm({
         </form>
         <p class="text-center flex justify-center gap-2 mt-5">
             Нет аккаунта?
-            <Link class="text-secondary-purple hover:text-primary-purple duration-200 ease-out">
+            <Link @click="close" :href="$route('register')" class="text-secondary-purple hover:text-primary-purple duration-200 ease-out">
                 Зарегистрироваться
             </Link>
         </p>
