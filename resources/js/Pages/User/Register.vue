@@ -1,11 +1,13 @@
 <script setup>
-import { ref } from "vue";
+import {ref, watch} from "vue";
 import TextInput from "../../components/Forms/TextInput.vue";
 import {useForm, Link} from "@inertiajs/vue3";
 import InputLabel from "../../components/Forms/InputLabel.vue";
 import GroupInputLabel from "../../components/Forms/GroupInputLabel.vue";
 import Breadcrumb from "../../components/Breadcrumb.vue";
 import FormButton from "../../components/Forms/FormButton.vue";
+import DatePicker from "../../components/Forms/DatePicker.vue";
+import Datepicker from '@vuepic/vue-datepicker';
 
 
 
@@ -13,11 +15,19 @@ const form = useForm({
     firstName: '',
     lastName: '',
     email: '',
-    dob: '',
+    dob: null,
     phone: '',
     password: '',
     password_confirm: '',
 });
+
+
+const submit = () => {
+    form.post(route('register.store'), {
+        onFinish: () => form.reset('firstName','lastName', 'email', 'dob', 'phone', 'password', 'password_confirm'),
+        // onSuccess: () => form
+    })
+}
 
 
 const isFocused = ref(false);
@@ -40,7 +50,7 @@ const isFocused = ref(false);
                             Регистрация
                         </h1>
 
-                        <form class="max-w-md mx-auto">
+                        <form @submit.prevent="submit" class="max-w-md mx-auto">
                             <div class="grid md:grid-cols-2 md:gap-6">
                                 <GroupInputLabel>
                                     <TextInput
@@ -83,23 +93,15 @@ const isFocused = ref(false);
                                     value="Адрес электронной почты"
                                 />
                             </GroupInputLabel>
+<!--WARNING-->
+                            <GroupInputLabel class="mb-0">
+<!--                                <InputLabel value="Дата рождения"></InputLabel>-->
+                                <DatePicker class="" v-model="form.dob" />
 
-                            <GroupInputLabel>
-
-                                <TextInput
-                                    datepicker
-                                    id="date"
-                                    type="text"
-                                    v-model="form.dob"
-                                    required
-
-                                />
-                                <InputLabel
-                                    for="date"
-                                    value="Дата рождения"
-                                />
                             </GroupInputLabel>
 
+
+                            <!--WARNING-->
                             <GroupInputLabel>
                             <span class="absolute start-0 bottom-2 text-gray-500 dark:text-gray-400">
                                 <span v-if="isFocused">
@@ -116,7 +118,7 @@ const isFocused = ref(false);
                                     required
                                     @focus="isFocused = true"
                                     @blur="isFocused = false"
-                                    class="block py-2.5 pb-2.5 ps-6 pe-0 w-full text-sm bg-transparent border-0 border-b-2  appearance-none " pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                    class="block py-2.5 pb-2.5 ps-6 pe-0 w-full text-sm bg-transparent border-0 border-b-2  appearance-none "
                                 />
                                 <InputLabel
                                     for="phone"

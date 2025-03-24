@@ -42,7 +42,7 @@ onMounted(() => {
 const form = useForm({
     email: '',
     password: '',
-    remember: '',
+    remember: false,
 });
 </script>
 
@@ -89,7 +89,7 @@ const form = useForm({
                         v-model="form.remember"
                         class="mb-2 cursor-pointer text-primary-purple  rounded focus:ring-purple-600  ring-offset-gray-800 focus:ring-2 bg-gray-600 border-gray-600"
                     />
-                    <label class="mb-2">Запомнить меня</label>
+                    <label for="remember" class="mb-2">Запомнить меня</label>
                 </div>
                 <Link class="text-gray-500 hoverText duration-200 ease-out">
                     Забыл пароль

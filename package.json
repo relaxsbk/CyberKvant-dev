@@ -17,6 +17,7 @@
     "dependencies": {
         "@inertiajs/vue3": "^1.2.0",
         "@vitejs/plugin-vue": "^5.1.4",
+        "@vuepic/vue-datepicker": "^11.0.2",
         "flowbite": "^2.5.2",
         "swiper": "^11.1.14",
         "vue": "^3.5.12"
