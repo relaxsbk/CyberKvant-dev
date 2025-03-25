@@ -4,6 +4,7 @@ import MyHeader from "@/components/MyHeader.vue";
 import MyFooter from "@/components/MyFooter.vue";
 import Drawer from "../components/Drawer/Drawer.vue";
 import {provide, ref} from "vue";
+import ToastAlertSuccess from "../components/Alerts/ToastAlertSuccess.vue";
 
 const drawerOpen = ref(false)
 
@@ -24,6 +25,10 @@ provide('drawerActions', {
 
 <template>
     <Drawer v-if="drawerOpen"/>
+    <ToastAlertSuccess
+        :message="'da'"
+        :success="$page.props.success"
+    />
     <section class="flex flex-col min-h-screen">
         <header >
             <MyHeader @open-drawer="openDrawer" />
