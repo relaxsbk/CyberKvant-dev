@@ -4,7 +4,6 @@ import MyHeader from "@/components/MyHeader.vue";
 import MyFooter from "@/components/MyFooter.vue";
 import Drawer from "../components/Drawer/Drawer.vue";
 import {provide, ref} from "vue";
-import ToastAlert from "../components/Alerts/ToastAlert.vue";
 
 const drawerOpen = ref(false)
 
@@ -37,7 +36,7 @@ provide('drawerActions', {
         <footer class="mt-auto z-10 bg-black">
             <MyFooter />
         </footer>
-        <ToastAlert :errors="$page.props.errors" />
+
     </section>
 </template>
 

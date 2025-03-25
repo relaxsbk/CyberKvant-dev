@@ -1,15 +1,15 @@
 <script setup>
-import { ref } from 'vue';
-// import PhoneInput from "../../components/Forms/PhoneInput.vue"; // импорт компонента
-import { useForm, Link } from "@inertiajs/vue3";
+import {ref} from 'vue';
+import {Link, useForm} from "@inertiajs/vue3";
 import InputLabel from "../../components/Forms/InputLabel.vue";
 import GroupInputLabel from "../../components/Forms/GroupInputLabel.vue";
 import Breadcrumb from "../../components/Breadcrumb.vue";
 import FormButton from "../../components/Forms/FormButton.vue";
 import DatePicker from "../../components/Forms/DatePicker.vue";
-import AlertError from "../../components/Alerts/AlertError.vue";
 import TextInput from "../../components/Forms/TextInput.vue";
 import NumberInput from "../../components/Forms/NumberInput.vue";
+import InputError from "../../components/Forms/InputError.vue";
+import ToastAlertError from "../../components/Alerts/ToastAlertError.vue";
 
 const form = useForm({
     firstName: '',
@@ -22,7 +22,9 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('register.store'));
+    form.post(route('register.store'), {
+        // onFinish: () => form.reset('email', 'password', 'remember'),
+    });
 };
 
 const isFocused = ref(false);
@@ -31,6 +33,9 @@ const isFocused = ref(false);
 <template>
     <section class="container mx-auto">
         <Breadcrumb class="mt-[40px]" />
+
+        <ToastAlertError :errors="$page.props.errors" :message="'Исправьте ошибки в форме'"/>
+
         <div class="py-8 mx-auto xs:h-screen lg:py-0 mb-[-100px]">
             <div class="flex w-full items-center justify-between">
                 <div class="xs:hidden md:block w-[50rem]">
@@ -47,9 +52,17 @@ const isFocused = ref(false);
                                         id="firstName"
                                         type="text"
                                         v-model="form.firstName"
-                                        required
+                                        :class="{'border-red-600': form.errors.firstName}"
                                     />
-                                    <InputLabel for="firstName" value="Имя" />
+                                    <InputLabel
+                                        for="firstName"
+                                        value="Имя"
+                                        :class="{'text-red-600': form.errors.firstName}"
+                                    />
+                                    <InputError
+                                        :message="form.errors.firstName"
+                                        class="mt-2"
+                                    />
                                 </GroupInputLabel>
 
                                 <GroupInputLabel>
@@ -57,9 +70,17 @@ const isFocused = ref(false);
                                         id="lastName"
                                         type="text"
                                         v-model="form.lastName"
-                                        required
+                                        :class="{'border-red-600': form.errors.lastName}"
                                     />
-                                    <InputLabel for="lastName" value="Фамилия" />
+                                    <InputLabel
+                                        for="lastName"
+                                        value="Фамилия"
+                                        :class="{'text-red-600': form.errors.lastName}"
+                                    />
+                                    <InputError
+                                        :message="form.errors.lastName"
+                                        class="mt-2"
+                                    />
                                 </GroupInputLabel>
                             </div>
 
@@ -68,12 +89,28 @@ const isFocused = ref(false);
                                     id="email"
                                     type="email"
                                     v-model="form.email"
-                                    required
+                                    :class="{'border-red-600': form.errors.email}"
                                 />
-                                <InputLabel for="email" value="Адрес электронной почты" />
+                                <InputLabel
+                                    for="email"
+                                    value="Адрес электронной почты"
+                                    :class="{'text-red-600': form.errors.email}"
+                                />
+                                <InputError
+                                    :message="form.errors.email"
+                                    class="mt-2"
+                                />
                             </GroupInputLabel>
+
                             <GroupInputLabel class="mb-0">
-                                <DatePicker class="" v-model="form.dob" />
+                                <DatePicker
+                                    v-model="form.dob"
+                                    :class="{'border-red-600': form.errors.dob}"
+                                />
+                                <InputError
+                                    :message="form.errors.dob"
+                                    class="mt-2"
+                                />
                             </GroupInputLabel>
 
                             <GroupInputLabel>
@@ -81,9 +118,17 @@ const isFocused = ref(false);
                                     id="phone"
                                     type="text"
                                     v-model="form.phone"
-                                    required
+                                    :class="{'border-red-600': form.errors.phone}"
                                 />
-                                <InputLabel for="phone" value="Номер телефона" />
+                                <InputLabel
+                                    for="phone"
+                                    value="Номер телефона"
+                                    :class="{'text-red-600': form.errors.phone}"
+                                />
+                                <InputError
+                                    :message="form.errors.phone"
+                                    class="mt-2"
+                                />
                             </GroupInputLabel>
 
                             <GroupInputLabel>
@@ -91,9 +136,17 @@ const isFocused = ref(false);
                                     id="password"
                                     type="password"
                                     v-model="form.password"
-                                    required
+                                    :class="{'border-red-600': form.errors.password}"
                                 />
-                                <InputLabel for="password" value="Пароль" />
+                                <InputLabel
+                                    for="password"
+                                    value="Пароль"
+                                    :class="{'text-red-600': form.errors.password}"
+                                />
+                                <InputError
+                                    :message="form.errors.password"
+                                    class="mt-2"
+                                />
                             </GroupInputLabel>
 
                             <GroupInputLabel>
@@ -101,15 +154,28 @@ const isFocused = ref(false);
                                     id="password_confirmation"
                                     type="password"
                                     v-model="form.password_confirmation"
-                                    required
+                                    :class="{'border-red-600': form.errors.password_confirmation}"
                                 />
-                                <InputLabel for="password_confirmation" value="Подтверждение пароля" />
+                                <InputLabel
+                                    for="password_confirmation"
+                                    value="Подтверждение пароля"
+                                    :class="{'text-red-600': form.errors.password_confirmation}"
+                                />
+                                <InputError :message="form.errors.password_confirmation" class="mt-2"/>
+
                             </GroupInputLabel>
+
                             <FormButton value="Зарегистрироваться" />
                         </form>
-                        <p class="text-center text-sm">
+                        <p
+                            class="text-center text-sm"
+                        >
                             Есть аккаунт?
-                            <Link class="text-secondary-purple">Войти</Link>
+                            <Link
+                                class="text-secondary-purple"
+                            >
+                                Войти
+                            </Link>
                         </p>
                     </div>
                 </div>
@@ -117,3 +183,4 @@ const isFocused = ref(false);
         </div>
     </section>
 </template>
+

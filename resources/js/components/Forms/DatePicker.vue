@@ -23,7 +23,7 @@ const formattedDate = computed({
         auto-apply
         locale="ru"
         placeholder="Дата рождения"
-        class="py-2.5 px-0 w-full text-sm bg-transparent appearance-none text-white border-gray-600 focus:border-primary-purple ease-out transition focus:outline-none focus:ring-0 peer"
+        class="pl-0 w-full text-sm bg-transparent appearance-none text-white border-b-2 border-gray-600 focus:border-primary-purple ease-out transition focus:outline-none focus:ring-0 peer"
     />
 </template>
 
@@ -31,7 +31,7 @@ const formattedDate = computed({
 .dp__theme_dark {
     --dp-background-color: #1E1E1E; /* Сделаем фон темно-серым */
     --dp-text-color: #fff;
-    --dp-border-color: #4b5563;
+    --dp-border-color: none;
     --dp-primary-color: #9333ea;
     --dp-border-color-hover:#9333ea;
     --dp-border-color-focus:#9333ea ;
@@ -52,6 +52,12 @@ const formattedDate = computed({
 /* Исправляем проблему с тем, что элементы формы просвечиваются */
 .dp__menu * {
     backdrop-filter: none !important; /* Убираем размытие, если есть */
+}
+.dp__input_icons {
+    padding: 0;
+}
+.dp__input {
+    padding: 0.625rem 5px 0.625rem 1.2rem;
 }
 </style>
 

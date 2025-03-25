@@ -6,6 +6,7 @@ import GroupInputLabel from "../Forms/GroupInputLabel.vue";
 import TextInput from "../Forms/TextInput.vue";
 import FormButton from "../Forms/FormButton.vue";
 import {inject, ref, onMounted} from "vue";
+import InputError from "../Forms/InputError.vue";
 
 const { closeDrawer: externalCloseDrawer } = inject('drawerActions');
 
@@ -65,21 +66,37 @@ const form = useForm({
         <form>
             <GroupInputLabel class="mb-6">
                 <TextInput
-                    id="email"
-                    type="email"
-                    v-model="form.email"
-                    required
+                id="email"
+                type="email"
+                v-model="form.email"
+                :class="{'border-red-600': form.errors.email}"
+            />
+                <InputLabel
+                    for="email"
+                    value="Адрес электронной почты"
+                    :class="{'text-red-600': form.errors.email}"
                 />
-                <InputLabel for="email" value="Адрес электронной почты" />
+                <InputError
+                    :message="form.errors.email"
+                    class="mt-2"
+                />
             </GroupInputLabel>
             <GroupInputLabel>
                 <TextInput
                     id="password"
                     type="password"
                     v-model="form.password"
-                    required
+                    :class="{'border-red-600': form.errors.password}"
                 />
-                <InputLabel for="password" value="Пароль" />
+                <InputLabel
+                    for="password"
+                    value="Пароль"
+                    :class="{'text-red-600': form.errors.password}"
+                />
+                <InputError
+                    :message="form.errors.password"
+                    class="mt-2"
+                />
             </GroupInputLabel>
             <div class="flex justify-between">
                 <div class="flex items-center gap-2">
