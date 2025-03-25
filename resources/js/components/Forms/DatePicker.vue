@@ -20,6 +20,7 @@ const formattedDate = computed({
         :enable-time-picker="false"
         :clearable="false"
         :teleport="true"
+        auto-apply
         locale="ru"
         placeholder="Дата рождения"
         class="py-2.5 px-0 w-full text-sm bg-transparent appearance-none text-white border-gray-600 focus:border-primary-purple ease-out transition focus:outline-none focus:ring-0 peer"

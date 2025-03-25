@@ -1,12 +1,10 @@
 import { createApp, h } from 'vue'
-
 import MainLayout from '@/Layouts/MainLayout.vue'
 import { ZiggyVue } from 'ziggy-js';
 import { Ziggy } from './ziggy.js';
 import { createInertiaApp } from '@inertiajs/vue3'
 import 'flowbite';
-
-
+import { IMaskDirective } from 'vue-imask';  // Импортируем директиву
 
 createInertiaApp({
     resolve: name => {
@@ -22,6 +20,9 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue, Ziggy);
 
+        // Регистрируем директиву v-mask глобально
+        app.directive('mask', IMaskDirective);
+
         // Добавляем $route в глобальные свойства
         app.config.globalProperties.$route = route;
 
@@ -31,4 +32,3 @@ createInertiaApp({
         color: '#CA7FFE',
     },
 });
-
