@@ -22,8 +22,15 @@ const form = useForm({
 });
 
 const submit = () => {
+    console.log('Form data:', form);
     form.post(route('register.store'), {
-        // onFinish: () => form.reset('email', 'password', 'remember'),
+        onSuccess: () => {
+            console.log('Form submitted successfully');
+            form.reset('firstName', 'lastName', 'email', 'dob', 'phone', 'password', 'password_confirmation');
+        },
+        onError: (errors) => {
+            console.log('Form errors:', errors);
+        },
     });
 };
 
@@ -165,7 +172,7 @@ const isFocused = ref(false);
 
                             </GroupInputLabel>
 
-                            <FormButton value="Зарегистрироваться" />
+                            <FormButton :class="{'opacity-25': form.processing}" :disabled="form.processing" value="Зарегистрироваться" />
                         </form>
                         <p
                             class="text-center text-sm"

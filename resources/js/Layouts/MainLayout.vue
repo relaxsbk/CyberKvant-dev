@@ -26,13 +26,17 @@ provide('drawerActions', {
 <template>
     <Drawer v-if="drawerOpen"/>
     <ToastAlertSuccess
-        :message="'da'"
-        :success="$page.props.success"
+        :success="$page.props.flash.success"
+        :message="$page.props.flash.success"
     />
     <section class="flex flex-col min-h-screen">
         <header >
             <MyHeader @open-drawer="openDrawer" />
         </header>
+
+<!--        <div v-if="$page.props.flash.success" class="bg-green-500 w-32 h-32">-->
+<!--            <p class="text-2xl text-black">{{$page.props.flash.success}}</p>-->
+<!--        </div>-->
 
         <main class="flex-grow mt-20">
             <slot />
