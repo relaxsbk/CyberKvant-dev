@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\Views\BasketController;
@@ -49,11 +50,18 @@ Route::controller(CompareController::class)->group(function () {
 //user
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/register', 'index')->name('register');
+    Route::post('/register', 'store')->name('register.store');
 });
 
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'index')->name('profile');
 });
+
+Route::controller(AuthController::class)->group(function () {
+    Route::post('/auth', 'index')->name('auth');
+});
+
+
 
 //admin
 Route::get('/admin', function () {
