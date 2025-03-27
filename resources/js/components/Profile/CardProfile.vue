@@ -1,15 +1,24 @@
 <script setup>
-import {Link} from "@inertiajs/vue3";
-import {ref} from "vue";
+import { ref } from "vue";
+import { Link } from "@inertiajs/vue3";
 import UpdateProfileModal from "./UpdateProfileModal.vue";
-
 
 const modalRef = ref(null);
 
-const openModal = () => {
-    modalRef.value?.open(); // Открываем модалку через ref
+const formatPhone = (phone) => {
+    if (!phone) return '';
+
+    const cleanPhone = phone.replace(/\D/g, "");
+
+    if (cleanPhone.length === 10) {
+        return `+7 (${cleanPhone.slice(0, 3)}) ${cleanPhone.slice(3, 6)}-${cleanPhone.slice(6, 8)}-${cleanPhone.slice(8, 10)}`;
+    }
+    return phone;
 };
 
+const openModal = () => {
+    modalRef.value?.open();
+};
 </script>
 
 <template>
@@ -23,24 +32,23 @@ const openModal = () => {
                 <p>
                     Добро пожаловать в свой профиль
                     <span class="text-secondary-purple">
-                    {{$page.props.auth.user.firstName}}
-                    {{$page.props.auth.user.lastName}}
-                </span>
+                        {{$page.props.auth.user.firstName}}
+                        {{$page.props.auth.user.lastName}}
+                    </span>
                     !
                 </p>
                 <p>
                     Email:
                     <span class="text-secondary-purple">
-                    {{$page.props.auth.user.email}}
-                </span>
-
+                        {{$page.props.auth.user.email}}
+                    </span>
                 </p>
                 <p>
                     Номер телефона:
                     <span class="text-secondary-purple">
-                    {{$page.props.auth.user.phone}}
-                </span>
-
+                        <!-- Применяем форматирование телефона -->
+                        {{ formatPhone($page.props.auth.user.phone) }}
+                    </span>
                 </p>
                 <div class="flex gap-3">
                     <button @click="openModal()" class="w-3/6 bg-primary-purple mt-4 text-sm text-center text-white py-2 rounded-lg  duration-200 hover:bg-dark-purple/80">
@@ -56,7 +64,6 @@ const openModal = () => {
             </div>
         </div>
     </div>
-
 </template>
 
 <style scoped>
