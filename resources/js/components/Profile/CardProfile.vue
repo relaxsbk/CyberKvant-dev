@@ -51,11 +51,12 @@ const openModal = () => {
                     </span>
                 </p>
                 <div class="flex gap-3">
-                    <button @click="openModal()" class="w-3/6 bg-primary-purple mt-4 text-sm text-center text-white py-2 rounded-lg  duration-200 hover:bg-dark-purple/80">
+                    <button @click="openModal()" class="w-3/6 bg-primary-purple text-sm text-center text-white py-2 rounded-lg  duration-200 hover:bg-dark-purple/80">
                         Редактировать профиль
                     </button>
-                    <Link :href="$route('logout')" class="w-3/6 bg-gray-700/50 hover:bg-red-700/60 mt-4 text-sm text-center text-white py-2 rounded-lg  duration-200">Выйти</Link>
+                    <Link :href="$route('logout')" class="w-3/6 bg-gray-700/50 hover:bg-red-700/60  text-sm text-center text-white py-2 rounded-lg  duration-200">Выйти</Link>
                 </div>
+                <Link v-if="$page.props.auth.user.role === 'admin'" :href="$route('logout')" class="w-full bg-primary-purple hover:bg-dark-purple text-sm text-center text-white py-2 rounded-lg  duration-200">Вход в административную панель</Link>
             </div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="#ca7ffe" class="bi bi-person" viewBox="0 0 16 16">
