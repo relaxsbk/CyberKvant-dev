@@ -25,8 +25,7 @@ watch(() => props.errors, (newErrors) => {
         isVisible.value = true;
         errorKey.value++; // Обновляем ключ, чтобы Vue перерисовал тост
 
-        // Автоматически скрываем тост через 5 секунд
-        setTimeout(hideToast, 5000);
+        setTimeout(hideToast, 3000);
     }
 }, { deep: true });
 </script>

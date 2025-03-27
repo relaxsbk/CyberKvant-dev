@@ -15,7 +15,7 @@ class RegisterRequest extends FormRequest
             'lastName' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'dob' => ['required','date'],
-            'phone' => ['required', 'string', 'max:255', 'unique:users', 'regex:/^\+7 \(\d{3}\) \d{3}-\d{4}$/'], // TODO:regex когда внедрю маску в форму
+            'phone' => ['required', 'string', 'max:255', 'unique:users', 'regex:/^\+7 \(\d{3}\) \d{3}-\d{4}$/'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }

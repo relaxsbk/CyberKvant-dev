@@ -24,8 +24,7 @@ watch(() => props.success, (newSuccess) => {
     if (newSuccess && Object.keys(newSuccess).length > 0) {
         isVisible.value = true;
         successKey.value++; // Обновляем ключ, чтобы Vue перерисовал тост
-        // Автоматически скрываем тост через 5 секунд
-        setTimeout(hideToast, 5000);
+        setTimeout(hideToast, 3000);
     }
 }, { deep: true });
 </script>

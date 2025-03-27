@@ -16,21 +16,22 @@ import {Link} from "@inertiajs/vue3";
                 <p>
                     Добро пожаловать в свой профиль
                     <span class="text-secondary-purple">
-                    Пожидаев Павел
+                    {{$page.props.auth.user.firstName}}
+                    {{$page.props.auth.user.lastName}}
                 </span>
                     !
                 </p>
                 <p>
                     Email:
                     <span class="text-secondary-purple">
-                    pah4n1989@yandex.ru
+                    {{$page.props.auth.user.email}}
                 </span>
 
                 </p>
                 <p>
                     Номер телефона:
                     <span class="text-secondary-purple">
-                    +7 (852) 654-85-87
+                    {{$page.props.auth.user.phone}}
                 </span>
 
                 </p>
