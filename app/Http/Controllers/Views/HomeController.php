@@ -14,6 +14,8 @@ class HomeController extends Controller
 
     public function __invoke()
     {
+
+//        dd(request()->user());
         $categories = Category::query()
             ->select('id', 'title', 'published')
             ->where('published', true)

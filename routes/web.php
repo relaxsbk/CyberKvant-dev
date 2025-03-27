@@ -48,19 +48,22 @@ Route::controller(CompareController::class)->group(function () {
 });
 
 //user
-Route::controller(RegisterController::class)->group(function () {
-    Route::get('/register', 'index')->name('register');
-    Route::post('/register', 'store')->name('register.store');
+Route::group(['middleware' => 'guest'], function () {
+    Route::controller(RegisterController::class)->group(function () {
+        Route::get('/register', 'index')->name('register');
+        Route::post('/register', 'store')->name('register.store');
+    });
+
+    Route::controller(AuthController::class)->group(function () {
+        Route::post('/auth', 'auth')->name('auth');
+
+    });
 });
 
-Route::controller(ProfileController::class)->group(function () {
+Route::controller(ProfileController::class)->middleware(['auth'])->group(function () {
     Route::get('/profile', 'index')->name('profile');
+    Route::get('/logout', 'logout')->name('logout');
 });
-
-Route::controller(AuthController::class)->group(function () {
-    Route::post('/auth', 'index')->name('auth');
-});
-
 
 
 //admin

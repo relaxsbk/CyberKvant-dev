@@ -1,6 +1,6 @@
 <script setup>
-import {ref} from 'vue';
-import {Link, useForm} from "@inertiajs/vue3";
+import {inject, ref} from 'vue';
+import {useForm} from "@inertiajs/vue3";
 import InputLabel from "../../components/Forms/InputLabel.vue";
 import GroupInputLabel from "../../components/Forms/GroupInputLabel.vue";
 import Breadcrumb from "../../components/Breadcrumb.vue";
@@ -10,6 +10,8 @@ import TextInput from "../../components/Forms/TextInput.vue";
 import NumberInput from "../../components/Forms/NumberInput.vue";
 import InputError from "../../components/Forms/InputError.vue";
 import ToastAlertError from "../../components/Alerts/ToastAlertError.vue";
+
+const {openDrawer} = inject('drawerActions')
 
 const form = useForm({
     firstName: '',
@@ -22,14 +24,12 @@ const form = useForm({
 });
 
 const submit = () => {
-    console.log('Form data:', form);
     form.post(route('register.store'), {
         onSuccess: () => {
-            console.log('Form submitted successfully');
             form.reset('firstName', 'lastName', 'email', 'dob', 'phone', 'password', 'password_confirmation');
         },
         onError: (errors) => {
-            console.log('Form errors:', errors);
+
         },
     });
 };
@@ -126,6 +126,8 @@ const isFocused = ref(false);
                                     type="text"
                                     v-model="form.phone"
                                     :class="{'border-red-600': form.errors.phone}"
+                                    readonly="readonly"
+                                    onfocus="this.removeAttribute('readonly');"
                                 />
                                 <InputLabel
                                     for="phone"
@@ -178,11 +180,12 @@ const isFocused = ref(false);
                             class="text-center text-sm"
                         >
                             Есть аккаунт?
-                            <Link
-                                class="text-secondary-purple"
+                            <span
+                                @click="openDrawer"
+                                class="text-secondary-purple cursor-pointer duration-200 hover:text-primary-purple"
                             >
                                 Войти
-                            </Link>
+                            </span>
                         </p>
                     </div>
                 </div>

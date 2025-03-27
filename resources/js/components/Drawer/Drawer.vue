@@ -45,6 +45,15 @@ const form = useForm({
     password: '',
     remember: false,
 });
+
+const submit = () => {
+    form.post(route('auth'), {
+        onSuccess: () => {
+            form.reset( 'email',  'password', 'remember');
+            close();
+        },
+    })
+}
 </script>
 
 <template>
@@ -63,7 +72,7 @@ const form = useForm({
         v-show="isVisible"
     >
         <DrawerHead @close-drawer="close"/>
-        <form>
+        <form @submit.prevent="submit">
             <GroupInputLabel class="mb-6">
                 <TextInput
                 id="email"

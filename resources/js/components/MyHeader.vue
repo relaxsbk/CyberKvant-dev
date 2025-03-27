@@ -71,12 +71,18 @@ const toggleMenu = () => {
                     </Link>
                 </li>
                 <li>
-                    <a @click="() => emit('openDrawer')" href="#" class="flex flex-col items-center hoverText">
+                    <Link v-if="$page.props.auth.user" :href="$route('profile')" class="flex flex-col items-center hoverText">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-fill mb-[-1px]" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" fill="#9701FE"/>
+                        </svg>
+                        <span>{{ $page.props.auth.user.firstName }}</span>
+                    </Link>
+                    <p v-else @click="() => emit('openDrawer')"  class="flex flex-col items-center hoverText cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" fill="#9701FE"/>
                         </svg>
                         <span>Аккаунт</span>
-                    </a>
+                    </p>
                 </li>
             </ul>
 

@@ -1,6 +1,9 @@
 <script setup>
 
 import FormButton from "../Forms/FormButton.vue";
+import {Link} from "@inertiajs/vue3";
+
+
 </script>
 
 <template>
@@ -31,7 +34,10 @@ import FormButton from "../Forms/FormButton.vue";
                 </span>
 
                 </p>
-                <FormButton class="w-4/6" value="Редактировать профиль"/>
+                <div class="flex gap-3">
+                    <FormButton class="w-4/6" value="Редактировать профиль"/>
+                    <Link :href="$route('logout')" class="w-3/6 bg-gray-700/50 hover:bg-red-700/60 mt-4 text-sm text-center text-white py-2 rounded-lg  duration-200">Выйти</Link>
+                </div>
             </div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="#ca7ffe" class="bi bi-person" viewBox="0 0 16 16">
