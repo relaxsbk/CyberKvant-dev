@@ -1,5 +1,5 @@
 <script setup>
-import {inject, ref} from 'vue';
+import {inject, ref, watch} from 'vue';
 import {useForm} from "@inertiajs/vue3";
 import InputLabel from "../../components/Forms/InputLabel.vue";
 import GroupInputLabel from "../../components/Forms/GroupInputLabel.vue";
@@ -23,18 +23,25 @@ const form = useForm({
     password_confirmation: '',
 });
 
+const cleanPhoneNumber = (phone) => {
+    return phone.replace(/\D/g, '').replace(/^7/, ''); // Удаляем все нецифровые символы и ведущую 7
+};
+
+watch(() => form.phone, (newValue) => {
+    form.phone = cleanPhoneNumber(newValue);
+});
+
 const submit = () => {
+    form.phone = cleanPhoneNumber(form.phone);
+
     form.post(route('register.store'), {
         onSuccess: () => {
             form.reset('firstName', 'lastName', 'email', 'dob', 'phone', 'password', 'password_confirmation');
         },
-        onError: (errors) => {
-
-        },
+        onError: () => {}
     });
 };
 
-const isFocused = ref(false);
 </script>
 
 <template>

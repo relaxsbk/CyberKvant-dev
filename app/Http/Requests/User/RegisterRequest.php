@@ -15,10 +15,11 @@ class RegisterRequest extends FormRequest
             'lastName' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'dob' => ['required','date'],
-            'phone' => ['required', 'string', 'max:255', 'unique:users', 'regex:/^\+7 \(\d{3}\) \d{3}-\d{4}$/'],
+            'phone' => ['required', 'string', 'max:20', 'unique:users',],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
+    //'regex:/^\+7 \(\d{3}\) \d{3}-\d{4}$/'
     protected function prepareForValidation(): void
     {
         $this->merge([

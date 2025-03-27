@@ -1,22 +1,14 @@
 <script setup>
 import { ref, watch, nextTick } from 'vue';
-import { IMaskDirective } from 'vue-imask';  // Импортируем директиву
+import { IMaskDirective } from 'vue-imask';
 
 const model = ref('');
 
 const onInput = (event) => {
     nextTick(() => {
-        // Принудительно обновляем значение, чтобы маска применялась
         model.value = event.target.value;
     });
 };
-
-// Следим за изменениями модели, чтобы поддерживать корректную синхронизацию
-watch(model, (newValue) => {
-    if (newValue.length > 17) {
-        model.value = newValue.slice(0, 17);  // Ограничиваем длину модели до 17 символов
-    }
-});
 </script>
 
 <template>
@@ -27,8 +19,6 @@ watch(model, (newValue) => {
         placeholder=" "
         v-model="model"
         @input="onInput"
-        @change="onInput"
         maxlength="17"
-
     />
 </template>

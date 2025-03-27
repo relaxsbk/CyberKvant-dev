@@ -22,11 +22,13 @@ const close = () => {
 defineExpose({ open, close });
 
 const page = usePage();
+
 const form = useForm({
     firstName: "",
     lastName: "",
     email: "",
     dob: "",
+    // phone: "",
 });
 
 onMounted(() => {
@@ -36,6 +38,7 @@ onMounted(() => {
         form.lastName = user.lastName || "";
         form.email = user.email || "";
         form.dob = user.dob || "";
+        // form.phone = user.phone || "";
     }
 });
 
@@ -76,6 +79,24 @@ const submit = () => {
                 <DatePicker v-model="form.dob" />
                 <InputError :message="form.errors.dob" />
             </GroupInputLabel>
+<!--            <GroupInputLabel>-->
+<!--                <NumberInput-->
+<!--                    id="phone"-->
+<!--                    type="text"-->
+<!--                    v-model="form.phone"-->
+<!--                    :class="{'border-red-600': form.errors.phone}"-->
+
+<!--                />-->
+<!--                <InputLabel-->
+<!--                    for="phone"-->
+<!--                    value="Номер телефона"-->
+<!--                    :class="{'text-red-600': form.errors.phone}"-->
+<!--                />-->
+<!--                <InputError-->
+<!--                    :message="form.errors.phone"-->
+<!--                    class="mt-2"-->
+<!--                />-->
+<!--            </GroupInputLabel>-->
 
             <FormButton value="Редактировать" :disabled="form.processing" />
         </form>
