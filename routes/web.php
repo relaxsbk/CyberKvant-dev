@@ -62,6 +62,7 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::controller(ProfileController::class)->middleware(['auth'])->group(function () {
     Route::get('/profile', 'index')->name('profile');
+    Route::patch('/profile', 'update')->name('profile.update');
     Route::get('/logout', 'logout')->name('logout');
 });
 

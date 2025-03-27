@@ -1,12 +1,19 @@
 <script setup>
-
-import FormButton from "../Forms/FormButton.vue";
 import {Link} from "@inertiajs/vue3";
+import {ref} from "vue";
+import UpdateProfileModal from "./UpdateProfileModal.vue";
 
+
+const modalRef = ref(null);
+
+const openModal = () => {
+    modalRef.value?.open(); // Открываем модалку через ref
+};
 
 </script>
 
 <template>
+    <UpdateProfileModal ref="modalRef"/>
     <div class="w-fit  rounded-lg shadow-sm bg-[#1E1E1E] border-gray-700">
         <div class="font-medium text-center  rounded-t-lg border-b border-[#373737] text-gray-400 bg-[#1E1E1E] " id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
             <h1 class="text-3xl text-white mb-2">Профиль</h1>
@@ -36,7 +43,9 @@ import {Link} from "@inertiajs/vue3";
 
                 </p>
                 <div class="flex gap-3">
-                    <FormButton class="w-4/6" value="Редактировать профиль"/>
+                    <button @click="openModal()" class="w-3/6 bg-primary-purple mt-4 text-sm text-center text-white py-2 rounded-lg  duration-200 hover:bg-dark-purple/80">
+                        Редактировать профиль
+                    </button>
                     <Link :href="$route('logout')" class="w-3/6 bg-gray-700/50 hover:bg-red-700/60 mt-4 text-sm text-center text-white py-2 rounded-lg  duration-200">Выйти</Link>
                 </div>
             </div>
