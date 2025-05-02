@@ -69,5 +69,7 @@ Route::controller(ProfileController::class)->middleware(['auth'])->group(functio
 
 //admin
 Route::get('/admin', function () {
-    return view('layout.admin');
+    return view('admin.dashboard');
 });
+
+//Route::inertia('/admin', 'Admin/Dashboard')->name('admin.dashboard');
