@@ -1,7 +1,7 @@
 <nav class="bg-white  px-4 py-2.5 dark:bg-[#1E1E1E]  fixed left-0 right-0 top-0 z-50">
     <div class="flex flex-wrap justify-between items-center">
         <div class="flex justify-start items-center">
-            <a href="/admin" class="flex items-center justify-between mr-4">
+            <a href="{{route('admin.dashboard')}}" class="flex items-center justify-between mr-4">
                 <img
                     src="{{asset('/storage/static/logo-mini.svg')}}"
                     class="mr-3 h-5"

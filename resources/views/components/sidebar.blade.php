@@ -15,7 +15,7 @@
             <ul class="space-y-2 font-medium">
                 <li>
 
-                    <a href="" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="{{route('admin.dashboard')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i data-lucide="chart-column"></i>
                         <span class="ms-3">Главная</span>
                     </a>
@@ -45,8 +45,14 @@
                         </svg>
                     </button>
                     <div id="catalogAccordion" class="hidden space-y-2 px-4 py-2">
-                        <a href="#" class="block text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg">Посмотреть всё</a>
-                        <a href="#" class="block text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg">Не опубликованные</a>
+                        <div class=" flex gap-2 items-center ml-2 p-2 rounded-lg  text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
+                            <i data-lucide="eye" class="w-5 h-5 inline-block "></i>
+                            <a href="#" class="">Посмотреть всё</a>
+                        </div>
+                        <div class=" flex gap-2 items-center ml-2 p-2 rounded-lg  text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
+                            <i data-lucide="pen-line" class="w-5 h-5 inline-block "></i>
+                            <a href="#" class="">Неопубликованное</a>
+                        </div>
                     </div>
                 </div>
 
@@ -61,8 +67,14 @@
                         </svg>
                     </button>
                     <div id="categoryAccordion" class="hidden space-y-2 px-4 py-2">
-                        <a href="#" class="block text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg">Посмотреть всё</a>
-                        <a href="#" class="block text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg">Не опубликованные</a>
+                        <div class=" flex gap-2 items-center ml-2 p-2 rounded-lg  text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
+                            <i data-lucide="eye" class="w-5 h-5 inline-block "></i>
+                            <a href="#" class="">Посмотреть всё</a>
+                        </div>
+                        <div class=" flex gap-2 items-center ml-2 p-2 rounded-lg  text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
+                            <i data-lucide="pen-line" class="w-5 h-5 inline-block "></i>
+                            <a href="#" class="">Неопубликованное</a>
+                        </div>
                     </div>
                 </div>
 
@@ -77,8 +89,14 @@
                         </svg>
                     </button>
                     <div id="brandAccordion" class="hidden space-y-2 px-4 py-2">
-                        <a href="#" class="block text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg">Посмотреть всё</a>
-                        <a href="#" class="block text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg">Не опубликованные</a>
+                        <div class=" flex gap-2 items-center ml-2 p-2 rounded-lg  text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
+                            <i data-lucide="eye" class="w-5 h-5 inline-block "></i>
+                            <a href="#" class="">Посмотреть всё</a>
+                        </div>
+                        <div class=" flex gap-2 items-center ml-2 p-2 rounded-lg  text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
+                            <i data-lucide="pen-line" class="w-5 h-5 inline-block "></i>
+                            <a href="#" class="">Неопубликованное</a>
+                        </div>
                     </div>
                 </div>
 
@@ -93,8 +111,14 @@
                         </svg>
                     </button>
                     <div id="productAccordion" class="hidden space-y-2 px-4 py-2">
-                        <a href="#" class="block text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg">Посмотреть всё</a>
-                        <a href="#" class="block text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg">Не опубликованные</a>
+                        <div class=" flex gap-2 items-center ml-2 p-2 rounded-lg  text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
+                            <i data-lucide="eye" class="w-5 h-5 inline-block "></i>
+                            <a href="#" class="">Посмотреть всё</a>
+                        </div>
+                        <div class=" flex gap-2 items-center ml-2 p-2 rounded-lg  text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
+                            <i data-lucide="pen-line" class="w-5 h-5 inline-block "></i>
+                            <a href="#" class="">Неопубликованное</a>
+                        </div>
                     </div>
                 </div>
         </div>
@@ -131,7 +155,7 @@
                 </li>
             </ul>
         </div>
-
+        </div>
     </div>
 </aside>
 <script>

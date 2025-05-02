@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RegisterController;
@@ -68,8 +69,10 @@ Route::controller(ProfileController::class)->middleware(['auth'])->group(functio
 
 
 //admin
-Route::get('/admin', function () {
-    return view('admin.dashboard');
+Route::middleware(['guest'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
+
+
+
 });
 
-//Route::inertia('/admin', 'Admin/Dashboard')->name('admin.dashboard');
