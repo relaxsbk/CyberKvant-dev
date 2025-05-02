@@ -33,3 +33,10 @@ input:-webkit-autofill:active {
     caret-color: #fff !important; /* Цвет курсора */
 }
 
+.pagination .active span {
+    @apply bg-purple-600 text-white border-purple-600;
+}
+
+.pagination a {
+    @apply text-gray-700 hover:text-purple-600;
+}

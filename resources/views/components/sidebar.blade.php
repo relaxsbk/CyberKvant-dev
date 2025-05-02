@@ -47,7 +47,7 @@
                     <div id="catalogAccordion" class="hidden space-y-2 px-4 py-2">
                         <div class=" flex gap-2 items-center ml-2 p-2 rounded-lg  text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
                             <i data-lucide="eye" class="w-5 h-5 inline-block "></i>
-                            <a href="#" class="">Посмотреть всё</a>
+                            <a href="{{route('admin.catalogs')}}" class="">Посмотреть всё</a>
                         </div>
                         <div class=" flex gap-2 items-center ml-2 p-2 rounded-lg  text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
                             <i data-lucide="pen-line" class="w-5 h-5 inline-block "></i>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCatalogController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ProfileController;
@@ -72,7 +73,9 @@ Route::controller(ProfileController::class)->middleware(['auth'])->group(functio
 Route::middleware(['guest'])->prefix('admin')->group(function () {
     Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
 
-
+    Route::controller(AdminCatalogController::class)->group(function () {
+        Route::get('/catalogs', 'index')->name('admin.catalogs');
+    });
 
 });
 
