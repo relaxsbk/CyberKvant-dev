@@ -19,7 +19,7 @@
     </main>
 </div>
 
-
+<script src="//unpkg.com/alpinejs" defer></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>
     lucide.createIcons(); // Инициализация

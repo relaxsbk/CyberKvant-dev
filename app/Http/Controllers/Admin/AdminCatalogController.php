@@ -20,4 +20,17 @@ class AdminCatalogController extends Controller
 
         return view('admin.Catalog.catalogsNoPublished', compact('catalogs'));
     }
+
+    public function update()
+    {
+
+    }
+
+    public function destroy(Catalog $catalog)
+    {
+        $catalog->delete();
+
+        return redirect()->back()->with(['success' => 'Успешное удаление']);
+    }
+
 }

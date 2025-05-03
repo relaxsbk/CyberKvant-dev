@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminBrandController;
 use App\Http\Controllers\Admin\AdminCatalogController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\User\AuthController;
@@ -76,6 +77,13 @@ Route::middleware(['guest'])->prefix('admin')->group(function () {
     Route::controller(AdminCatalogController::class)->group(function () {
         Route::get('/catalogs', 'index')->name('admin.catalogs');
         Route::get('/catalogs-noPublished', 'noPublished')->name('admin.catalogs.noPublished');
+        Route::put('/catalogs', 'update')->name('admin.catalogs.update');
+        Route::delete('/catalogs/{id}', 'destroy')->name('admin.catalogs.destroy');
+
+    });
+    Route::controller(AdminBrandController::class)->group(function () {
+        Route::get('/brands', 'index')->name('admin.brands');
+        Route::get('/brands-noPublished', 'noPublished')->name('admin.brands.noPublished');
     });
 
 });
