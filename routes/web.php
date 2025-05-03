@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminBrandController;
 use App\Http\Controllers\Admin\AdminCatalogController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ProfileController;
@@ -86,5 +87,9 @@ Route::middleware(['guest'])->prefix('admin')->group(function () {
         Route::get('/brands-noPublished', 'noPublished')->name('admin.brands.noPublished');
     });
 
+    Route::controller(AdminCategoryController::class)->group(function () {
+        Route::get('/categories', 'index')->name('admin.categories');
+        Route::get('/categories-noPublished', 'noPublished')->name('admin.categories.noPublished');
+    });
 });
 
