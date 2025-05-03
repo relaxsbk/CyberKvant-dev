@@ -20,7 +20,7 @@ class AdminBrandController extends Controller
     {
         $brands = Brand::query()->where('published', false)->paginate(6);
 
-        return view('', compact('brands'));
+        return view('admin.Brand.brandsNoPublished', compact('brands'));
     }
 
 

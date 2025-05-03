@@ -8,7 +8,7 @@
                 <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10" aria-hidden="true">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                 </svg>
-                <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Бренды</span>
+                <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Неопубликованные бренды</span>
             </div>
         </li>
     </x-breadcrumb>
@@ -16,7 +16,7 @@
     <h1 class="text-4xl mt-3 mb-6">Список всех каталогов</h1>
 
     @if($brands->isEmpty())
-        <h2 class="text-3xl mt-12 mb-6">К сожалению каталогов нет...</h2>
+        <h2 class="text-3xl mt-12 mb-6">К сожалению брендов нет...</h2>
     @else
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
