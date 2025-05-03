@@ -143,8 +143,8 @@
                 <h3 class="px-2 mb-2 text-xs font-semibold text-gray-400 uppercase tracking-wide dark:text-gray-500">Пользователи</h3>
                 <ul class="space-y-2 font-medium">
                     <li>
-                        <a href="#" class="flex items-center p-2 text-gray-900  dark:text-white hover:bg-gray-100 dark:hover:bg-[#2B2D2D] rounded-[10px] duration-300 group
-                        {{ request()->routeIs('') ? 'bg-gray-200 dark:bg-[#2B2D2D] text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-[#2B2D2D]' }}" >
+                        <a href="{{route('admin.users')}}" class="flex items-center p-2 text-gray-900  dark:text-white hover:bg-gray-100 dark:hover:bg-[#2B2D2D] rounded-[10px] duration-300 group
+                        {{ request()->routeIs('admin.users') ? 'bg-gray-200 dark:bg-[#2B2D2D] text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-[#2B2D2D]' }}" >
                             <i data-lucide="users"></i>
                             <span class="ms-3">Список пользователей</span>
                         </a>
