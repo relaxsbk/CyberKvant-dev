@@ -184,7 +184,7 @@ const submit = () => {
                             <FormButton :class="{'opacity-25': form.processing}" :disabled="form.processing" value="Зарегистрироваться" />
                         </form>
                         <p
-                            class="text-center text-sm"
+                            class="text-center"
                         >
                             Есть аккаунт?
                             <span

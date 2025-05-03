@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('model')->nullable();
             $table->text('description')->nullable();
-            $table->float('price')->nullable();
+            $table->integer('price')->nullable();
+            $table->integer('discount')->nullable();
             $table->float('rating')->nullable();
             $table->integer('quantity')->nullable();
             $table->boolean('published')->default(false);
