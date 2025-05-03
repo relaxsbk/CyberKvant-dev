@@ -15,66 +15,70 @@
 
     <h1 class="text-4xl mt-3 mb-6">Список всех каталогов</h1>
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#464646] dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">№</th>
-                <th scope="col" class="px-6 py-3">Картинка</th>
-                <th scope="col" class="px-6 py-3">Название</th>
-                <th scope="col" class="px-6 py-3">Описание</th>
-                <th scope="col" class="px-6 py-3">Статус</th>
-                <th scope="col" class="px-6 py-3">Дата создания</th>
-                <th scope="col" class="px-6 py-3">Действия</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($catalogs as $catalog)
-                <tr class="border-b border-gray-950 dark:bg-[#2B2D2D] hover:bg-gray-50 dark:hover:bg-[#2B2D2D]/50 duration-300">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $catalog->id }}
-                    </th>
-                    <td class="px-6 py-4">
-                        <img src="{{ asset($catalog->image) }}" alt="{{ $catalog->title }}" class="w-16 h-16 object-cover">
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $catalog->title }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $catalog->description }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $catalog->published }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $catalog->created_at }}
-                    </td>
-                    <td class="flex items-center px-6 py-4 gap-3">
-                        <!-- Кнопка открытия модального окна редактирования -->
-                        <button type="button"
-                                class="open-edit-modal duration-300 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-3 py-2.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-                                data-catalog-id="{{ $catalog->id }}"
-                                data-catalog-title="{{ $catalog->title }}"
-                                data-catalog-description="{{ $catalog->description }}"
-                                data-catalog-published="{{ $catalog->published }}">
-                            <i class="w-5 h-5" data-lucide="pencil"></i>
-                        </button>
-                        <!-- Кнопка открытия модального окна удаления -->
-                        <button type="button"
-                                class="open-delete-modal duration-300 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg px-3 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                                data-catalog-id="{{ $catalog->id }}">
-                            <i class="w-5 h-5" data-lucide="trash-2"></i>
-                        </button>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+   @if($catalogs->isEmpty())
+       <h2 class="text-3xl mt-12 mb-6">К сожалению каталогов нет...</h2>
+   @else
+       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+           <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#464646] dark:text-gray-400">
+               <tr>
+                   <th scope="col" class="px-6 py-3">№</th>
+                   <th scope="col" class="px-6 py-3">Картинка</th>
+                   <th scope="col" class="px-6 py-3">Название</th>
+                   <th scope="col" class="px-6 py-3">Описание</th>
+                   <th scope="col" class="px-6 py-3">Статус</th>
+                   <th scope="col" class="px-6 py-3">Дата создания</th>
+                   <th scope="col" class="px-6 py-3">Действия</th>
+               </tr>
+               </thead>
+               <tbody>
+               @foreach($catalogs as $catalog)
+                   <tr class="border-b border-gray-950 dark:bg-[#2B2D2D] hover:bg-gray-50 dark:hover:bg-[#2B2D2D]/50 duration-300">
+                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                           {{ $catalog->id }}
+                       </th>
+                       <td class="px-6 py-4">
+                           <img src="{{ asset($catalog->image) }}" alt="{{ $catalog->title }}" class="w-16 h-16 object-cover">
+                       </td>
+                       <td class="px-6 py-4">
+                           {{ $catalog->title }}
+                       </td>
+                       <td class="px-6 py-4">
+                           {{ $catalog->description }}
+                       </td>
+                       <td class="px-6 py-4">
+                           {{ $catalog->published }}
+                       </td>
+                       <td class="px-6 py-4">
+                           {{ $catalog->created_at->format('d.m.Y')}}
+                       </td>
+                       <td class="flex items-center px-6 py-4 gap-3">
+                           <!-- Кнопка открытия модального окна редактирования -->
+                           <button type="button"
+                                   class="open-edit-modal duration-300 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-3 py-2.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+                                   data-catalog-id="{{ $catalog->id }}"
+                                   data-catalog-title="{{ $catalog->title }}"
+                                   data-catalog-description="{{ $catalog->description }}"
+                                   data-catalog-published="{{ $catalog->published }}">
+                               <i class="w-5 h-5" data-lucide="pencil"></i>
+                           </button>
+                           <!-- Кнопка открытия модального окна удаления -->
+                           <button type="button"
+                                   class="open-delete-modal duration-300 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg px-3 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                   data-catalog-id="{{ $catalog->id }}">
+                               <i class="w-5 h-5" data-lucide="trash-2"></i>
+                           </button>
+                       </td>
+                   </tr>
+               @endforeach
+               </tbody>
+           </table>
 
-        <div class="mt-3">
-            {{ $catalogs->links() }}
-        </div>
-    </div>
+           <div class="mt-3">
+               {{ $catalogs->links() }}
+           </div>
+       </div>
+   @endif
 
     <!-- Модальное окно редактирования (одно для всей страницы) -->
     <div id="edit-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center">
@@ -114,7 +118,7 @@
 
     <!-- Модальное окно удаления (одно для всей страницы) -->
     <div id="delete-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center">
-        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-6 relative w-full max-w-md mx-4">
+        <div class="bg-white dark:bg-[#464646] rounded-lg shadow-lg p-6 relative w-full max-w-md mx-4">
             <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-2xl font-bold close-modal">&times;</button>
             <h3 class="text-xl font-semibold mb-4">Вы действительно хотите удалить каталог?</h3>
             <form id="delete-form" method="POST" action="">
@@ -122,7 +126,7 @@
                 @method('DELETE')
                 <div class="flex justify-end gap-2">
                     <button type="submit" class="px-4 py-2 bg-red-700 text-white rounded hover:bg-red-800 duration-300">Да, удалить</button>
-                    <button type="button" class="close-modal px-4 py-2 border rounded hover:bg-gray-600 duration-300">Отмена</button>
+                    <button type="button" class="close-modal px-4 py-2 bg-gray-600 rounded hover:bg-gray-700 duration-300">Отмена</button>
 
                 </div>
             </form>

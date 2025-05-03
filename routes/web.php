@@ -75,6 +75,7 @@ Route::middleware(['guest'])->prefix('admin')->group(function () {
 
     Route::controller(AdminCatalogController::class)->group(function () {
         Route::get('/catalogs', 'index')->name('admin.catalogs');
+        Route::get('/catalogs-noPublished', 'noPublished')->name('admin.catalogs.noPublished');
     });
 
 });

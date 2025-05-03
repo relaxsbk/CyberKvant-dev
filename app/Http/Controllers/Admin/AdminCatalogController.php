@@ -10,12 +10,14 @@ class AdminCatalogController extends Controller
 {
     public function index()
     {
-        $catalogs = Catalog::query()->paginate(5);
+        $catalogs = Catalog::query()->paginate(6);
 
-        return view('admin.catalogs', compact('catalogs'));
+        return view('admin.Catalog.catalogs', compact('catalogs'));
     }
     public function noPublished()
     {
+        $catalogs = Catalog::query()->where('published', false)->paginate(6);
 
+        return view('admin.Catalog.catalogsNoPublished', compact('catalogs'));
     }
 }
