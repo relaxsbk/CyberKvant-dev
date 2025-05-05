@@ -25,8 +25,8 @@
                     </li>
                     <li>
 
-                        <a href="" class="flex items-center p-2 text-gray-900 dark:text-white dark:hover:bg-[#2B2D2D] rounded-[10px] duration-300 group
-                        {{ request()->routeIs('') ? 'bg-gray-200 dark:bg-[#2B2D2D] text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-[#2B2D2D]' }}">
+                        <a href="{{route('admin.orders')}}" class="flex items-center p-2 text-gray-900 dark:text-white dark:hover:bg-[#2B2D2D] rounded-[10px] duration-300 group
+                        {{ request()->routeIs('admin.orders') ? 'bg-gray-200 dark:bg-[#2B2D2D] text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-[#2B2D2D]' }}">
                             <i data-lucide="notebook"></i>
                             <span class="ms-3">Список заказов</span>
                         </a>

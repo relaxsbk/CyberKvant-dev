@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminBrandController;
 use App\Http\Controllers\Admin\AdminCatalogController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\User\AuthController;
@@ -77,6 +78,12 @@ Route::controller(ProfileController::class)->middleware(['auth'])->group(functio
 Route::middleware(['guest'])->prefix('admin')->group(function () {
     Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
 
+    Route::controller(AdminOrderController::class)->group(function () {
+        Route::get('/orders', 'index')->name('admin.orders');
+        Route::put('/admin/orders/{order}/status', 'updateStatus')->name('admin.orders.updateStatus');
+
+    });
+
     Route::controller(AdminCatalogController::class)->group(function () {
         Route::get('/catalogs', 'index')->name('admin.catalogs');
         Route::get('/catalogs-noPublished', 'noPublished')->name('admin.catalogs.noPublished');
@@ -97,7 +104,7 @@ Route::middleware(['guest'])->prefix('admin')->group(function () {
     Route::controller(AdminProductController::class)->group(function () {
         Route::get('/products', 'index')->name('admin.products');
         Route::get('/products-noPublished', 'noPublished')->name('admin.products.noPublished');
-        Route::get('/products/{id}', 'show')->name('admin.products.show');
+        Route::get('/products/{product}', 'show')->name('admin.products.show');
     });
 
     Route::controller(AdminUserController::class)->group(function () {

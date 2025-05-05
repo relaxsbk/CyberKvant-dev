@@ -135,7 +135,7 @@
                 <tr>
                     <th class="px-6 py-3">№</th>
                     <th class="px-6 py-3">Картинка</th>
-                    <th class="px-6 py-3">Каталог</th>
+                    <th class="px-6 py-3">Категория</th>
                     <th class="px-6 py-3">Бренд</th>
                     <th class="px-6 py-3">Название</th>
                     <th class="px-6 py-3">Цена</th>
