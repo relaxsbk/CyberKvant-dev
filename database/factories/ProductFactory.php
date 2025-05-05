@@ -27,6 +27,7 @@ class ProductFactory extends Factory
             'model' => fake()->title(),
             'description' => fake()->realText(),
             'price' => fake()->numberBetween(100, 999_999),
+            'discount' => fake()->numberBetween(0, 100),
             'quantity' => fake()->numberBetween(1, 10),
             'rating' => fake()->numberBetween(1, 5),
             'published' => fake()->boolean(),
