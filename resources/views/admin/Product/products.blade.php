@@ -31,11 +31,11 @@
                  class="bg-white dark:bg-[#1e1e1e] p-6 rounded-lg shadow-xl w-full max-w-lg overflow-y-auto max-h-[90vh]">
                 <h2 class="text-xl mb-4">Создать новый товар</h2>
 
-                <form method="POST" action="" enctype="multipart/form-data" class="text-gray-400 text-sm">
+                <form method="POST" action="{{route('admin.products.store')}}" enctype="multipart/form-data" class="text-gray-400 text-sm">
                     @csrf
                     <div class="mb-4">
                         <label class="block mb-1 font-medium">Список категорий</label>
-                        <select name="catalog" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
+                        <select name="category_id" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
                              <option class="bg-[#464646]" value="">Выберите каталог</option>
                             @foreach($categories as $category)
                                 <option class="bg-[#464646]" value="{{$category->id}}">{{$category->title}}</option>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="block mb-1 font-medium">Список брендов</label>
-                        <select name="catalog" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
+                        <select name="brand_id" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
                             <option class="bg-[#464646]" value="">Выберите бренд</option>
                             @foreach($brands as $brand)
                                 <option class="bg-[#464646]" value="{{$brand->id}}">{{$brand->title}}</option>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="block mb-1 font-medium">Список поставщиков</label>
-                        <select name="catalog" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
+                        <select name="provider_id" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
                             <option class="bg-[#464646]" value="">Выберите поставщика</option>
                             @foreach($providers as $provider)
                                 <option class="bg-[#464646]" value="{{$provider->id}}">{{$provider->name}}</option>
@@ -68,13 +68,13 @@
                     </div>
                     <div class="mb-4">
                         <label class="block mb-1 font-medium">Цена</label>
-                        <input name="price" type="number" min="0" step="1" value="{{ old('price') }}"
+                        <input name="price" type="number"  step="1" value="{{ old('price') }}"
                                class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple"
                                required>
                     </div>
                     <div class="mb-4">
                         <label class="block mb-1 font-medium">Скидка</label>
-                        <input name="discount" type="number" min="0" step="5" value="{{ old('discount') }}"
+                        <input name="discount" type="number" step="5" value="{{ old('discount') }}"
                                class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple"
                                required>
                     </div>
@@ -93,22 +93,16 @@
                     </div>
 
                     {{-- Статус публикации --}}
-                    <div class="mb-4">
-                        <label class="block mb-1 font-medium">Статус</label>
-                        <select name="published"
-                                class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
-                            <option value="0" class="bg-[#464646]" >Черновик</option>
-                            <option value="1" class="bg-[#464646]" >Опубликован</option>
-                        </select>
+                    <div class="mb-4 flex gap-3 items-center">
+                       <input type="checkbox" name="published" class="focus:ring-primary-purple"> <label class="block font-medium">Опубликовать</label>
                     </div>
 
                     {{-- Загрузка изображения --}}
                     <div class="mb-6">
-                        <label class="block mb-1 font-medium">Изображение</label>
-                        <input type="file" name="image"
-                               required
+                        <label class="block mb-1 font-medium">Изображения (макс. 3)</label>
+                        <input type="file" name="images[]" multiple accept="image/*"
                                class="block w-full text-sm text-gray-900 border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Макс. размер: 2MB</p>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Макс. 3 изображения, каждое до 2MB</p>
                     </div>
 
                     {{-- Кнопки --}}
@@ -152,9 +146,15 @@
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $product->id }}
                         </td>
-                        <td class="px-6 py-4">
-                            <img src="{{ asset($product->image) }}" alt="{{ $product->title }}" class="w-16 h-16 object-cover">
-                        </td>
+                        @if($product->images->isEmpty())
+                            <td class="px-6 py-4">
+                                Пусто
+                            </td>
+                        @else
+                            <td class="px-6 py-4">
+                                <img src="{{ asset($product->mainImage()->url) }}" alt="{{ $product->title }}" class="w-16  object-cover">
+                            </td>
+                        @endif
                         <td class="px-6 py-4">{{ $product->category->title }}</td>
                         <td class="px-6 py-4">{{ $product->brand->title }}</td>
                         <td class="px-6 py-4">{{ $product->title }}</td>
@@ -252,9 +252,13 @@
 
                                             {{-- Текущее изображение --}}
                                             <div class="mb-4">
-                                                <label class="block mb-1 font-medium">Текущее изображение</label>
-                                                <img src="{{ asset($product->image) }}" alt="{{ $product->title }}"
-                                                     class="w-32 h-32 object-cover rounded ">
+                                             @if($product->images->isEmpty())
+                                                 Нет изображения
+                                             @else
+                                                    <label class="block mb-1 font-medium">Текущее изображение</label>
+                                                    <img src="{{ asset($product->mainImage()->url) }}" alt="{{ $product->title }}"
+                                                         class="w-32 object-cover rounded ">
+                                             @endif
                                             </div>
 
                                             {{-- Загрузка нового изображения --}}

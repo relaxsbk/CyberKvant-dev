@@ -130,13 +130,17 @@
             <div>
                 <label for="images" class="block font-medium">Изображения</label>
                 <input type="file" name="images[]" id="images" multiple
-                       class="w-full mt-1 p-2 border rounded dark:bg-[#464646]/50 dark:border-gray-600 dark:text-white">
+                       class="w-full mt-1 p-2 duration-300 ease-in-out focus:ring-primary-purple border border-none rounded dark:bg-[#464646]/50  dark:text-white">
                 <p class="text-sm mt-1">Текущие изображения:</p>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-2">
-                    @foreach ($product->images as $image)
-                        <img src="{{ asset($image->path) }}" alt="Фото товара" class="rounded border dark:border-gray-700">
-                    @endforeach
-                </div>
+                @if($product->images->isEmpty())
+
+                @else
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-2">
+                        @foreach ($product->images as $image)
+                            <img src="{{ asset($image->url) }}" alt="Фото товара" class="rounded ">
+                        @endforeach
+                    </div>
+                @endif
             </div>
 
             {{-- Кнопки --}}

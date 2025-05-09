@@ -105,6 +105,7 @@ Route::middleware(['guest'])->prefix('admin')->group(function () {
         Route::get('/products', 'index')->name('admin.products');
         Route::get('/products-noPublished', 'noPublished')->name('admin.products.noPublished');
         Route::get('/products/{product}', 'show')->name('admin.products.show');
+        Route::post('/products', 'store')->name('admin.products.store');
     });
 
     Route::controller(AdminUserController::class)->group(function () {

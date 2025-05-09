@@ -31,6 +31,10 @@ class Product extends Model
     {
         return number_format($this->price, 0, '', ' ');
     }
+    public function mainImage()
+    {
+        return $this->images()->first();
+    }
 
     public function category(): BelongsTo
     {
