@@ -15,10 +15,10 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $category = Category::query()
-            ->select('id', 'slug', 'title', 'description')
             ->where('id', $category->id)
             ->where('published', true)
             ->firstOrFail();
+
 
         $allBrands = $category->products()
             ->with('brand:id,title')
@@ -56,6 +56,7 @@ class CategoryController extends Controller
 
         return inertia('Category_Products', [
             'category' => $category,
+            'catalog' => $category->catalog,
             'products' => $products->through(function ($product) {
                 return [
                     'id' => $product->id,

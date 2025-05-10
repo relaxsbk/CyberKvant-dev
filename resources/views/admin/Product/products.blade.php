@@ -265,7 +265,7 @@
                                             <div class="mb-6">
                                                 <label class="block mb-1 font-medium">Новое изображение</label>
                                                 <input type="file" name="image"
-                                                       class="block w-full text-sm text-gray-900 bborder border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
+                                                       class="block w-full text-sm text-gray-900 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
                                                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Макс. размер: 2MB</p>
                                             </div>
 
