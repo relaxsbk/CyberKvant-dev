@@ -13,13 +13,14 @@ import {Link} from '@inertiajs/vue3'
         <div class="flex flex-col space-y-3 xs:w-screen xs:text-center lg:text-start lg:w-auto">
 <!--            Пример как делать активные ссылки по точному совпадению ЮРЛ-->
             <Link :href="$route('about')" class="hoverText" :class="{'text-secondary-purple': $page.url === '/about'}" >О нас</Link>
+            <Link :href="$route('brands')" class="hoverText" :class="{'text-secondary-purple': $page.url === '/brands'}">Бренды</Link>
             <Link :href="$route('catalog')" class="hoverText" :class="{'text-secondary-purple': $page.url === '/catalog'}">Каталог товаров</Link>
-            <Link class="hoverText">Гарантия и возврат</Link>
         </div>
         <div class="flex flex-col space-y-3 xs:w-screen xs:text-center lg:text-start lg:w-auto">
-            <Link class="hoverText">FAQ</Link>
-            <Link class="hoverText">Служба поддержки</Link>
-            <Link class="hoverText">Доставка и оплата</Link>
+            <Link :href="$route('basket')" class="hoverText" :class="{'text-secondary-purple': $page.url === '/basket'}">Корзина</Link>
+            <Link :href="$route('favorites')" class="hoverText" :class="{'text-secondary-purple': $page.url === '/favorites'}">Избранное</Link>
+            <Link :href="$route('profile')" class="hoverText" :class="{'text-secondary-purple': $page.url === '/profile'}">Мои заказы</Link>
+
         </div>
         <div class="flex flex-col justify-center items-center pt-4">
 

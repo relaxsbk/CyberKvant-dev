@@ -87,8 +87,9 @@ Route::middleware(['guest'])->prefix('admin')->group(function () {
     Route::controller(AdminCatalogController::class)->group(function () {
         Route::get('/catalogs', 'index')->name('admin.catalogs');
         Route::get('/catalogs-noPublished', 'noPublished')->name('admin.catalogs.noPublished');
-        Route::put('/catalogs', 'update')->name('admin.catalogs.update');
-        Route::delete('/catalogs/{id}', 'destroy')->name('admin.catalogs.destroy');
+        Route::post('/catalogs', 'store')->name('admin.catalogs.store');
+        Route::put('/catalogs/{catalog}', 'update')->name('admin.catalogs.update');
+        Route::delete('/catalogs/{catalog}', 'destroy')->name('admin.catalogs.destroy');
 
     });
     Route::controller(AdminBrandController::class)->group(function () {
@@ -99,6 +100,7 @@ Route::middleware(['guest'])->prefix('admin')->group(function () {
     Route::controller(AdminCategoryController::class)->group(function () {
         Route::get('/categories', 'index')->name('admin.categories');
         Route::get('/categories-noPublished', 'noPublished')->name('admin.categories.noPublished');
+        Route::get('/categories/{category}', 'show')->name('admin.categories.show');
     });
 
     Route::controller(AdminProductController::class)->group(function () {

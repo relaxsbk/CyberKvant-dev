@@ -24,4 +24,13 @@ class AdminCategoryController extends Controller
 
         return view('admin.Category.categoriesNoPublished', compact('categories', 'catalogs'));
     }
+
+    public function show(Category $category)
+    {
+        return view('admin.Category.attribute', compact('category'));
+    }
+    public function addAttribute(Category $category, Request $request)
+    {
+        //
+    }
 }

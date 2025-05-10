@@ -12,7 +12,6 @@
             </div>
         </li>
     </x-breadcrumb>
-
     <h1 class="text-4xl mt-3 ">Список всех категорий</h1>
     {{-- Modal create --}}
     <div x-data="{ showCreate: false }" class="mb-3">
@@ -31,7 +30,7 @@
                  class="bg-white dark:bg-[#1e1e1e] p-6 rounded-lg shadow-xl w-full max-w-lg overflow-y-auto max-h-[90vh]">
                 <h2 class="text-xl mb-4">Создать новую категорию</h2>
 
-                <form method="POST" action="" enctype="multipart/form-data" class="text-gray-400 text-sm">
+                <form method="POST" action="{{route('admin.catalogs.store')}}" enctype="multipart/form-data" class="text-gray-400 text-sm">
                     @csrf
                     <div class="mb-4">
                         <label class="block mb-1 font-medium">Список каталогов</label>
@@ -115,7 +114,7 @@
                             {{ $category->id }}
                         </td>
                         <td class="px-6 py-4">
-                            <img src="{{ asset($category->image) }}" alt="{{ $category->title }}" class="w-16 h-16 object-cover">
+                            <img src="{{ asset($category->image) }}" alt="{{ $category->title }}" class="w-32 object-cover">
                         </td>
                         <td class="px-6 py-4">{{ $category->catalog->title }}</td>
                         <td class="px-6 py-4">{{ $category->title }}</td>
@@ -124,6 +123,12 @@
                         <td class="px-6 py-4">{{ $category->created_at->format('d.m.Y') }}</td>
                         <td class="flex items-center px-6 py-4 gap-3">
                             {{-- Edit Modal --}}
+
+                            <a href="{{route('admin.categories.show', $category)}}"
+                                class="duration-300 focus:outline-none text-white bg-secondary-purple focus:ring-4 rounded-lg px-3 py-2.5  dark:hover:bg-primary-purple dark:focus:ring-primary-purple">
+                                <i class="w-5 h-5" data-lucide="chart-gantt"></i>
+                            </a>
+
                             <div x-data="{ showEdit{{ $category->id }}: false }">
                                 <button @click="showEdit{{ $category->id }} = true"
                                         class="duration-300 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-3 py-2.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
@@ -205,7 +210,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             {{-- Delete Modal --}}
                             <div x-data="{ showDelete{{ $catalog->id }}: false }">
                                 <button @click="showDelete{{ $catalog->id }} = true"

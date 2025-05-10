@@ -106,7 +106,7 @@
                             {{ $catalog->id }}
                         </td>
                         <td class="px-6 py-4">
-                            <img src="{{ asset($catalog->image) }}" alt="{{ $catalog->title }}" class="w-16 h-16 object-cover">
+                            <img src="{{ asset($catalog->image) }}" alt="{{ $catalog->title }}" class="w-32 object-cover">
                         </td>
                         <td class="px-6 py-4">{{ $catalog->title }}</td>
                         <td class="px-6 py-4">{{ $catalog->description }}</td>
@@ -160,7 +160,7 @@
                                             <div class="mb-4">
                                                 <label class="block mb-1 font-medium">Текущее изображение</label>
                                                 <img src="{{ asset($catalog->image) }}" alt="{{ $catalog->title }}"
-                                                     class="w-32 h-32 object-cover rounded ">
+                                                     class="w-32  object-cover rounded ">
                                             </div>
 
                                             {{-- Загрузка нового изображения --}}
