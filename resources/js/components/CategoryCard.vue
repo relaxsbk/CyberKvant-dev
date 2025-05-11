@@ -4,6 +4,7 @@ import { computed } from 'vue';
 
 const props = defineProps({
     id: Number,
+    slug: String,
     key: Number,
     title: String,
     image: String,
@@ -14,7 +15,7 @@ const props = defineProps({
 })
 
 const categoryLink = computed(() => {
-    let params = { category: props.id };
+    let params = { category: props.slug };
     if (props.brand) {
         params['brands[]'] = props.brand;
     }

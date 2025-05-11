@@ -40,6 +40,7 @@ defineProps({
                 v-for="category in categories"
                 :key="category.id"
                 :id="category.id"
+                :slug="category.slug"
                 :title="category.title"
                 :image=null
             />

@@ -1,15 +1,19 @@
 <script setup>
 import { ref } from 'vue';
 
+defineProps({
+    mainImage:String,
+    images: Array
+})
 // Создаём переменную для хранения текущего выбранного изображения
-const mainImage = ref('http://localhost:5173/resources/images/static/Category/1_758129.png');
-
-// Массив для хранения путей
-const images = [
-    'http://localhost:5173/resources/images/static/Category/1_758129.png',
-    'http://localhost:5173/resources/images/static/Category/1_758129.png',
-    'http://localhost:5173/resources/images/static/Category/1_758129.png'
-];
+// const mainImage = ref('http://localhost:5173/resources/images/static/Category/1_758129.png');
+//
+// // Массив для хранения путей
+// const images = [
+//     'http://localhost:5173/resources/images/static/Category/1_758129.png',
+//     'http://localhost:5173/resources/images/static/Category/1_758129.png',
+//     'http://localhost:5173/resources/images/static/Category/1_758129.png'
+// ];
 
 // Переменная для отслеживания выбранного индекса
 const activeIndex = ref(0);

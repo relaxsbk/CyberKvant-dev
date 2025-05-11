@@ -61,6 +61,7 @@ export default defineComponent({
                         v-for="category in categories"
                         :key="category.id"
                         :id="category.id"
+                        :slug="category.slug"
                         :title="category.title"
                         :image="category.image"
                     />
@@ -89,6 +90,7 @@ export default defineComponent({
                         v-for="brand in brands"
                         :key="brand.id"
                         :id="brand.id"
+                        :slug="brand.slug"
                         :title="brand.title"
                         :image="brand.image"
                     />

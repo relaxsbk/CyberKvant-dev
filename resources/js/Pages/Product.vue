@@ -53,7 +53,7 @@ defineProps({
     </section>
 
     <section class=" mt-10 mb-[60px] container mx-auto flex flex-col justify-between sm:items-center lg:items-stretch lg:flex-row gap-8">
-       <MainLeftBlockProduct />
+       <MainLeftBlockProduct :mainImage="product.mainImage" :images="product.images"/>
        <MainRightBlockProduct :title="product.title" :price="product.price" :rating="product.rating" :reviews_count="product.reviewsCount" />
     </section>
 

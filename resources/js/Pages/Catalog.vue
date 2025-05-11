@@ -31,6 +31,7 @@ defineProps({
                 v-for="catalog in catalogs"
                 :key="catalog.id"
                 :id="catalog.id"
+                :slug="catalog.slug"
                 :title="catalog.title"
 
             />

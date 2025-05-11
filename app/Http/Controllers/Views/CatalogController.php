@@ -22,7 +22,7 @@ class CatalogController extends Controller
     {
         $catalog = Catalog::query()
             ->select('id','slug', 'title', 'description', 'published')
-            ->where('id', $catalog)// TODO: вот тут скорее всего изменится на slug
+            ->where('slug', $catalog)// TODO: вот тут скорее всего изменится на slug
             ->where('published', true)
             ->firstOrFail();
 

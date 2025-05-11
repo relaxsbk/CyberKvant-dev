@@ -24,11 +24,11 @@ class ProductResource extends JsonResource
             'title' => $this->title,
             'rating' => $this->rating,
             'price' => $this->money(),
+            'mainImage' => asset($this->mainImage()->url),
+            'images' => $this->images->map(fn ($image) => asset($image->url)),
             'reviewsCount' => $this->reviews->count(),
             'reviews' => ReviewResource::collection($this->reviews),
-//            dd($this->characteristic)
             'characteristic' => $this->formatCharacteristics($this->characteristic),
-//            'characteristic' => $this->when($this->characteristicsIsNull, $this->formatCharacteristics($this->characteristic->characteristic)),
 
         ];
     }
@@ -42,12 +42,12 @@ class ProductResource extends JsonResource
             return null;
         }
 
-        foreach ($characteristics->characteristic as $group => $attributes) {
+        foreach (json_decode($characteristics->characteristic) as $group => $attributes) {
             $formatted[] = [
                 'group' => $group, // Например: "Дисплей", "Операционная система"
                 'attributes' => collect($attributes)->map(function ($value, $key) {
                     return [
-                        'name' => $key,    // Например: "Экран", "Разрешение экрана"
+//                        'name' => $key,    // Например: "Экран", "Разрешение экрана"
                         'value' => $value, // Например: "6.8"", "3120х1440"
                     ];
                 })->values()->all(),

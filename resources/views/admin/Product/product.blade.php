@@ -27,7 +27,7 @@
         <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">Просмотр товара: <span class="text-secondary-purple">{{ $product->title }}</span></h2>
 
         {{-- Информация о товаре --}}
-        <form action="" method="POST" enctype="multipart/form-data" class="bg-white dark:bg-[#1E1E1E] shadow rounded-lg p-6 text-gray-900 dark:text-gray-100 space-y-5 mb-3">
+        <form action="{{route('admin.products.update', $product)}}" method="POST" enctype="multipart/form-data" class="bg-white dark:bg-[#1E1E1E] shadow rounded-lg p-6 text-gray-900 dark:text-gray-100 space-y-5 mb-3">
             @csrf
             @method('PUT')
 
@@ -41,8 +41,8 @@
             {{-- Slug --}}
             <div>
                 <label for="slug" class="block font-medium">Slug</label>
-                <input type="text" id="slug" name="slug" value="{{ old('slug', $product->slug) }}"
-                       class="w-full mt-1 p-2 duration-300 ease-in-out focus:ring-primary-purple border border-none rounded dark:bg-[#464646]/50 dark:border-gray-600 dark:text-white">
+                <input type="text" disabled id="slug" name="slug" value="{{ old('slug', $product->slug) }}"
+                       class="w-full mt-1 p-2 duration-300 ease-in-out focus:ring-primary-purple border border-none rounded dark:bg-[#464646] dark:border-gray-600 dark:text-gray-400 cursor-not-allowed">
             </div>
 
             {{-- Модель --}}
@@ -153,37 +153,56 @@
         </form>
 
 
+        <h3 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100 mt-3">Характеристики товара</h3>
 
-        {{-- Кнопка удаления --}}
-        <div class="flex justify-end">
-            <div x-data="{ showDelete{{ $product->id }}: false }">
-                <button @click="showDelete{{ $product->id }} = true"
-                        class="duration-300 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg px-3 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                    Удалить
-                </button>
+        <form action="{{ route('admin.products.update-characteristics', $product->id) }}" method="POST" class="bg-white dark:bg-[#1E1E1E] shadow rounded-lg p-6 text-gray-900 dark:text-gray-100 space-y-5 mb-3">
+            @csrf
+            @method('PUT')
 
-                <div x-show="showDelete{{ $product->id }}"
-                     x-transition
-                     class="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm"
-                     style="display: none;">
-                    <div @click.away="showDelete{{ $product->id }} = false"
-                         class="bg-white dark:bg-[#1e1e1e] p-6 rounded-lg shadow-xl w-full max-w-md">
-                        <h2 class="text-lg mb-4">Удалить товар"{{ $product->title }}"?</h2>
-                        <p class="mb-6 text-sm text-gray-600 dark:text-gray-400">Это действие необратимо.</p>
-                        <form method="POST" action="">
-                            @csrf
-                            @method('DELETE')
-                            <div class="flex justify-end gap-2">
-                                <button type="submit" class="px-4 py-2 bg-red-700 hover:bg-red-900 duration-300 text-white rounded-md">
-                                    Удалить
-                                </button>
-                                <button type="button" @click="showDelete{{ $product->id }} = false"
-                                        class="px-4 py-2 rounded-md bg-gray-700 hover:bg-gray-500 duration-300 dark:text-white">
-                                    Отмена
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+            @foreach ($categoryCharacteristics as $characteristic)
+                <div class="mb-3">
+                    <label class="form-label">{{ $characteristic->attribute_characteristic }}</label>
+                    <input type="text" name="characteristics[{{ $characteristic->attribute_characteristic }}]"
+                           value="{{ $productCharacteristics[$characteristic->attribute_characteristic] ?? '' }}"
+                           class="w-full mt-1 p-2 duration-300 ease-in-out focus:ring-primary-purple border border-none rounded dark:bg-[#464646]/50 dark:border-gray-600 dark:text-white">
+                </div>
+            @endforeach
+
+            <div class="flex justify-end">
+                <button type="submit" class="px-4 py-2 rounded-md bg-primary-purple hover:bg-dark-purple duration-300 dark:text-white">Сохранить характеристики</button>
+            </div>
+        </form>
+    </div>
+
+    {{-- Кнопка удаления --}}
+    <div class="flex justify-end">
+        <div x-data="{ showDelete{{ $product->id }}: false }">
+            <button @click="showDelete{{ $product->id }} = true"
+                    class="duration-300 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg px-3 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                Удалить
+            </button>
+
+            <div x-show="showDelete{{ $product->id }}"
+                 x-transition
+                 class="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm"
+                 style="display: none;">
+                <div @click.away="showDelete{{ $product->id }} = false"
+                     class="bg-white dark:bg-[#1e1e1e] p-6 rounded-lg shadow-xl w-full max-w-md">
+                    <h2 class="text-lg mb-4">Удалить товар"{{ $product->title }}"?</h2>
+                    <p class="mb-6 text-sm text-gray-600 dark:text-gray-400">Это действие необратимо.</p>
+                    <form method="POST" action="">
+                        @csrf
+                        @method('DELETE')
+                        <div class="flex justify-end gap-2">
+                            <button type="submit" class="px-4 py-2 bg-red-700 hover:bg-red-900 duration-300 text-white rounded-md">
+                                Удалить
+                            </button>
+                            <button type="button" @click="showDelete{{ $product->id }} = false"
+                                    class="px-4 py-2 rounded-md bg-gray-700 hover:bg-gray-500 duration-300 dark:text-white">
+                                Отмена
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

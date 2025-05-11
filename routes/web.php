@@ -27,20 +27,20 @@ Route::inertia('/about', 'About')->name('about');
 
 Route::controller(CatalogController::class)->group(function () {
     Route::get('/catalog', 'index')->name('catalog');
-    Route::get('/catalog/{catalog}', 'show')->name('catalog.show');
+    Route::get('/catalog/{catalog:slug}', 'show')->name('catalog.show');
 });
 
 Route::controller(CategoryController::class)->group(function () {
-    Route::get('/category/{category}', 'show')->name('category.show');
+    Route::get('/category/{category:slug}', 'show')->name('category.show');
 });
 
 Route::controller(BrandController::class)->group(function () {
     Route::get('/brands', 'index')->name('brands');
-    Route::get('/brands/{brand}', 'show')->name('brand.show');
+    Route::get('/brands/{brand:slug}', 'show')->name('brand.show');
 });
 
 Route::controller(ProductController::class)->group(function () {
-    Route::get('/product/{product}', 'show')->name('product');
+    Route::get('/product/{product:slug}', 'show')->name('product');
 });
 
 Route::controller(BasketController::class)->group(function () {
@@ -117,6 +117,9 @@ Route::middleware(['guest'])->prefix('admin')->group(function () {
         Route::get('/products-noPublished', 'noPublished')->name('admin.products.noPublished');
         Route::get('/products/{product}', 'show')->name('admin.products.show');
         Route::post('/products', 'store')->name('admin.products.store');
+        Route::put('/products/{product}', 'update')->name('admin.products.update');
+        Route::delete('/products/{product}', 'destroy')->name('admin.products.destroy');
+        Route::put('/admin/products/{product}/characteristics', 'updateCharacteristics')->name('admin.products.update-characteristics');
     });
 
     Route::controller(\App\Http\Controllers\Admin\CharacteristicController::class)->group(function () {

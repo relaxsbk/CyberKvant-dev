@@ -13,6 +13,14 @@
         </li>
     </x-breadcrumb>
 
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
     <h1 class="text-4xl mt-3 ">Список всех товаров</h1>
     {{-- Modal create --}}
     <div x-data="{ showCreate: false }" class="mb-3">
@@ -79,7 +87,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="block mb-1 font-medium">Скидка</label>
-                        <input name="discount" type="number" step="5" value="{{ old('discount') }}"
+                        <input name="discount" type="number" value="{{ old('discount') }}"
                                class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple"
                                required>
                     </div>
@@ -188,38 +196,43 @@
                                          class="bg-white dark:bg-[#1e1e1e] p-6 rounded-lg shadow-xl w-full max-w-lg overflow-y-auto max-h-[90vh]">
                                         <h2 class="text-xl mb-4">Редактировать #{{ $product->id }}</h2>
 
-                                        <form method="POST" action="{{ route('admin.catalogs.update', $product) }}" enctype="multipart/form-data">
+                                        <form method="POST" action="{{ route('admin.products.update', $product) }}" enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
 
                                             {{-- Название --}}
                                             <div class="mb-4">
                                                 <label class="block mb-1 font-medium">Список категорий</label>
-                                                <select name="catalog" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
+                                                <select name="category_id" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
                                                     @foreach($categories as $category)
-                                                        <option class="bg-[#464646]" value="{{$category->id}}" {{ $category->id == $category->catalog_id ? 'selected' : '' }}>{{$category->title}}</option>
+                                                        <option class="bg-[#464646]" value="{{$category->id}}" {{ $category->id == $product->category_id ? 'selected' : '' }}>{{$category->title}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="mb-4">
                                                 <label class="block mb-1 font-medium">Список брендов</label>
-                                                <select name="catalog" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
+                                                <select name="brand_id" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
                                                     @foreach($brands as $brand)
-                                                        <option class="bg-[#464646]" value="{{$brand->id}}" {{ $brand->id == $brand->brand_id ? 'selected' : '' }}>{{$brand->title}}</option>
+                                                        <option class="bg-[#464646]" value="{{$brand->id}}" {{ $brand->id == $product->brand_id ? 'selected' : '' }}>{{$brand->title}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="mb-4">
                                                 <label class="block mb-1 font-medium">Список брендов</label>
-                                                <select name="catalog" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
+                                                <select name="provider_id" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
                                                     @foreach($providers as $provider)
-                                                        <option class="bg-[#464646]" value="{{$provider->id}}" {{ $provider->id == $provider->provider_id ? 'selected' : '' }}>{{$provider->name}}</option>
+                                                        <option class="bg-[#464646]" value="{{$provider->id}}" {{ $provider->id == $product->provider_id ? 'selected' : '' }}>{{$provider->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="mb-4">
                                                 <label class="block mb-1 font-medium">Название</label>
                                                 <input name="title" type="text" value="{{ old('title', $product->title) }}"
+                                                       class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
+                                            </div>
+                                            <div class="mb-4">
+                                                <label class="block mb-1 font-medium">Модель</label>
+                                                <input name="model" type="text" value="{{ old('model', $product->model) }}"
                                                        class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
                                             </div>
                                             <div class="mb-4">
@@ -269,7 +282,7 @@
                                             {{-- Загрузка нового изображения --}}
                                             <div class="mb-6">
                                                 <label class="block mb-1 font-medium">Новое изображение</label>
-                                                <input type="file" name="image"
+                                                <input type="file" name="images[]"
                                                        class="block w-full text-sm text-gray-900 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
                                                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Макс. размер: 2MB</p>
                                             </div>
@@ -305,7 +318,7 @@
                                          class="bg-white dark:bg-[#1e1e1e] p-6 rounded-lg shadow-xl w-full max-w-md">
                                         <h2 class="text-lg mb-4">Удалить товар"{{ $product->title }}"?</h2>
                                         <p class="mb-6 text-sm text-gray-600 dark:text-gray-400">Это действие необратимо.</p>
-                                        <form method="POST" action="{{ route('admin.catalogs.destroy', $product) }}">
+                                        <form method="POST" action="{{ route('admin.products.destroy', $product) }}">
                                             @csrf
                                             @method('DELETE')
                                             <div class="flex justify-end gap-2">

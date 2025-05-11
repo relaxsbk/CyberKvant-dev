@@ -39,6 +39,7 @@ const props = defineProps({
                     v-for="category in props.categories"
                     :key="category.id"
                     :id="category.id"
+                    :slug="category.slug"
                     :title="category.title"
                     :image="category.image"
                     :brand="props.brand.title"

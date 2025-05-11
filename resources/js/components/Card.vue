@@ -9,17 +9,17 @@ import {Link} from "@inertiajs/vue3";
 </script>
 
 <template>
-    <Link :href="$route('product', product.id)" class="product-card-clean grid items-center bg-white rounded-lg text-[#13181e] grid-areas-template w-full h-[400px] p-4 relative text-center overflow-hidden hoverText">
+    <Link :href="$route('product', product.slug)" class="product-card-clean grid items-center bg-white rounded-lg text-[#13181e] grid-areas-template w-full h-[400px] p-4 relative text-center overflow-hidden hoverText">
         <div class="labels mb-3 flex justify-start gap-1">
         </div>
         <div class=" image w-[180px] h-[180px] justify-self-center ">
-            <a href="/product/productName" class="image w-[180px] h-full">
+            <Link :href="$route('product', product.slug)" class="image w-[180px] h-full">
 <!--                <img :src="product.imageUrl || 'https://via.placeholder.com/180'" alt="image">-->
                 <img src="/resources/images/static/Category/1_758129.png" :alt="product.title">
-            </a>
+            </Link>
         </div>
         <div class="category text-gray-400">{{product.category}}</div>
-        <a href="/product/productName" class="name ">{{product.title}}</a>
+        <Link :href="$route('product', product.slug)" class="name ">{{product.title}}</Link>
         <div class="status flex justify-center gap-4 text-black">
             <div class="flex justify-center items-center ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="orange" class="bi bi-star-fill me-1" viewBox="0 0 16 16">

@@ -22,6 +22,7 @@ class Product extends Model
         'model',
         'description',
         'price',
+        'discount',
         'rating',
         'quantity',
         'published'

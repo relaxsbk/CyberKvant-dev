@@ -10,12 +10,8 @@ class ProductController extends Controller
 {
     public function show(Product $product)
     {
-//        $c = $product->characteristic->characteristic;
-//        dd($c);
 
         $product = new ProductResource($product);
-
-
 
         return inertia("Product", ['product' => $product]);
     }

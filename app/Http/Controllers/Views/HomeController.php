@@ -17,14 +17,14 @@ class HomeController extends Controller
 
 //        dd(request()->user());
         $categories = Category::query()
-            ->select('id', 'title', 'published')
+            ->select('id', 'title','slug', 'published')
             ->where('published', true)
             ->inRandomOrder()
             ->take(12)
             ->get();
 
         $brands = Brand::query()
-            ->select('id', 'title', 'image', 'published')
+            ->select('id', 'title','slug', 'image', 'published')
             ->where('published', true)
             ->take(6)
             ->get();

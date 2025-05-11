@@ -31,6 +31,7 @@ defineProps({
                 v-for="brand in brands"
                 :key="brand.id"
                 :id="brand.id"
+                :slug="brand.slug"
                 :title="brand.title"
                 :image="brand.image"
             />
