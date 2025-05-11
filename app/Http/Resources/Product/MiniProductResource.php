@@ -17,7 +17,7 @@ class MiniProductResource extends JsonResource
         return [
             'id' => $this->id,
             'slug' => $this->slug,
-            'category' => $this->category->title,
+            'category' => $this->category,
             'title' => $this->title,
             'rating' => $this->rating,
             'price' => $this->money(),

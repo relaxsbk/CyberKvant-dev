@@ -60,7 +60,7 @@ class CategoryController extends Controller
             'products' => $products->through(function ($product) {
                 return [
                     'id' => $product->id,
-                    'category' => $product->category->title,
+                    'category' => $product->category,
                     'slug' => $product->slug,
                     'title' => $product->title,
                     'description' => $product->description,

@@ -18,7 +18,7 @@ import {Link} from "@inertiajs/vue3";
                 <img src="/resources/images/static/Category/1_758129.png" :alt="product.title">
             </Link>
         </div>
-        <div class="category text-gray-400">{{product.category}}</div>
+        <div class="category text-gray-400">{{product.category.title}}</div>
         <Link :href="$route('product', product.slug)" class="name ">{{product.title}}</Link>
         <div class="status flex justify-center gap-4 text-black">
             <div class="flex justify-center items-center ">

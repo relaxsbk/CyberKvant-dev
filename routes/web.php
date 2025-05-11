@@ -41,6 +41,8 @@ Route::controller(BrandController::class)->group(function () {
 
 Route::controller(ProductController::class)->group(function () {
     Route::get('/product/{product:slug}', 'show')->name('product');
+    Route::get('/search', 'search')->name('products.search');
+
 });
 
 Route::controller(BasketController::class)->group(function () {
