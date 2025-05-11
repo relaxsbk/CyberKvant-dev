@@ -19,6 +19,7 @@ class Category extends Model
         'description',
         'image',
         'published',
+        'catalog_id'
     ];
 
     public function catalog(): BelongsTo

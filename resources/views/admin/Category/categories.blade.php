@@ -30,11 +30,11 @@
                  class="bg-white dark:bg-[#1e1e1e] p-6 rounded-lg shadow-xl w-full max-w-lg overflow-y-auto max-h-[90vh]">
                 <h2 class="text-xl mb-4">Создать новую категорию</h2>
 
-                <form method="POST" action="{{route('admin.catalogs.store')}}" enctype="multipart/form-data" class="text-gray-400 text-sm">
+                <form method="POST" action="{{route('admin.categories.store')}}" enctype="multipart/form-data" class="text-gray-400 text-sm">
                     @csrf
                     <div class="mb-4">
                         <label class="block mb-1 font-medium">Список каталогов</label>
-                        <select name="catalog" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
+                        <select name="catalog_id" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
                              <option class="bg-[#464646]" value="">Выберите каталог</option>
                             @foreach($catalogs as $catalog)
                                 <option class="bg-[#464646]" value="{{$catalog->id}}">{{$catalog->title}}</option>
@@ -114,7 +114,7 @@
                             {{ $category->id }}
                         </td>
                         <td class="px-6 py-4">
-                            <img src="{{ asset($category->image) }}" alt="{{ $category->title }}" class="w-32 object-cover">
+                            <img src="{{ asset($category->image) }}" alt="{{ $category->title }}" class="w-16 object-cover">
                         </td>
                         <td class="px-6 py-4">{{ $category->catalog->title }}</td>
                         <td class="px-6 py-4">{{ $category->title }}</td>
@@ -143,14 +143,14 @@
                                          class="bg-white dark:bg-[#1e1e1e] p-6 rounded-lg shadow-xl w-full max-w-lg overflow-y-auto max-h-[90vh]">
                                         <h2 class="text-xl mb-4">Редактировать #{{ $category->id }}</h2>
 
-                                        <form method="POST" action="{{ route('admin.catalogs.update', $category) }}" enctype="multipart/form-data">
+                                        <form method="POST" action="{{ route('admin.categories.update', $category) }}" enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
 
                                             {{-- Название --}}
                                             <div class="mb-4">
                                                 <label class="block mb-1 font-medium">Список каталогов</label>
-                                                <select name="catalog" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
+                                                <select name="catalog_id" id="" class="w-full px-4 py-2 border border-none rounded-md dark:bg-[#464646]/50 dark:text-white duration-300 ease-in-out focus:ring-primary-purple">
 {{--                                                    <option class="bg-[#464646]" value="">Выберите каталог</option>--}}
                                                     @foreach($catalogs as $catalog)
                                                         <option class="bg-[#464646]" value="{{$catalog->id}}" {{ $catalog->id == $category->catalog_id ? 'selected' : '' }}>{{$catalog->title}}</option>
@@ -211,28 +211,28 @@
                                 </div>
                             </div>
                             {{-- Delete Modal --}}
-                            <div x-data="{ showDelete{{ $catalog->id }}: false }">
-                                <button @click="showDelete{{ $catalog->id }} = true"
+                            <div x-data="{ showDelete{{ $category->id }}: false }">
+                                <button @click="showDelete{{ $category->id }} = true"
                                         class="duration-300 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg px-3 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                     <i class="w-5 h-5" data-lucide="trash-2"></i>
                                 </button>
 
-                                <div x-show="showDelete{{ $catalog->id }}"
+                                <div x-show="showDelete{{ $category->id }}"
                                      x-transition
                                      class="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm"
                                      style="display: none;">
-                                    <div @click.away="showDelete{{ $catalog->id }} = false"
+                                    <div @click.away="showDelete{{ $category->id }} = false"
                                          class="bg-white dark:bg-[#1e1e1e] p-6 rounded-lg shadow-xl w-full max-w-md">
-                                        <h2 class="text-lg mb-4">Удалить каталог "{{ $catalog->title }}"?</h2>
+                                        <h2 class="text-lg mb-4">Удалить каталог "{{ $category->title }}"?</h2>
                                         <p class="mb-6 text-sm text-gray-600 dark:text-gray-400">Это действие необратимо.</p>
-                                        <form method="POST" action="{{ route('admin.catalogs.destroy', $catalog) }}">
+                                        <form method="POST" action="{{ route('admin.categories.destroy', $category) }}">
                                             @csrf
                                             @method('DELETE')
                                             <div class="flex justify-end gap-2">
                                                 <button type="submit" class="px-4 py-2 bg-red-700 hover:bg-red-900 duration-300 text-white rounded-md">
                                                     Удалить
                                                 </button>
-                                                <button type="button" @click="showDelete{{ $catalog->id }} = false"
+                                                <button type="button" @click="showDelete{{ $category->id }} = false"
                                                         class="px-4 py-2 rounded-md bg-gray-700 hover:bg-gray-500 duration-300 dark:text-white">
                                                     Отмена
                                                 </button>

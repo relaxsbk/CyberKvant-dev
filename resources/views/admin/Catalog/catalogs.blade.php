@@ -106,7 +106,7 @@
                             {{ $catalog->id }}
                         </td>
                         <td class="px-6 py-4">
-                            <img src="{{ asset($catalog->image) }}" alt="{{ $catalog->title }}" class="w-32 object-cover">
+                            <img src="{{ asset($catalog->image) }}" alt="{{ $catalog->title }}" class="w-16 object-cover">
                         </td>
                         <td class="px-6 py-4">{{ $catalog->title }}</td>
                         <td class="px-6 py-4">{{ $catalog->description }}</td>

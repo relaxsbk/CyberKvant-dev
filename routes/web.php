@@ -101,6 +101,9 @@ Route::middleware(['guest'])->prefix('admin')->group(function () {
         Route::get('/categories', 'index')->name('admin.categories');
         Route::get('/categories-noPublished', 'noPublished')->name('admin.categories.noPublished');
         Route::get('/categories/{category}', 'show')->name('admin.categories.show');
+        Route::post('/categories', 'store')->name('admin.categories.store');
+        Route::put('/categories/{category}', 'update')->name('admin.categories.update');
+        Route::delete('/categories/{category}', 'destroy')->name('admin.categories.destroy');
     });
 
     Route::controller(AdminProductController::class)->group(function () {
@@ -108,6 +111,11 @@ Route::middleware(['guest'])->prefix('admin')->group(function () {
         Route::get('/products-noPublished', 'noPublished')->name('admin.products.noPublished');
         Route::get('/products/{product}', 'show')->name('admin.products.show');
         Route::post('/products', 'store')->name('admin.products.store');
+    });
+
+    Route::controller(\App\Http\Controllers\Admin\CharacteristicController::class)->group(function () {
+        Route::post('/products/{product}/characteristics', 'store')->name('admin.characteristics.store');
+
     });
 
     Route::controller(AdminUserController::class)->group(function () {
