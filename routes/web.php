@@ -19,6 +19,7 @@ use App\Http\Controllers\Views\CompareController;
 use App\Http\Controllers\Views\FavoriteController;
 use App\Http\Controllers\Views\HomeController;
 use App\Http\Controllers\Views\ProductController;
+use App\Http\Controllers\Views\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -55,6 +56,10 @@ Route::controller(FavoriteController::class)->group(function () {
 
 Route::controller(CompareController::class)->group(function () {
     Route::get('/compare', 'index')->name('compare');
+});
+
+Route::controller(ReviewController::class)->group(function () {
+    Route::post('/products/{product}/reviews', 'store')->name('products.reviews.store');
 });
 
 //user

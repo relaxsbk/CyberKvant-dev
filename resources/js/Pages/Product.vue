@@ -57,7 +57,7 @@ defineProps({
        <MainRightBlockProduct :title="product.title" :price="product.price" :rating="product.rating" :reviews_count="product.reviewsCount" />
     </section>
 
-    <MainBottomBlockProduct :description="product.description" :characteristic="product.characteristic" :reviews="product.reviews" />
+    <MainBottomBlockProduct :product="product" :description="product.description" :characteristic="product.characteristic" :reviews="product.reviews" />
 </template>
 
 <style scoped>

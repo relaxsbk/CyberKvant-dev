@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,7 @@ class ProductController extends Controller
 
         $product = new ProductResource($product);
 
-        return inertia("Product", ['product' => $product]);
+        return inertia("Product", ['product' => $product, 'authUser' => Auth::user()]);
     }
     public function search(Request $request)
     {
