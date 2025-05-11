@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             ProviderSeeder::class,
             CatalogWithCategoriesSeeder::class,
-            CategoriesWithProductsSeeder::class
+//            CategoriesWithProductsSeeder::class
         ]);
         // User::factory(10)->create();
 

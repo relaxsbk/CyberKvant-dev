@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('model')->nullable();
             $table->text('description')->nullable();
-            $table->integer('price')->nullable();
-            $table->integer('discount')->nullable();
-            $table->float('rating')->nullable();
-            $table->integer('quantity')->nullable();
+            $table->integer('price')->default(0);
+            $table->integer('discount')->default(0);
+            $table->float('rating')->default(0);
+            $table->integer('quantity')->default(0);
             $table->boolean('published')->default(false);
 
             $table->timestamps();

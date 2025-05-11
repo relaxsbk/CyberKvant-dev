@@ -11,14 +11,16 @@ class Category_characteristic extends Model
     /** @use HasFactory<\Database\Factories\CategoryCharacteristicFactory> */
     use HasFactory;
 
+    protected $table = 'category_characteristics';
+
     protected $fillable = [
         'category_id',
         'attribute_characteristic',
     ];
 
-    protected $casts = [
-        'attribute_characteristic' => 'string'
-    ];
+//    protected $casts = [
+//        'attribute_characteristic' => 'string'
+//    ];
 
     public function category(): BelongsTo
     {

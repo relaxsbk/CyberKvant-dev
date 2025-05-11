@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AttributeCharacteristicController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RegisterController;
@@ -104,6 +105,11 @@ Route::middleware(['guest'])->prefix('admin')->group(function () {
         Route::post('/categories', 'store')->name('admin.categories.store');
         Route::put('/categories/{category}', 'update')->name('admin.categories.update');
         Route::delete('/categories/{category}', 'destroy')->name('admin.categories.destroy');
+    });
+
+    Route::controller(AttributeCharacteristicController::class)->group(function () {
+        Route::post('/admin/category-characteristics', 'store')->name('admin.category-characteristics.store');
+
     });
 
     Route::controller(AdminProductController::class)->group(function () {

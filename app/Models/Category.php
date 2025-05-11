@@ -32,8 +32,8 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function category_characteristic(): HasOne
+    public function category_characteristic(): HasMany
     {
-        return $this->hasOne(Category_characteristic::class);
+        return $this->hasMany(Category_characteristic::class);
     }
 }

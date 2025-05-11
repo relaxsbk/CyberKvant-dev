@@ -17,7 +17,7 @@
                 <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10" aria-hidden="true">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                 </svg>
-                <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-500">Товары</span>
+                <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-500">{{$product->title}}</span>
             </div>
         </li>
     </x-breadcrumb>
@@ -130,14 +130,14 @@
             <div>
                 <label for="images" class="block font-medium">Изображения</label>
                 <input type="file" name="images[]" id="images" multiple
-                       class="w-full mt-1 p-2 duration-300 ease-in-out focus:ring-primary-purple border border-none rounded dark:bg-[#464646]/50  dark:text-white">
+                       class="w-full mt-1 mb-3 p-2 duration-300 ease-in-out focus:ring-primary-purple border border-none rounded dark:bg-[#464646]/50  dark:text-white">
                 <p class="text-sm mt-1">Текущие изображения:</p>
                 @if($product->images->isEmpty())
 
                 @else
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-2">
+                    <div class="flex items-center justify-start gap-3 mt-2">
                         @foreach ($product->images as $image)
-                            <img src="{{ asset($image->url) }}" alt="Фото товара" class="rounded ">
+                            <img src="{{ asset($image->url) }}" alt="Фото товара" class="rounded w-32 h-auto">
                         @endforeach
                     </div>
                 @endif
