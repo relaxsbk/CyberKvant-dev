@@ -22,7 +22,7 @@ class MiniProductResource extends JsonResource
             'rating' => $this->rating,
             'price' => $this->money(),
             'reviewsCount' => $this->reviews->count(),
-            'mainImage' => $this->images()->where('position', 0)->value('url'),
+            'mainImage' => $this->mainImage()->url,
         ];
     }
 }

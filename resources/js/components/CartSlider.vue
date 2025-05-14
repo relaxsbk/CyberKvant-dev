@@ -15,7 +15,11 @@ defineProps({
     products: {
         type: Array,
         required: true
+    },
+    cartProductIds: {
+        type: Array,
     }
+
 });
 
 // Функция обновления состояния кнопок
@@ -83,7 +87,7 @@ const onSwiperInit = (swiper) => {
             @swiper="onSwiperInit"
         >
             <swiper-slide v-for="(product, index) in products" :key="index">
-                <Card :product="product" />
+                <Card :product="product" :cart-product-ids="cartProductIds" />
             </swiper-slide>
         </swiper>
     </div>

@@ -20,6 +20,7 @@ export default defineComponent({
         'categories': Array,
         'products': Array,
         'brands': Array,
+        'cartProductIds': Array
     }
 
 })
@@ -40,6 +41,7 @@ export default defineComponent({
 
                 <CartSlider
                     :products="products"
+                    :cart-product-ids="cartProductIds"
                 />
             </div>
 

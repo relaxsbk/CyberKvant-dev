@@ -45,6 +45,13 @@ class HandleInertiaRequests extends Middleware
                     'error' => $request->session()->get('error') ?? '',
                 ];
             },
+            'box' => function () use ($request) {
+                return [
+                    'cart' => $request->session()->get('cart') ?? '',
+                    'favorite' => $request->session()->get('favorite') ?? '',
+                    'compare' => $request->session()->get('compare') ?? '',
+                ];
+            },
         ]);
     }
 

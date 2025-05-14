@@ -3,6 +3,8 @@
 const props = defineProps(["item"]);
 const emit = defineEmits(["updateQuantity", "removeItem"]);
 
+
+
 // Функция для изменения количества
 const changeQuantity = (amount) => {
     const newQuantity = props.item.quantity + amount;
@@ -16,14 +18,14 @@ const changeQuantity = (amount) => {
     <div class="flex items-center justify-between p-4 bg-white rounded-lg">
         <!-- Изображение товара -->
         <img
-            src="/resources/images/static/Category/1_758129.png"
-            :alt="item.name"
+            :src="item.image"
+            :alt="item.title"
             class="w-32 h-32 object-cover rounded-lg"
         />
 
         <!-- Название и управление количеством -->
         <div class="flex-1 flex justify-between items-center px-4">
-            <h3 class="text-black text-lg">{{ item.name }}</h3>
+            <h3 class="text-black text-lg">{{ item.title }}</h3>
             <div class="flex items-center mt-2">
                 <button
                     @click="changeQuantity(-1)"
