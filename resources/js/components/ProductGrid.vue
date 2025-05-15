@@ -1,7 +1,6 @@
 <script setup>
 
 import Card from "@/components/Card.vue";
-import Pagination from "@/components/Pagination.vue";
 
 const props = defineProps({
     products: Object,
