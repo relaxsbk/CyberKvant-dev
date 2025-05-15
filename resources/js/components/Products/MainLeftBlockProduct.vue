@@ -30,7 +30,7 @@ const changeMainImage = (image, index) => {
     <div class="border border-gray-800 rounded-[10px] p-3 flex flex-col items-center w-full sm:w-10/12  md:w-8/12  lg:w-8/12">
         <!-- Основная фотография -->
         <div class="w-full aspect-square mb-4 flex lg:w-10/12">
-            <img :src="mainImage" alt="Main product image" class="object-cover w-full h-full">
+            <img :src="'/' + mainImage" alt="Main product image" class="object-cover w-full h-full">
         </div>
 
         <!-- Превью фотографий -->

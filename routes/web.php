@@ -51,7 +51,7 @@ Route::controller(BasketController::class)->group(function () {
     Route::get('/basket', 'index')->name('basket');
     Route::post('/cart/add', 'add')->name('cart.add');
     Route::delete('/cart/{product}', 'remove')->name('cart.remove');
-//    Route::delete('/cart/clear', 'removeAll')->name('cart.removeAll');
+    Route::post('/cart/clear', 'removeAll')->name('cart.removeAll');
 });
 
 
@@ -90,7 +90,7 @@ Route::controller(ProfileController::class)->middleware(['auth'])->group(functio
 
 
 //admin
-Route::middleware(['guest'])->prefix('admin')->group(function () {
+Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
 
     Route::controller(AdminOrderController::class)->group(function () {

@@ -11,7 +11,8 @@ const props = defineProps({
     catalog: Object,
     products: Object,
     appliedFilters: Object,
-    filters: Object
+    filters: Object,
+    cartProductIds: Array
 })
 
 
@@ -49,7 +50,7 @@ const props = defineProps({
         </Breadcrumb>
 
         <h1 class="text-3xl text-center ">Название категории: <span class="text-secondary-purple">{{props.category.title}}</span></h1>
-        <section class=" w-full h-auto flex gap-4 py-3">
+        <section v-if="props.products.data?.length > 0" class=" w-full h-auto flex gap-4 py-3">
 
             <div class="w-1/5 py-4">
                 <div class="sticky top-28">
@@ -65,12 +66,16 @@ const props = defineProps({
             <div class=" flex-1 flex-grow py-4">
 <!--                <pagination class="mb-[15px]" :links="props.products.links"/>-->
 
-                <ProductGrid :products=props.products />
+                <ProductGrid :products=props.products :cart-product-ids="cartProductIds" />
 
                 <pagination class="mt-[15px]" :links="props.products.links"/>
             </div>
 
         </section>
+
+        <div v-else class="text-2xl text-center mt-12">
+            Товаров пока что нет
+        </div>
     </section>
 </template>
 

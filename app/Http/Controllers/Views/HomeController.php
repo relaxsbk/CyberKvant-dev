@@ -11,7 +11,6 @@ use Inertia\Inertia;
 
 class HomeController extends Controller
 {
-
     public function __invoke()
     {
 
@@ -28,8 +27,6 @@ class HomeController extends Controller
             ->where('published', true)
             ->take(6)
             ->get();
-
-//        $products = Product::query()->select('id', 'title')->take(7)->get();
 
         $products = MiniProductResource::collection(
             Product::with(['category:id,title', 'reviews:id,product_id'])

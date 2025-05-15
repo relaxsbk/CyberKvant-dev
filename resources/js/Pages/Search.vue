@@ -8,6 +8,7 @@ import Card from "../components/Card.vue";
 const props = defineProps({
     products: Object,
     query: String,
+    cartProductIds: Array
 });
 
 </script>
@@ -42,6 +43,7 @@ const props = defineProps({
                     v-for="product in products.data"
                     :key="product.id"
                     :product="product"
+                    :cart-product-ids="cartProductIds"
                 />
             </div>
 

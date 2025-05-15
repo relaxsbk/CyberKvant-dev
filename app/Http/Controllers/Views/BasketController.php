@@ -51,10 +51,16 @@ class BasketController extends Controller
         return back()->with('success', 'Товар добавлен в корзину.');
     }
 
-    public function remove(Request $request, Product $product)
+    public function remove(Product $product)
     {
-
         auth()->user()->cartItems()->where('product_id', $product->id)->delete();
+
+        return back()->with('success', 'Товар удалён из корзины.');
+    }
+
+    public function removeAll()
+    {
+        auth()->user()->cartItems()->where('user_id', auth()->user()->id)->delete();
 
         return back()->with('success', 'Товар удалён из корзины.');
     }

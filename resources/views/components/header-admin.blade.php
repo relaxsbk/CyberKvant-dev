@@ -222,7 +222,7 @@
                 <span class="sr-only">Open user menu</span>
                 <img
                     class="w-8 h-8 rounded-full"
-                    src=""
+                    src="https://sun9-79.userapi.com/impg/mK2fhP8XV3yVdQMAC6i39_f65eg_Inl2l7SYGg/MZUYIL705AM.jpg?size=687x426&quality=95&sign=46cb63c1d7b218c5e115019457cd7ff2&type=album"
                     alt="U"
                 />
             </button>

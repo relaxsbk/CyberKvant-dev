@@ -25,7 +25,7 @@ class ProductResource extends JsonResource
             'title' => $this->title,
             'rating' => $this->rating,
             'price' => $this->money(),
-            'mainImage' => asset($this->mainImage()->url),
+            'mainImage' => $this->mainImage()->url,
             'images' => $this->images->map(fn ($image) => asset($image->url)),
             'reviewsCount' => $this->reviews->count(),
             'reviews' => ReviewResource::collection($this->reviews),

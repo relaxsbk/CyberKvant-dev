@@ -4,7 +4,8 @@ import Card from "@/components/Card.vue";
 import Pagination from "@/components/Pagination.vue";
 
 const props = defineProps({
-    products: Object
+    products: Object,
+    cartProductIds: Array
 })
 
 </script>
@@ -14,7 +15,7 @@ const props = defineProps({
         <div
             v-for="product in props.products.data"
         >
-            <Card :product=product />
+            <Card :product=product :cart-product-ids="cartProductIds"/>
         </div>
 
     </div>

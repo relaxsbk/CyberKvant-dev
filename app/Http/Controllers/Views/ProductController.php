@@ -29,9 +29,14 @@ class ProductController extends Controller
             ->paginate(12)
             ->appends(['query' => $query]); // чтобы query не исчезал при пагинации
 
+        $cartProductIds = auth()->check()
+            ? auth()->user()->cartItems()->pluck('product_id')->toArray()
+            : []; // если пользователь не авторизован
+
         return inertia('Search', [
             'products' => ProductResource::collection($products),
             'query' => $query,
+            'cartProductIds' => $cartProductIds,
         ]);
     }
 }

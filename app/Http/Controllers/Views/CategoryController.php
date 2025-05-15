@@ -54,9 +54,14 @@ class CategoryController extends Controller
 
         $products = $productsQuery->paginate(8);
 
+        $cartProductIds = auth()->check()
+            ? auth()->user()->cartItems()->pluck('product_id')->toArray()
+            : []; // если пользователь не авторизован
+
         return inertia('Category_Products', [
             'category' => $category,
             'catalog' => $category->catalog,
+            'cartProductIds' => $cartProductIds,
             'products' => $products->through(function ($product) {
                 return [
                     'id' => $product->id,
@@ -68,6 +73,7 @@ class CategoryController extends Controller
                     'rating' => $product->rating,
                     'reviewsCount' => $product->reviews->count(),
                     'brand' => $product->brand ? $product->brand->title : null,
+                    'mainImage'=> $product->mainImage()->url,
                 ];
             }),
             'filters' => [

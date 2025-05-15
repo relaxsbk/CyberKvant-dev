@@ -14,11 +14,9 @@ class ReviewController extends Controller
 
         $validated = $request->validated();
         $validated['product_id'] = $product->id;
-//        Review::query()->create($validated);
 
         $request->user()->reviews()->create($validated);
 
-//        $product = Product::findOrFail($request->product_id);
         $averageRating = $product->reviews()->avg('rating');
         $product->rating = $averageRating;
         $product->save();

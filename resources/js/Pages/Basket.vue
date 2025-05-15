@@ -4,20 +4,22 @@ import AppHead from "../AppHead/AppHead.vue";
 import CartItem from "../components/Basket/CartItem.vue";
 import CartSummary from "../components/Basket/CartSummary.vue";
 import {router} from "@inertiajs/vue3";
+import {ref} from "vue";
 
 const props = defineProps({
     cart: Array,
 });
 
-
+const cart = ref(props.cart);
 
 const removeAll = () => {
-    router.delete(route('cart.removeAll'), {
+    router.post(route('cart.removeAll'), {
         // product_id: props.product.id,
         // quantity: 1
     }, {
         preserveScroll: true,
         onSuccess: () => {
+            cart.value = false
             console.log('Корзина очищена');
         }
     });
@@ -31,6 +33,7 @@ const removeItem = (productId) => {
         },
         preserveScroll: true,
         onSuccess: () => {
+
             console.log('Товар удалён из корзины');
         },
     });
@@ -40,7 +43,7 @@ const removeItem = (productId) => {
 // Обновление количества
 const updateQuantity = ({ id, quantity }) => {
     const product = cart.value.find((item) => item.id === id);
-    if (product) {
+    if (product && quantity >= 1) {
         product.quantity = quantity;
     }
 };
@@ -68,13 +71,13 @@ const click = () => {
 
         <br>
         <h2 class="text-3xl mb-[30px] flex gap-3 items-center">
-            Корзина <span v-if="$page.props.box.cart && Object.keys($page.props.box.cart).length > 0">({{Object.keys($page.props.box.cart).length }})</span>
-            <span v-if="$page.props.box.cart && Object.keys($page.props.box.cart).length > 0"  @click="removeAll" class="text-[18px] text-secondary-purple cursor-pointer hover:text-white-purple duration-200">
+            Корзина <span v-if="cart?.length > 0">( {{cart?.length}} )</span>
+            <span v-if="cart?.length > 0"   @click="removeAll" class="text-[18px] text-secondary-purple cursor-pointer hover:text-white-purple duration-200">
                 очистить
             </span>
         </h2>
 
-        <div class="grid lg:grid-cols-3 gap-6" >
+        <div v-if="cart?.length > 0" class="grid lg:grid-cols-3 gap-6" >
             <!-- Товары -->
             <div class="lg:col-span-2 space-y-4">
                 <CartItem
@@ -87,9 +90,9 @@ const click = () => {
             </div>
 
             <!-- Итоговый блок -->
-            <CartSummary />
+            <CartSummary :cart="cart" />
         </div>
-        <div>
+        <div v-else>
             Товаров в корзине нет...
         </div>
     </section>

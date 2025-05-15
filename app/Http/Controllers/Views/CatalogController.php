@@ -12,7 +12,7 @@ class CatalogController extends Controller
     public function index()
     {
         $catalog = Catalog::query()
-            ->select('id','slug', 'title', 'published')
+            ->select('id','slug', 'title', 'published', 'image')
             ->where('published', true)
             ->get();
 

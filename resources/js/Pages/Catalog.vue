@@ -33,7 +33,7 @@ defineProps({
                 :id="catalog.id"
                 :slug="catalog.slug"
                 :title="catalog.title"
-
+                :image="catalog.image"
             />
 <!--            <Category />-->
 <!--            <Category />-->

@@ -1,5 +1,14 @@
 <script setup>
-import { ref } from 'vue';
+import {computed, ref} from 'vue';
+const props = defineProps({
+    cart: Array,
+});
+
+const totalPrice = computed(() => {
+    return props.cart.reduce((sum, item) => {
+        return sum + item.price * item.quantity;
+    }, 0);
+});
 
 const isChecked = ref(false);
 </script>
@@ -9,12 +18,12 @@ const isChecked = ref(false);
         <h3 class="text-2xl mb-4 font-bold">Итого</h3>
         <div class="mb-5 flex flex-row justify-between items-center">
             <p class="text-[14px] text-gray-500">Товаров на сумму</p>
-            <p class="font-bold text-[20px]">125 000 ₽</p>
+            <p class="font-bold text-[20px]">{{ totalPrice }} ₽</p>
         </div>
         <hr class="mb-5">
         <div class="mb-3 flex flex-row justify-between items-center">
             <p class="text-xl font-bold">К оплате </p>
-            <p class="font-bold text-2xl">125 000 ₽</p>
+            <p class="font-bold text-2xl">{{ totalPrice }} ₽</p>
         </div>
 
         <!-- Чекбокс согласия -->
