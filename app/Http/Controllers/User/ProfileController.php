@@ -13,8 +13,9 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $orders = Order::query()
+        $orders = Order::with(['items.product.mainImageOr', 'orderStatus']) // подгружаем товары заказа
             ->where('user_id', Auth::id())
+            ->orderByDesc('created_at')
             ->get();
 
         return Inertia::render('User/Profile', [

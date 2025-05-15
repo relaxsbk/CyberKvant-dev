@@ -30,6 +30,10 @@ provide('drawerActions', {
         :errors="$page.props.errors"
         :message="'Исправьте ошибки в форме'"
     />
+    <ToastAlertError
+        :errors="$page.props.flash.error"
+        :message="$page.props.flash.error"
+    />
     <ToastAlertSuccess
         :success="$page.props.flash.success"
         :message="$page.props.flash.success"

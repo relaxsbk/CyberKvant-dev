@@ -2,23 +2,31 @@
 
 import OrderItem from "./OrderItem.vue";
 import LabelOrder from "./LabelOrder.vue";
+
+const props = defineProps({
+    order: Object
+});
+
+
 </script>
 
 <template>
-    <div class="w-full  rounded-lg shadow-sm bg-white border-gray-700 mb-[25px]">
-        <div class="flex flex-row items-center gap-3 px-6 py-2 font-medium text-start rounded-t-lg border-b border-[#777777] text-black" id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
-            <h1 class="text-xl text-black ">Заказ №1</h1>
-            <span class="text-[#777777]">от 13.12.2024</span>
-            <LabelOrder value="Завершён"/>
+    <div class="w-full rounded-lg shadow-sm bg-white border-gray-700 mb-[25px]">
+        <div class="flex items-center gap-3 px-6 py-2 font-medium text-start rounded-t-lg border-b border-[#777777] text-black">
+            <h1 class="text-xl">Заказ №{{ order.id }}</h1>
+            <span class="text-[#777777]">от {{ new Date(order.created_at).toLocaleDateString() }}</span>
+            <LabelOrder :value="props.order.order_status.label" />
         </div>
         <div class="flex justify-between items-center gap-24 p-6 text-black">
-            <div class="text-lg flex flex-row gap-5">
-                <OrderItem/>
-                <OrderItem/>
-
+            <div class="flex flex-col gap-5">
+                <OrderItem
+                    v-for="item in order.items"
+                    :key="item.id"
+                    :item="item"
+                />
             </div>
             <div class="text-2xl font-bold">
-                150 000 Р
+                {{ order.total.toLocaleString() }} ₽
             </div>
         </div>
     </div>

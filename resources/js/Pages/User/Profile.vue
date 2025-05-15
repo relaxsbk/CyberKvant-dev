@@ -37,7 +37,10 @@ const props = defineProps({
     <PlaceOrders>
         <h2 class="text-3xl mb-[30px]">История заказов</h2>
         <div v-if="props.orders.length">
-            <OrderCard />
+            <OrderCard
+                v-for="order in props.orders"
+                :order="order"
+            />
 <!--            в теге написать for-->
         </div>
         <NotFoundOrder v-else/>

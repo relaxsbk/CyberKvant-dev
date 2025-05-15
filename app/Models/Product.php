@@ -37,6 +37,11 @@ class Product extends Model
         return $this->images()->first();
     }
 
+    public function mainImageOr(): HasOne
+    {
+        return $this->hasOne(Product_image::class)->where('position', 0);
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
