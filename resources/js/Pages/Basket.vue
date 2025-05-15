@@ -19,7 +19,7 @@ const removeAll = () => {
     }, {
         preserveScroll: true,
         onSuccess: () => {
-            cart.value = false
+            cart.value = [];
             console.log('Корзина очищена');
         }
     });
@@ -33,7 +33,7 @@ const removeItem = (productId) => {
         },
         preserveScroll: true,
         onSuccess: () => {
-
+            cart.value = cart.value.filter(item => item.id !== productId);
             console.log('Товар удалён из корзины');
         },
     });

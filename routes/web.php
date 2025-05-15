@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AttributeCharacteristicController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RegisterController;
@@ -67,6 +68,7 @@ Route::controller(ReviewController::class)->group(function () {
     Route::post('/products/{product}/reviews', 'store')->name('products.reviews.store');
 });
 
+Route::post('/orders', [OrderController::class, 'store'])->middleware('auth')->name('orders.store');
 
 
 //user

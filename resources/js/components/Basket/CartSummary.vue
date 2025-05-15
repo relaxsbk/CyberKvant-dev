@@ -1,5 +1,6 @@
 <script setup>
 import {computed, ref} from 'vue';
+import {router} from "@inertiajs/vue3";
 const props = defineProps({
     cart: Array,
 });
@@ -9,6 +10,15 @@ const totalPrice = computed(() => {
         return sum + item.price * item.quantity;
     }, 0);
 });
+
+const placeOrder = () => {
+    if (!isChecked.value) return;
+
+    router.post(route('orders.store'), {
+        cart: props.cart,
+        total: totalPrice.value
+    });
+};
 
 const isChecked = ref(false);
 </script>
@@ -37,6 +47,7 @@ const isChecked = ref(false);
 
         <!-- Кнопка оформления -->
         <button
+            @click="placeOrder"
             class="mt-4 w-full text-white bg-primary-purple py-2 rounded-lg transition-opacity duration-200"
             :class="{ 'opacity-50 cursor-not-allowed': !isChecked }"
             :disabled="!isChecked"
