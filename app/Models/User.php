@@ -11,7 +11,8 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
-
+    const ADMIN = 'admin';
+    const USER = 'user';
     /**
      * The attributes that are mass assignable.
      *
@@ -63,5 +64,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function cartItems(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(CartItem::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ADMIN;
+    }
+
+    public function isUser(): bool
+    {
+        return $this->role === self::USER;
     }
 }

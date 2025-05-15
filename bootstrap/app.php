@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -18,6 +19,10 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->redirectUsersTo(fn (Request $request) => route('profile'));
         $middleware->redirectGuestsTo(fn (Request $request) => route('home'));
+        $middleware->alias([
+            'auth.message' => \App\Http\Middleware\RedirectGuestMiddleware::class,
+            'admin' => AdminMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

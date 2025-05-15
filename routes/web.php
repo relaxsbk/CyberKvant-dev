@@ -48,24 +48,26 @@ Route::controller(ProductController::class)->group(function () {
 
 });
 
-Route::controller(BasketController::class)->group(function () {
-    Route::get('/basket', 'index')->name('basket');
-    Route::post('/cart/add', 'add')->name('cart.add');
-    Route::delete('/cart/{product}', 'remove')->name('cart.remove');
-    Route::post('/cart/clear', 'removeAll')->name('cart.removeAll');
-});
+Route::group(['middleware' => ['auth.message']], function () {
+    Route::controller(BasketController::class)->group(function () {
+        Route::get('/basket', 'index')->name('basket');
+        Route::post('/cart/add', 'add')->name('cart.add');
+        Route::delete('/cart/{product}', 'remove')->name('cart.remove');
+        Route::post('/cart/clear', 'removeAll')->name('cart.removeAll');
+    });
 
 
-Route::controller(FavoriteController::class)->group(function () {
-    Route::get('/favorites', 'index')->name('favorites');
-});
+    Route::controller(FavoriteController::class)->group(function () {
+        Route::get('/favorites', 'index')->name('favorites');
+    });
 
-Route::controller(CompareController::class)->group(function () {
-    Route::get('/compare', 'index')->name('compare');
-});
+    Route::controller(CompareController::class)->group(function () {
+        Route::get('/compare', 'index')->name('compare');
+    });
 
-Route::controller(ReviewController::class)->group(function () {
-    Route::post('/products/{product}/reviews', 'store')->name('products.reviews.store');
+    Route::controller(ReviewController::class)->group(function () {
+        Route::post('/products/{product}/reviews', 'store')->name('products.reviews.store');
+    });
 });
 
 Route::post('/orders', [OrderController::class, 'store'])->middleware('auth')->name('orders.store');
