@@ -59,10 +59,16 @@ Route::group(['middleware' => ['auth.message']], function () {
 
     Route::controller(FavoriteController::class)->group(function () {
         Route::get('/favorites', 'index')->name('favorites');
+        Route::post('/favorites/add', 'add')->name('favorites.add');
+        Route::delete('/favorites/{product}', 'remove')->name('favorites.remove');
+        Route::post('/favorites/clear', 'removeAll')->name('favorites.removeAll');
     });
 
     Route::controller(CompareController::class)->group(function () {
         Route::get('/compare', 'index')->name('compare');
+        Route::post('/compare/add', 'add')->name('compare.add');
+        Route::delete('/compare/{product}', 'remove')->name('compare.remove');
+        Route::post('/compare/clear', 'removeAll')->name('compare.removeAll');
     });
 
     Route::controller(ReviewController::class)->group(function () {

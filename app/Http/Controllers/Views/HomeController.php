@@ -40,13 +40,22 @@ class HomeController extends Controller
 //        dd($products);
         $cartProductIds = auth()->check()
             ? auth()->user()->cartItems()->pluck('product_id')->toArray()
-            : []; // если пользователь не авторизован
+            : [];
+
+        $cartFavoriteIds = auth()->check()
+            ? auth()->user()->favoriteItems()->pluck('product_id')->toArray()
+            : [];
+        $cartCompareIds = auth()->check()
+            ? auth()->user()->compareItems()->pluck('product_id')->toArray()
+            : [];
 
         return Inertia::render('Home', [
             'categories' => $categories,
             'products' => $products,
             'brands' => $brands,
             'cartProductIds' => $cartProductIds,
+            'favoriteProductIds' => $cartFavoriteIds,
+            'compareProductIds' => $cartCompareIds,
         ]);
     }
 

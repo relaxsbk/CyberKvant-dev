@@ -2,19 +2,36 @@
 import Breadcrumb from "../components/Breadcrumb.vue";
 import AppHead from "../AppHead/AppHead.vue";
 import Card from "../components/Card.vue";
+import {ref} from "vue";
+import {router} from "@inertiajs/vue3";
 
-const products = [
-    {id:'id', title:'title'},
-    {id:'id', title:'title'},
-    {id:'id', title:'title'},
-    {id:'id', title:'title'},
-    {id:'id', title:'title'},
-];
+const props = defineProps({
+    products: Array,
+    cartProductIds: Array,
+    compareProductIds: Array,
+    cartFavoriteIds: Array,
+});
 
-const click = () => {
-    console.log('da')
-}
-// будущее взаимодействие с удалением сессии
+const favorite = ref(props.products);
+
+const handleRemoveFavorite = (productId) => {
+    favorite.value = favorite.value.filter(item => item.id !== productId);
+};
+
+const removeAll = () => {
+    router.post(route('favorites.removeAll'), {
+        // product_id: props.product.id,
+        // quantity: 1
+    }, {
+        preserveScroll: true,
+        onSuccess: () => {
+            favorite.value = [];
+            console.log('Корзина очищена');
+        }
+    });
+};
+
+
 </script>
 
 <template>
@@ -33,17 +50,26 @@ const click = () => {
 
         <br>
         <h2 class="text-3xl mb-[30px] flex gap-3 items-center">
-            Избранное (3)
-            <span  @click="click" class="text-[18px] text-secondary-purple cursor-pointer hover:text-white-purple duration-200">
+            Избранное <span v-if="favorite?.length > 0">( {{favorite?.length}} )</span>
+            <span v-if="favorite?.length > 0"  @click="removeAll" class="text-[18px] text-secondary-purple cursor-pointer hover:text-white-purple duration-200">
                 очистить
             </span>
         </h2>
-        <div class="flex flex-row flex-wrap gap-2">
+        <div v-if="favorite?.length > 0" class="flex flex-row flex-wrap gap-2">
             <div v-for="product in products" >
                 <div class="w-[300px]">
-                    <Card :product="product" />
+                    <Card
+                        :cart-product-ids="cartProductIds"
+                        :favorite-product-ids="cartFavoriteIds"
+                        :compare-product-ids="compareProductIds"
+                        :product="product"
+                        @remove-from-favorites="handleRemoveFavorite"
+                    />
                 </div>
             </div>
+        </div>
+        <div v-else class="flex flex-row flex-wrap gap-2">
+            Товаров нет
         </div>
 
 

@@ -4,7 +4,9 @@ import Card from "@/components/Card.vue";
 
 const props = defineProps({
     products: Object,
-    cartProductIds: Array
+    cartProductIds: Array,
+    favoriteProductIds: Array,
+    compareProductIds: Array,
 })
 
 </script>
@@ -14,7 +16,11 @@ const props = defineProps({
         <div
             v-for="product in props.products.data"
         >
-            <Card :product=product :cart-product-ids="cartProductIds"/>
+            <Card :product=product
+                  :cart-product-ids="cartProductIds"
+                  :favorite-product-ids="favoriteProductIds"
+                  :compare-product-ids="compareProductIds"
+            />
         </div>
 
     </div>

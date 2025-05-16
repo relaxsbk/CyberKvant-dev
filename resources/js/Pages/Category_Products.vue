@@ -12,7 +12,9 @@ const props = defineProps({
     products: Object,
     appliedFilters: Object,
     filters: Object,
-    cartProductIds: Array
+    cartProductIds: Array,
+    favoriteProductIds: Array,
+    compareProductIds: Array
 })
 
 
@@ -66,7 +68,12 @@ const props = defineProps({
             <div class=" flex-1 flex-grow py-4">
 <!--                <pagination class="mb-[15px]" :links="props.products.links"/>-->
 
-                <ProductGrid :products=props.products :cart-product-ids="cartProductIds" />
+                <ProductGrid
+                    :products=props.products
+                    :cart-product-ids="cartProductIds"
+                    :favorite-product-ids="favoriteProductIds"
+                    :compare-product-ids="compareProductIds"
+                />
 
                 <pagination class="mt-[15px]" :links="props.products.links"/>
             </div>

@@ -2,17 +2,32 @@
 import Breadcrumb from "../components/Breadcrumb.vue";
 import AppHead from "../AppHead/AppHead.vue";
 import CardCompare from "../components/CardCompare.vue";
+import {ref} from "vue";
+import {router} from "@inertiajs/vue3";
 
-const products = [
-    {id:'id', title:'title'},
-    {id:'id', title:'title'},
+const props = defineProps({
+    products: Array,
+    cartProductIds: Array,
+    favoriteProductIds: Array,
+    compareProductIds: Array,
+});
 
-];
+const compare = ref(props.products);
 
-const click = () => {
-    console.log('da')
-}
-// будущее взаимодействие с удалением сессии
+const handleRemoveCompare = (productId) => {
+    compare.value = compare.value.filter(item => item.id !== productId);
+};
+
+const removeAll = () => {
+    router.post(route('compare.removeAll'), {
+
+    }, {
+        preserveScroll: true,
+        onSuccess: () => {
+            compare.value = [];
+        }
+    });
+};
 </script>
 
 <template>
@@ -31,17 +46,26 @@ const click = () => {
 
         <br>
         <h2 class="text-3xl mb-[30px] flex gap-3 items-center">
-            Сравнить (3)
-            <span  @click="click" class="text-[18px] text-secondary-purple cursor-pointer hover:text-white-purple duration-200">
+            Сравнить <span v-if="compare?.length > 0">( {{compare?.length}} )</span>
+            <span v-if="compare?.length > 0"  @click="removeAll" class="text-[18px] text-secondary-purple cursor-pointer hover:text-white-purple duration-200">
                 очистить
             </span>
         </h2>
-        <div class="flex flex-row flex-wrap gap-2 mb-[60px]">
+        <div v-if="compare?.length > 0" class="flex flex-row flex-wrap gap-2 mb-[60px]">
             <div v-for="product in products" >
                 <div class="w-[300px]">
-                    <CardCompare :product="product" />
+                    <CardCompare
+                        :product="product"
+                        :cart-product-ids="cartProductIds"
+                        :favorite-product-ids="favoriteProductIds"
+                        :compare-product-ids="compareProductIds"
+                        @remove-from-compare="handleRemoveCompare"
+                    />
                 </div>
             </div>
+        </div>
+        <div v-else>
+            Нечего сравнивать
         </div>
 
 

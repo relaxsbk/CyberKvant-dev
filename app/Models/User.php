@@ -65,6 +65,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(CartItem::class);
     }
+    public function favoriteItems(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Favorite::class);
+    }
+    public function compareItems(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Compare::class);
+    }
 
     public function isAdmin(): bool
     {

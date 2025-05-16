@@ -33,10 +33,19 @@ class ProductController extends Controller
             ? auth()->user()->cartItems()->pluck('product_id')->toArray()
             : []; // если пользователь не авторизован
 
+        $cartFavoriteIds = auth()->check()
+            ? auth()->user()->favoriteItems()->pluck('product_id')->toArray()
+            : [];
+        $cartCompareIds = auth()->check()
+            ? auth()->user()->compareItems()->pluck('product_id')->toArray()
+            : [];
+
         return inertia('Search', [
             'products' => ProductResource::collection($products),
             'query' => $query,
             'cartProductIds' => $cartProductIds,
+            'favoriteProductIds' => $cartFavoriteIds,
+            'compareProductIds' => $cartCompareIds,
         ]);
     }
 }

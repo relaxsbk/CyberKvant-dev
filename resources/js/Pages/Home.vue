@@ -20,7 +20,9 @@ export default defineComponent({
         'categories': Array,
         'products': Array,
         'brands': Array,
-        'cartProductIds': Array
+        'cartProductIds': Array,
+        'favoriteProductIds': Array,
+        'compareProductIds': Array,
     }
 
 })
@@ -42,6 +44,8 @@ export default defineComponent({
                 <CartSlider
                     :products="products"
                     :cart-product-ids="cartProductIds"
+                    :favorite-product-ids="favoriteProductIds"
+                    :compare-product-ids="compareProductIds"
                 />
             </div>
 
@@ -67,17 +71,7 @@ export default defineComponent({
                         :title="category.title"
                         :image="category.image"
                     />
-<!--                    <Category />-->
-<!--                    <Category />-->
-<!--                    <Category />-->
-<!--                    <Category />-->
-<!--                    <Category />-->
-<!--                    <Category />-->
-<!--                    <Category />-->
-<!--                    <Category />-->
-<!--                    <Category />-->
-<!--                    <Category />-->
-<!--                    <Category />-->
+
 
                 </div>
 

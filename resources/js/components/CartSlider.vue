@@ -18,7 +18,14 @@ defineProps({
     },
     cartProductIds: {
         type: Array,
-    }
+    },
+    favoriteProductIds: {
+        type: Array,
+    },
+    compareProductIds: {
+        type: Array,
+    },
+
 
 });
 
@@ -87,7 +94,12 @@ const onSwiperInit = (swiper) => {
             @swiper="onSwiperInit"
         >
             <swiper-slide v-for="(product, index) in products" :key="index">
-                <Card :product="product" :cart-product-ids="cartProductIds" />
+                <Card
+                    :product="product"
+                    :cart-product-ids="cartProductIds"
+                    :favorite-product-ids="favoriteProductIds"
+                    :compare-product-ids="compareProductIds"
+                />
             </swiper-slide>
         </swiper>
     </div>
