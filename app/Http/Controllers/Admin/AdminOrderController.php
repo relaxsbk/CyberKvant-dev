@@ -23,6 +23,19 @@ class AdminOrderController extends Controller
             'status_id' => 'required|exists:order_statuses,id',
         ]);
 
+        // Если заказ был не отменён и теперь стал отменён
+        $wasNotCancelled = $order->order_status_id !== 2 && $request->status_id == 2;
+
+        if ($wasNotCancelled) {
+            foreach ($order->items as $detail) {
+                $product = $detail->product;
+                if ($product) {
+                    $product->quantity += $detail->quantity;
+                    $product->save();
+                }
+            }
+        }
+
         $order->order_status_id = $request->status_id;
         $order->save();
 
