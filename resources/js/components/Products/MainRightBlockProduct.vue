@@ -105,6 +105,9 @@ const removeItemCompare = (productId) => {
 
                                     {{props.product.reviewsCount}}
             </div>
+            <div class="flex justify-center items-center text-md text-gray-600">
+                В наличии: {{props.product.quantity}} шт.
+            </div>
         </div>
         <div class="flex gap-4 mb-[30px] items-center">
             <div class="text-xl text-center font-medium bg-white w-fit rounded-[10px] py-1.5 px-4 text-dark flex-shrink-0">

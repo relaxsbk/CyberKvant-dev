@@ -90,7 +90,7 @@ const click = () => {
             </div>
 
             <!-- Итоговый блок -->
-            <CartSummary :cart="cart" />
+            <CartSummary :cart="cart"  @clearCart="cart = []" />
         </div>
         <div v-else>
             Товаров в корзине нет...

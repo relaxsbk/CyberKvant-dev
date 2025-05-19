@@ -1,9 +1,12 @@
 <script setup>
 import {computed, ref} from 'vue';
 import {router} from "@inertiajs/vue3";
+
 const props = defineProps({
     cart: Array,
 });
+
+const emit = defineEmits(['clearCart']);
 
 const totalPrice = computed(() => {
     return props.cart.reduce((sum, item) => {
@@ -17,6 +20,10 @@ const placeOrder = () => {
     router.post(route('orders.store'), {
         cart: props.cart,
         total: totalPrice.value
+    }, {
+        onSuccess: () => {
+            emit('clearCart');
+        }
     });
 };
 
