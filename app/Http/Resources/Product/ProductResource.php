@@ -25,11 +25,13 @@ class ProductResource extends JsonResource
             'title' => $this->title,
             'rating' => $this->rating,
             'price' => $this->money(),
+            'brand' => $this->brand->image,
             'mainImage' => $this->mainImage()->url,
             'images' => $this->images->map(fn ($image) => asset($image->url)),
             'reviewsCount' => $this->reviews->count(),
             'reviews' => ReviewResource::collection($this->reviews),
             'characteristic' => $this->formatCharacteristics($this->characteristic),
+            'short_characteristic' => $this->formatShortCharacteristics($this->characteristic),
 
         ];
     }
@@ -58,6 +60,34 @@ class ProductResource extends JsonResource
         return $formatted;
 
 
+    }
+
+    protected function formatShortCharacteristics(Characteristic|null $characteristics): array|null
+    {
+        if ($characteristics === null) {
+            return null;
+        }
+
+        $decoded = json_decode($characteristics->characteristic, true);
+
+        if (!is_array($decoded)) {
+            return null;
+        }
+
+        $result = [];
+
+        foreach ($decoded as $name => $value) {
+            $result[] = [
+                'name' => $name,
+                'value' => $value,
+            ];
+
+            if (count($result) >= 3) {
+                break;
+            }
+        }
+
+        return $result;
     }
 
 }

@@ -15,8 +15,28 @@ class ProductController extends Controller
 
         $product = new ProductResource($product);
 
-        return inertia("Product", ['product' => $product, 'authUser' => Auth::user()]);
+        $cartProductIds = auth()->check()
+            ? auth()->user()->cartItems()->pluck('product_id')->toArray()
+            : [];
+
+        $cartFavoriteIds = auth()->check()
+            ? auth()->user()->favoriteItems()->pluck('product_id')->toArray()
+            : [];
+        $cartCompareIds = auth()->check()
+            ? auth()->user()->compareItems()->pluck('product_id')->toArray()
+            : [];
+
+
+        return inertia("Product", [
+            'product' => $product,
+            'cartProductIds' => $cartProductIds,
+            'favoriteProductIds' => $cartFavoriteIds,
+            'compareProductIds' => $cartCompareIds,
+        ]);
     }
+
+
+
     public function search(Request $request)
     {
         $query = $request->get('query');

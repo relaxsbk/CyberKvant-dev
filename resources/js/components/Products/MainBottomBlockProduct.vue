@@ -81,16 +81,7 @@ const submit = () => {
                             Выберите оценку
                         </label>
                         <Select v-model="form.rating"/>
-<!--                        <select v-model="form.rating" class="py-2.5 px-3 w-full mt-3 text-sm rounded border-none bg-[#2B2D2D] focus:border-primary-purple ease-out transition focus:outline-none focus:ring-0 peer">-->
-<!--                            <option value="5" class="bg-[#1e1e1e]/70">5</option>-->
-<!--                            <option value="4" class="bg-[#1e1e1e]/70">4</option>-->
-<!--                            <option value="3" class="bg-[#1e1e1e]/70">3</option>-->
-<!--                            <option value="2" class="bg-[#1e1e1e]/70">2</option>-->
-<!--                            <option value="1" class="bg-[#1e1e1e]/70">1</option>-->
 
-
-
-<!--                        </select>-->
                     </GroupInputLabel>
 
                     <GroupInputLabel>
@@ -98,12 +89,7 @@ const submit = () => {
                             Введите текст отзыва
                         </label>
                         <TextAreaInput v-model="form.text"/>
-<!--                        <textarea-->
-<!--                            v-model="form.area"-->
-<!--                            rows="12"-->
-<!--                            class="py-2.5 px-3 w-full text-sm rounded border-none mt-3 bg-[#2B2D2D] focus:border-primary-purple ease-out transition focus:outline-none focus:ring-0 peer"-->
 
-<!--                        ></textarea>-->
 
                         <InputError
                             :message="form.errors.text"

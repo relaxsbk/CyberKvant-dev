@@ -5,15 +5,24 @@ import MainLeftBlockProduct from "@/components/Products/MainLeftBlockProduct.vue
 import MainRightBlockProduct from "@/components/Products/MainRightBlockProduct.vue";
 import MainBottomBlockProduct from "@/components/Products/MainBottomBlockProduct.vue";
 import AppHead from "@/AppHead/AppHead.vue";
-import {Link} from "@inertiajs/vue3";
+import {Link, router} from "@inertiajs/vue3";
 
-defineProps({
-    product: Object
+const emits = defineEmits(['remove-from-favorites', 'remove-from-compare']);
+
+const props = defineProps({
+    product: Object,
+    cartProductIds: Array,
+    favoriteProductIds: Array,
+    compareProductIds: Array,
 })
+
+
+
+
 </script>
 
 <template>
-    <AppHead :title="'Купить' + ' ' + product.title + ' ' + 'в магазине ГиперКвант '"/>
+    <AppHead :title="'Купить' + ' ' + props.product.title + ' ' + 'в магазине ГиперКвант '"/>
     <section class="container mx-auto mt-[30px] ">
            <Breadcrumb class="mt-8 mb-5">
         <li>
@@ -53,11 +62,16 @@ defineProps({
     </section>
 
     <section class=" mt-10 mb-[60px] container mx-auto flex flex-col justify-between sm:items-center lg:items-stretch lg:flex-row gap-8">
-       <MainLeftBlockProduct :mainImage="product.mainImage" :images="product.images"/>
-       <MainRightBlockProduct :title="product.title" :price="product.price" :rating="product.rating" :reviews_count="product.reviewsCount" />
+       <MainLeftBlockProduct :mainImage="props.product.mainImage" :images="props.product.images"/>
+       <MainRightBlockProduct
+           :product="props.product"
+           :cart-product-ids="cartProductIds"
+           :favorite-product-ids="favoriteProductIds"
+           :compare-product-ids="compareProductIds"
+       />
     </section>
 
-    <MainBottomBlockProduct :product="product" :description="product.description" :characteristic="product.characteristic" :reviews="product.reviews" />
+    <MainBottomBlockProduct :product="props.product" :description="props.product.description" :characteristic="props.product.characteristic" :reviews="props.product.reviews" />
 </template>
 
 <style scoped>
