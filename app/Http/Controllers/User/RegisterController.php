@@ -20,7 +20,7 @@ class RegisterController extends Controller
     {
        $user = User::query()->create($request->validated());
 
-//       event(new Registered($user));
+       event(new Registered($user));
 
         return redirect()->route('home')->with(['success' => 'Успешная регистрация']);
     }

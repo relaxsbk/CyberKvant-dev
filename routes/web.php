@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AttributeCharacteristicController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ProfileController;
@@ -22,9 +21,32 @@ use App\Http\Controllers\Views\FavoriteController;
 use App\Http\Controllers\Views\HomeController;
 use App\Http\Controllers\Views\ProductController;
 use App\Http\Controllers\Views\ReviewController;
+use App\Mail\VerifyEmailCustomMail;
+use App\Models\User;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 Route::get('/', HomeController::class)->name('home');
+
+Route::get('/preview-verify-email', function () {
+    // Возьмём пользователя (например, с id = 1)
+    $user = User::find(1);
+
+    // Сгенерируем ссылку так же, как в Notification
+    $verificationUrl = URL::temporarySignedRoute(
+        'verification.verify',
+        now()->addMinutes(60),
+        [
+            'id' => $user->getKey(),
+            'hash' => sha1($user->getEmailForVerification()),
+        ]
+    );
+
+    // Вернём Mailable, Laravel отрендерит и покажет письмо в браузере
+    return new VerifyEmailCustomMail($verificationUrl);
+});
 
 Route::inertia('/about', 'About')->name('about');
 
@@ -156,3 +178,23 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     });
 });
 
+
+
+// Показать страницу "письмо отправлено"
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+// Подтверждение по ссылке
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill(); // <- Подтверждает email
+
+    return redirect('/')->with(['success' => "Успешное подтверждение почты"]); // или куда тебе нужно
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// Повторно отправить письмо
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return redirect()->route('home')->with('success', 'Письмо отправлено!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
