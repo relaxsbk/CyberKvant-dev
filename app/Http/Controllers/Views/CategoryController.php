@@ -14,6 +14,8 @@ class CategoryController extends Controller
     }
     public function show(Category $category)
     {
+
+
         $category = Category::query()
             ->where('slug', $category->slug)
             ->where('published', true)

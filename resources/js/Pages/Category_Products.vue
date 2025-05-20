@@ -57,7 +57,7 @@ const props = defineProps({
             <div class="w-1/5 py-4">
                 <div class="sticky top-28">
                     <div class="sticky top-28">
-                        <Filters :priceRange="props.filters.priceRange" :brands="props.filters.brands" :appliedFilters="props.appliedFilters" :category="props.category.id" />
+                        <Filters :priceRange="props.filters.priceRange" :brands="props.filters.brands" :appliedFilters="props.appliedFilters" :category="props.category" />
                     </div>
 <!--                    <Accordion  :sections="sections" />-->
 

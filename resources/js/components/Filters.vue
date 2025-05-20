@@ -4,7 +4,7 @@ import { router } from "@inertiajs/vue3";
 
 // Пропсы, принимающие данные для фильтров
 const props = defineProps({
-    category: Number,
+    category: Object,
     priceRange: {
         type: Object,
         required: true,
@@ -34,7 +34,7 @@ const applyFilters = () => {
     };
 
     // Отправка данных фильтров на сервер
-    router.get(route("category.show", { category: props.category }), filters, {
+    router.get(route("category.show", { category: props.category.slug }), filters, {
         preserveScroll: true,
         preserveState: true,
     });
